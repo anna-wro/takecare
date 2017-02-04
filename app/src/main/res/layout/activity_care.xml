@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_care"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="pm.anna.takecare.CareActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/scroll"
+            style="@style/scroll">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Take care!"/>
-</RelativeLayout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_care"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context="pm.anna.takecare.CareActivity">
+
+        <TextView
+            android:id="@+id/careText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/activity_horizontal_padding"
+            android:text="Have you taken care of yourself today? "
+            android:textSize="@dimen/font_medium"/>
+
+        <TextView
+            android:id="@+id/howMany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/careText"
+            android:paddingBottom="@dimen/padding_medium"
+            android:paddingTop="@dimen/padding_medium"
+            android:text="0"
+            android:textSize="@dimen/font_huge"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="addTwoPoints"
+                android:text="Adequate sleep"/>
+
+            <Button
+                android:onClick="addTwoPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Walk"/>
+
+            <Button
+                android:onClick="addThreePoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exercise"/>
+        </LinearLayout>
+
+        <Button
+            android:onClick="addTwoPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Relaxation"/>
+
+
+        <Button
+            android:onClick="addTwoPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Healthy meals"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="resetCare"
+            android:text="Reset"/>
+
+    </LinearLayout>
+</ScrollView>
