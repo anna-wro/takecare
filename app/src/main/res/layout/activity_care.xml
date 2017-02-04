@@ -15,12 +15,13 @@
         >
 
         <TextView
-            android:textColor="@android:color/white"
             android:id="@+id/careText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_horizontal_padding"
-            android:text="Have you taken care of yourself today? "
+            android:text="Have you taken \ncare of yourself today? "
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/font_medium"
             />
 
@@ -36,43 +37,20 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/font_huge"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-               style="@style/Button"
-                android:onClick="addTwoPoints"
-                android:text="Adequate sleep"
-
-               />
-
-            <Button
-                android:onClick="addTwoPoints"
-                style="@style/Button"
-                android:text="Walk"/>
-
-            <Button
-                android:onClick="addThreePoints"
-                style="@style/Button"
-                android:text="Exercise"/>
-        </LinearLayout>
-
-        <Button
-            android:onClick="addTwoPoints"
+        <TextView
+            android:id="@+id/body_title"
             style="@style/Button"
-            android:text="Relaxation"/>
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:onClick="toggle_contents"
+            android:layout_width="match_parent"
+            android:padding="@dimen/padding"
+            android:text="Body"
+            android:textAllCaps="true"
+            android:textSize="@dimen/font_medium"
 
-
-        <Button
-            android:onClick="addTwoPoints"
-            style="@style/Button"
-            android:text="Healthy meals"/>
-
-        <Button
-            style="@style/Button"
-            android:onClick="resetCare"
-            android:text="Reset"/>
+            />
+        <include layout="@layout/body"></include>
 
     </LinearLayout>
 </ScrollView>

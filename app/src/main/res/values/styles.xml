@@ -14,15 +14,18 @@
     <item name="android:fillViewport">true</item>
     <item name="android:scrollbars">vertical</item>
     <item name="android:scrollbarStyle">insideOverlay</item>
+        <item name="android:paddingLeft">@dimen/padding</item>
+        <item name="android:paddingRight">@dimen/padding</item>
     </style>
     <style name="Button">
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:layout_margin">@dimen/margin_button</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/button</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/toggle_selector</item>
+        <item name="android:textColor">@color/toggle_color</item>
         <item name="android:textSize">@dimen/font_smaller</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_gravity">fill</item>
     </style>
 </resources>

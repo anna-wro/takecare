@@ -1,52 +1,79 @@
 package pm.anna.takecare;
 
+
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
-
-
-public class CareActivity extends BaseActivity  {
-    private TextView mHowMany;
-    private Button mButton;
+import android.widget.ToggleButton;
+public class CareActivity extends BaseActivity {
     int howMany = 0;
+
+    private TextView mHowMany;
+    GridLayout mBodyList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care);
-    }
-    public void addThreePoints(View v) {
-        Button b = (Button)v;
-        b.setTextColor(getResources().getColor(R.color.colorPrimary));
-        b.setBackgroundResource(R.drawable.button_used);
-        b.setEnabled(false);
-        howMany +=3;
-        addCare(howMany);
-    }
-    public void addTwoPoints(View v) {
-        Button b = (Button)v;
-        b.setTextColor(getResources().getColor(R.color.colorPrimary));
-        b.setBackgroundResource(R.drawable.button_used);
-        b.setEnabled(false);
-        howMany +=2;
-        addCare(howMany);
-    }
-    public void addOnePoint(View v) {
-        Button b = (Button)v;
-        b.setTextColor(getResources().getColor(R.color.colorPrimary));
-        b.setBackgroundResource(R.drawable.button_used);
-        b.setEnabled(false);
-        howMany +=1;
-        addCare(howMany);
-    }
-    public void resetCare (View v){
-        howMany = 0;
-        addCare(howMany);
+        mBodyList = (GridLayout) findViewById(R.id.body_list);
+        // hide until its title is clicked
+        mBodyList.setVisibility(View.GONE);
 
     }
-    public void addCare (int num) {
+    /**
+     * onClick handler
+     */
+    public void toggle_contents(View v){
+        if(mBodyList.isShown()){
+            Slide_animation.slide_up(this, mBodyList);
+            mBodyList.setVisibility(View.GONE);
+        }
+        else{
+            mBodyList.setVisibility(View.VISIBLE);
+            Slide_animation.slide_down(this, mBodyList);
+        }
+    }
+
+    public void changeThreePoints(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 3;
+        } else {
+            howMany -= 3;
+        }
+        changeCare(howMany);
+    }
+
+    public void changeTwoPoints(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 2;
+        } else {
+            howMany -= 2;
+        }
+        changeCare(howMany);
+    }
+
+    public void changeOnePoint(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 1;
+        } else {
+            howMany -= 1;
+        }
+        changeCare(howMany);
+    }
+
+    public void resetCare(View v) {
+        howMany = 0;
+        changeCare(howMany);
+    }
+
+    public void changeCare(int num) {
         mHowMany = (TextView) findViewById(R.id.howMany);
         mHowMany.setText(String.valueOf(num));
     }
+
+
 }
