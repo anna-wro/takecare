@@ -2,13 +2,13 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
      android:fillAfter="true" >
     <alpha
-        android:duration="300"
-        android:fromAlpha="1.0"
-        android:interpolator="@android:anim/accelerate_interpolator"
-        android:toAlpha="0.0" />
+    android:duration="400"
+    android:fromAlpha="1.0"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:toAlpha="0.0" />
 
     <scale
-        android:startOffset="100"
+    android:startOffset="200"
         android:duration="400"
         android:fromXScale="1.0"
         android:fromYScale="1.0"

@@ -46,10 +46,12 @@
             style="@style/category"
             android:text="Mind"
             />
+        <include layout="@layout/mind"></include>
         <TextView
             android:id="@+id/soul_title"
             style="@style/category"
             android:text="Soul"
             />
+        <include layout="@layout/soul"></include>
     </LinearLayout>
 </ScrollView>

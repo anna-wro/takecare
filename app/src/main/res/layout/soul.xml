@@ -1,0 +1,75 @@
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/body_list"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:orientation="horizontal"
+    tools:showIn="@layout/activity_care"
+    >
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeTwoPoints"
+        android:textOff="Adequate sleep"
+        android:textOn="Adequate sleep"
+        />
+
+    <ToggleButton
+        style="@style/Button"
+        android:layout_columnWeight="1"
+        android:onClick="changeTwoPoints"
+        android:textOff="Walk"
+        android:textOn="Walk"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeThreePoints"
+        android:textOff="Exercise"
+        android:textOn="Exercise"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeTwoPoints"
+        android:textOff="Chores"
+        android:textOn="Chores"/>
+
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeThreePoints"
+        android:textOff="Medicine \ntaken"
+        android:textOn="Medicine \ntaken"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeThreePoints"
+        android:textOff="Professional \nSupport"
+        android:textOn="Professional \nSupport"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeTwoPoints"
+        android:textOff="Walk"
+        android:textOn="Walk"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeThreePoints"
+        android:textOff="Exercise"
+        android:textOn="Exercise"/>
+
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeTwoPoints"
+        android:textOff="Walk"
+        android:textOn="Walk"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeThreePoints"
+        android:textOff="Social Support"
+        android:textOn="Social Support"/>
+</GridLayout>

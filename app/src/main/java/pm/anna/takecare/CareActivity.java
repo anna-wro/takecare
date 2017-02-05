@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
 public class CareActivity extends BaseActivity {
     int howMany = 0;
 
@@ -24,14 +25,20 @@ public class CareActivity extends BaseActivity {
     /**
      * onClick handler
      */
-    public void toggle_contents(View v){
+    public void toggle_contents(View v) throws InterruptedException {
         if(mBodyList.isShown()){
-            Slide_animation.slide_up(this, mBodyList);
-            mBodyList.setVisibility(View.GONE);
+            Slide_animation.fade_out(this, mBodyList);
+            v.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mBodyList.setVisibility(View.GONE);
+                }
+            }, 450);
+
         }
         else{
             mBodyList.setVisibility(View.VISIBLE);
-            Slide_animation.slide_down(this, mBodyList);
+            Slide_animation.fade_in(this, mBodyList);
         }
     }
 
