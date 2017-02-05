@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/scroll"
-            style="@style/scroll">
+            style="@style/scroll"
+            tools:context="pm.anna.takecare.CareActivity">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_care"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context="pm.anna.takecare.CareActivity"
+
         >
 
         <TextView
             android:id="@+id/careText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+         style="@style/standardSize"
             android:paddingTop="@dimen/activity_horizontal_padding"
             android:text="Have you taken \ncare of yourself today? "
             android:textAlignment="center"
@@ -26,10 +25,8 @@
             />
 
         <TextView
-
             android:id="@+id/howMany"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/standardSize"
             android:layout_below="@id/careText"
             android:paddingBottom="@dimen/padding_medium"
             android:paddingTop="@dimen/padding_smaller"
@@ -39,18 +36,20 @@
 
         <TextView
             android:id="@+id/body_title"
-            style="@style/Button"
-            android:gravity="center_horizontal"
-            android:clickable="true"
-            android:onClick="toggle_contents"
-            android:layout_width="match_parent"
-            android:padding="@dimen/padding"
+            style="@style/category"
             android:text="Body"
-            android:textAllCaps="true"
-            android:textSize="@dimen/font_medium"
-
             />
         <include layout="@layout/body"></include>
 
+        <TextView
+            android:id="@+id/mind_title"
+            style="@style/category"
+            android:text="Mind"
+            />
+        <TextView
+            android:id="@+id/soul_title"
+            style="@style/category"
+            android:text="Soul"
+            />
     </LinearLayout>
 </ScrollView>
