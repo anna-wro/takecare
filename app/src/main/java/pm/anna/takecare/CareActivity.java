@@ -12,22 +12,28 @@ public class CareActivity extends BaseActivity {
 
     private TextView mHowMany;
     GridLayout mBodyList;
+    GridLayout mMindList;
+    GridLayout mSoulList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care);
         mBodyList = (GridLayout) findViewById(R.id.body_list);
+        mMindList = (GridLayout) findViewById(R.id.mind_list);
+        mSoulList = (GridLayout) findViewById(R.id.soul_list);
         // hide until its title is clicked
         mBodyList.setVisibility(View.GONE);
+        mMindList.setVisibility(View.GONE);
+        mSoulList.setVisibility(View.GONE);
 
     }
     /**
      * onClick handler
      */
-    public void toggle_contents(View v) throws InterruptedException {
+    public void toggle_body(View v) throws InterruptedException {
         if(mBodyList.isShown()){
-            Slide_animation.fade_out(this, mBodyList);
+            Fade_animation.fade_out(this, mBodyList);
             v.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -38,7 +44,39 @@ public class CareActivity extends BaseActivity {
         }
         else{
             mBodyList.setVisibility(View.VISIBLE);
-            Slide_animation.fade_in(this, mBodyList);
+            Fade_animation.fade_in(this, mBodyList);
+        }
+    }
+    public void toggle_mind(View v) throws InterruptedException {
+        if(mMindList.isShown()){
+            Fade_animation.fade_out(this, mMindList);
+            v.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mMindList.setVisibility(View.GONE);
+                }
+            }, 450);
+
+        }
+        else{
+            mMindList.setVisibility(View.VISIBLE);
+            Fade_animation.fade_in(this, mMindList);
+        }
+    }
+    public void toggle_soul(View v) throws InterruptedException {
+        if(mSoulList.isShown()){
+            Fade_animation.fade_out(this, mSoulList);
+            v.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mSoulList.setVisibility(View.GONE);
+                }
+            }, 450);
+
+        }
+        else{
+            mSoulList.setVisibility(View.VISIBLE);
+            Fade_animation.fade_in(this, mSoulList);
         }
     }
 

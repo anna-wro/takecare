@@ -22,14 +22,14 @@ public class BaseActivity extends Activity {
         overridePendingTransitionExit();
     }
     /**
-     * Overrides the pending Activity transition by performing the "Enter" Slide_animation.
+     * Overrides the pending Activity transition by performing the "Enter" Fade_animation.
      */
     protected void overridePendingTransitionEnter() {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     /**
-     * Overrides the pending Activity transition by performing the "Exit" Slide_animation.
+     * Overrides the pending Activity transition by performing the "Exit" Fade_animation.
      */
     protected void overridePendingTransitionExit() {
         overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);

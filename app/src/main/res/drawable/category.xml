@@ -3,8 +3,9 @@
     <item>
         <shape
             android:padding="@dimen/padding_tiny"
+
             android:shape="rectangle">
-            <solid android:color="@color/semi_transparent"/>
+            <solid android:color="@color/darker_violet"/>
             <corners android:radius="@dimen/corner_radius"/>
         </shape>
     </item>

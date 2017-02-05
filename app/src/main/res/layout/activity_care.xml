@@ -33,11 +33,11 @@
             android:text="0"
             android:textColor="@android:color/white"
             android:textSize="@dimen/font_huge"/>
-
         <TextView
             android:id="@+id/body_title"
             style="@style/category"
             android:text="Body"
+            android:onClick="toggle_body"
             />
         <include layout="@layout/body"></include>
 
@@ -45,12 +45,14 @@
             android:id="@+id/mind_title"
             style="@style/category"
             android:text="Mind"
+            android:onClick="toggle_mind"
             />
         <include layout="@layout/mind"></include>
         <TextView
             android:id="@+id/soul_title"
             style="@style/category"
             android:text="Soul"
+            android:onClick="toggle_soul"
             />
         <include layout="@layout/soul"></include>
     </LinearLayout>

@@ -27,7 +27,6 @@
     <style name="Button" parent="standardSize">
         <item name="android:padding">@dimen/padding</item>
         <item name="android:layout_margin">@dimen/margin_button</item>
-
         <item name="android:background">@drawable/toggle_selector</item>
         <item name="android:textColor">@color/toggle_color</item>
         <item name="android:textSize">@dimen/font_smaller</item>
@@ -36,15 +35,18 @@
     </style>
 
     <style name="category">
+        <item name="android:background">@drawable/category</item>
+<item name="android:textColor">@android:color/white</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:clickable">true</item>
-        <item name="android:onClick">toggle_contents</item>
         <item name="android:padding">@dimen/padding</item>
         <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:layout_margin">@dimen/padding_tiny</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
     </style>
 
 

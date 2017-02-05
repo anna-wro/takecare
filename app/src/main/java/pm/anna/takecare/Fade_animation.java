@@ -6,7 +6,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 
-public class Slide_animation {
+public class Fade_animation {
     public static void fade_in(Context ctx, View v){
         Animation a = AnimationUtils.loadAnimation(ctx, R.anim.fade_in);
         if(a != null){
