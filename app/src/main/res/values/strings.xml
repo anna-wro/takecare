@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Take care xx</string>
-
+<string name="hi_text">Hi, Anna!</string>
+    <string name="mind_category">Mind</string>
+    <string name="body_category">Body</string>
+    <string name="soul_category">Soul</string>
+    <string name="question">Have you taken \ncare of yourself today?</string>
+    <string name="default_value">0</string>
 </resources>

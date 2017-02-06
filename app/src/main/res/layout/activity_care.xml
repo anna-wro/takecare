@@ -1,66 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                      xmlns:tools="http://schemas.android.com/tools"
+            xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/scroll"
             style="@style/scroll"
             tools:context="pm.anna.takecare.CareActivity">
 
     <LinearLayout
         android:id="@+id/activity_care"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-
+        style="@style/linear_layout"
         >
+
         <TextView
-             style="@style/standardSize"
-            android:paddingTop="@dimen/activity_horizontal_padding"
-            android:text="Hi, Anna!"
-            android:textAlignment="center"
-            android:textColor="@color/semi_transparent"
-            android:textSize="@dimen/font_normal"
+            style="@style/hi_text"
+            android:text="@string/hi_text"
             />
+
         <TextView
             android:id="@+id/careText"
-         style="@style/standardSize"
-            android:paddingTop="@dimen/padding"
-            android:text="Have you taken \ncare of yourself today? "
-            android:textAlignment="center"
-            android:textColor="@color/semi_transparent"
-            android:textSize="@dimen/font_medium"
+            style="@style/hi_text"
+            android:text="@string/question"
             />
 
         <TextView
             android:id="@+id/howMany"
-            style="@style/standardSize"
-            android:layout_below="@id/careText"
-            android:paddingBottom="@dimen/padding_medium"
-            android:paddingTop="@dimen/padding_smaller"
-            android:text="0"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/font_huge"/>
+            style="@style/score"
+            android:text="@string/default_value"
+            />
+
         <TextView
             android:id="@+id/body_title"
             style="@style/category"
-            android:text="Body"
             android:onClick="toggle_body"
+            android:text="@string/body_category"
             />
+
         <include layout="@layout/body"></include>
 
         <TextView
             android:id="@+id/mind_title"
             style="@style/category"
-            android:text="Mind"
             android:onClick="toggle_mind"
+            android:text="@string/mind_category"
             />
+
         <include layout="@layout/mind"></include>
+
         <TextView
             android:id="@+id/soul_title"
             style="@style/category"
-            android:text="Soul"
             android:onClick="toggle_soul"
+            android:text="@string/soul_category"
             />
+
         <include layout="@layout/soul"></include>
     </LinearLayout>
 </ScrollView>

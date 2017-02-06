@@ -13,6 +13,33 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="hi_text" parent="standardSize">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/semi_transparent</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="question" parent="standardSize">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/semi_transparent</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:paddingTop">@dimen/padding</item>
+    </style>
+
+    <style name="score" parent="standardSize">
+        <item name="android:layout_below">@id/careText</item>
+        <item name="android:paddingBottom">@dimen/padding_medium</item>
+        <item name="android:paddingTop">@dimen/padding_smaller</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/font_huge</item>
+    </style>
+
+    <style name="section" parent="standardSize">
+        <item name="android:columnCount">2</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <style name="scroll">
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:layout_width">match_parent</item>
@@ -22,6 +49,13 @@
         <item name="android:scrollbarStyle">insideOverlay</item>
         <item name="android:paddingLeft">@dimen/padding</item>
         <item name="android:paddingRight">@dimen/padding</item>
+    </style>
+
+    <style name="linear_layout">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="Button" parent="standardSize">
@@ -36,7 +70,7 @@
 
     <style name="category">
         <item name="android:background">@drawable/category</item>
-<item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAllCaps">true</item>

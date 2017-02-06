@@ -2,10 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/body_list"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:columnCount="2"
-    android:orientation="horizontal"
+    style="@style/section"
     tools:showIn="@layout/activity_care"
     >
 
