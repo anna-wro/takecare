@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="body1">Adequate sleep\n◦◦</string>
+    <string name="body1_on">Adequate sleep\n●●</string>
+    <string name="body2">Medicine taken\n◦◦</string>
+    <string name="body2_on">Medicine taken\n●●</string>
+    <string name="body3">Healthy meals\n◦◦</string>
+    <string name="body3_on">Healthy meals\n●●</string>
+    <string name="body4">Plenty of water\n◦</string>
+    <string name="body4_on">Plenty of water\n●</string>
+    <string name="body5">Beauty care\n◦◦</string>
+    <string name="body5_on">Beauty care\n●●</string>
+    <string name="body6">Time outside\n◦◦◦</string>
+    <string name="body6_on">Time outside\n●●●</string>
+    <string name="body7">Exercise\n◦◦◦</string>
+    <string name="body7_on">Exercise\n●●●</string>
+    <string name="body8">Walk\n◦◦</string>
+    <string name="body8_on">Walk\n●●</string>
+</resources>

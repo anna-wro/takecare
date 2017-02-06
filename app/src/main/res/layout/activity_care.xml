@@ -13,14 +13,21 @@
         android:orientation="vertical"
 
         >
-
+        <TextView
+             style="@style/standardSize"
+            android:paddingTop="@dimen/activity_horizontal_padding"
+            android:text="Hi, Anna!"
+            android:textAlignment="center"
+            android:textColor="@color/semi_transparent"
+            android:textSize="@dimen/font_normal"
+            />
         <TextView
             android:id="@+id/careText"
          style="@style/standardSize"
-            android:paddingTop="@dimen/activity_horizontal_padding"
+            android:paddingTop="@dimen/padding"
             android:text="Have you taken \ncare of yourself today? "
             android:textAlignment="center"
-            android:textColor="@android:color/white"
+            android:textColor="@color/semi_transparent"
             android:textSize="@dimen/font_medium"
             />
 

@@ -12,64 +12,64 @@
     <ToggleButton
         style="@style/Button"
         android:onClick="changeTwoPoints"
-        android:textOff="Adequate sleep"
-        android:textOn="Adequate sleep"
+        android:textOff="@string/mind1"
+        android:textOn="@string/mind1_on"
         />
 
     <ToggleButton
         style="@style/Button"
         android:layout_columnWeight="1"
         android:onClick="changeTwoPoints"
-        android:textOff="Walk"
-        android:textOn="Walk"/>
+        android:textOff="@string/mind2"
+        android:textOn="@string/mind2_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeThreePoints"
-        android:textOff="Exercise"
-        android:textOn="Exercise"/>
+        android:textOff="@string/mind3"
+        android:textOn="@string/mind3_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeTwoPoints"
-        android:textOff="Chores"
-        android:textOn="Chores"/>
+        android:textOff="@string/mind4"
+        android:textOn="@string/mind4_on"/>
 
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeThreePoints"
-        android:textOff="Medicine \ntaken"
-        android:textOn="Medicine \ntaken"/>
+        android:textOff="@string/mind5"
+        android:textOn="@string/mind5_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeThreePoints"
-        android:textOff="Professional \nSupport"
-        android:textOn="Professional \nSupport"/>
+        android:textOff="@string/mind6"
+        android:textOn="@string/mind6_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeTwoPoints"
-        android:textOff="Walk"
-        android:textOn="Walk"/>
+        android:textOff="@string/mind7"
+        android:textOn="@string/mind7_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeThreePoints"
-        android:textOff="Exercise"
-        android:textOn="Exercise"/>
+        android:textOff="@string/mind8"
+        android:textOn="@string/mind8_on"/>
 
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeTwoPoints"
-        android:textOff="Walk"
-        android:textOn="Walk"/>
+        android:textOff="@string/mind9"
+        android:textOn="@string/mind9_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeThreePoints"
-        android:textOff="Social Support"
-        android:textOn="Social Support"/>
+        android:textOff="@string/mind10"
+        android:textOn="@string/mind10_on"/>
 </GridLayout>

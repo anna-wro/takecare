@@ -19,6 +19,8 @@ public class CareActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care);
+
+
         mBodyList = (GridLayout) findViewById(R.id.body_list);
         mMindList = (GridLayout) findViewById(R.id.mind_list);
         mSoulList = (GridLayout) findViewById(R.id.soul_list);

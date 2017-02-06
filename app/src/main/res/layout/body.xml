@@ -10,66 +10,54 @@
     >
 
     <ToggleButton
+
         style="@style/Button"
         android:onClick="changeTwoPoints"
-        android:textOff="Adequate sleep"
-        android:textOn="Adequate sleep"
+        android:textOff="@string/body1"
+        android:textOn="@string/body1_on"
         />
 
     <ToggleButton
         style="@style/Button"
-        android:layout_columnWeight="1"
         android:onClick="changeTwoPoints"
-        android:textOff="Walk"
-        android:textOn="Walk"/>
-
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeThreePoints"
-        android:textOff="Exercise"
-        android:textOn="Exercise"/>
+        android:textOff="@string/body2"
+        android:textOn="@string/body2_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeTwoPoints"
-        android:textOff="Chores"
-        android:textOn="Chores"/>
-
-
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeThreePoints"
-        android:textOff="Medicine \ntaken"
-        android:textOn="Medicine \ntaken"/>
+        android:textOff="@string/body3"
+        android:textOn="@string/body3_on"/>
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeThreePoints"
-        android:textOff="Professional \nSupport"
-        android:textOn="Professional \nSupport"/>
-
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeTwoPoints"
-        android:textOff="Walk"
-        android:textOn="Walk"/>
-
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeThreePoints"
-        android:textOff="Exercise"
-        android:textOn="Exercise"/>
+        android:onClick="changeOnePoint"
+        android:textOff="@string/body4"
+        android:textOn="@string/body4_on"/>
 
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeTwoPoints"
-        android:textOff="Walk"
-        android:textOn="Walk"/>
+        android:textOff="@string/body5"
+        android:textOn="@string/body5_on"/>
 
     <ToggleButton
         style="@style/Button"
         android:onClick="changeThreePoints"
-        android:textOff="Social Support"
-        android:textOn="Social Support"/>
+        android:textOff="@string/body6"
+        android:textOn="@string/body6_on"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeThreePoints"
+        android:textOff="@string/body7"
+        android:textOn="@string/body7_on"/>
+
+    <ToggleButton
+        style="@style/Button"
+        android:onClick="changeTwoPoints"
+        android:textOff="@string/body8"
+        android:textOn="@string/body8_on"/>
+
 </GridLayout>

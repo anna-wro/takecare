@@ -5,7 +5,7 @@
     <dimen name="padding_big">120dp</dimen>
     <dimen name="padding_bigger">72dp</dimen>
     <dimen name="padding_medium">48dp</dimen>
-    <dimen name="padding_smaller">24dp</dimen>
+    <dimen name="padding_smaller">28dp</dimen>
     <dimen name="font_normal">24sp</dimen>
     <dimen name="font_medium">20sp</dimen>
     <dimen name="font_smaller">16sp</dimen>

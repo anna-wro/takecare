@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="soul1">Adequate sleep\n◦◦</string>
+    <string name="soul1_on">Adequate sleep\n●●</string>
+    <string name="soul2">Walk\n◦◦</string>
+    <string name="soul2_on">Walk\n●●</string>
+    <string name="soul3">Exercise\n◦◦◦</string>
+    <string name="soul3_on">Exercise\n●●●</string>
+    <string name="soul4">Exercise\n◦◦◦</string>
+    <string name="soul4_on">Exercise\n●●●</string>
+    <string name="soul5">Exercise\n◦◦◦</string>
+    <string name="soul5_on">Exercise\n●●●</string>
+    <string name="soul6">Exercise\n◦◦◦</string>
+    <string name="soul6_on">Exercise\n●●●</string>
+    <string name="soul7">Exercise\n◦◦◦</string>
+    <string name="soul7_on">Exercise\n●●●</string>
+    <string name="soul8">Exercise\n◦◦◦</string>
+    <string name="soul8_on">Exercise\n●●●</string>
+    <string name="soul9">Exercise\n◦◦◦</string>
+    <string name="soul9_on">Exercise\n●●●</string>
+    <string name="soul10">Exercise\n◦◦◦</string>
+    <string name="soul10_on">Exercise\n●●●</string>
+
+</resources>
