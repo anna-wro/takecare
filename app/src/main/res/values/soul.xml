@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="soul1">Adequate sleep\n◦◦</string>
-    <string name="soul1_on">Adequate sleep\n●●</string>
-    <string name="soul2">Walk\n◦◦</string>
-    <string name="soul2_on">Walk\n●●</string>
-    <string name="soul3">Exercise\n◦◦◦</string>
-    <string name="soul3_on">Exercise\n●●●</string>
-    <string name="soul4">Exercise\n◦◦◦</string>
-    <string name="soul4_on">Exercise\n●●●</string>
-    <string name="soul5">Exercise\n◦◦◦</string>
-    <string name="soul5_on">Exercise\n●●●</string>
-    <string name="soul6">Exercise\n◦◦◦</string>
-    <string name="soul6_on">Exercise\n●●●</string>
-    <string name="soul7">Exercise\n◦◦◦</string>
-    <string name="soul7_on">Exercise\n●●●</string>
-    <string name="soul8">Exercise\n◦◦◦</string>
-    <string name="soul8_on">Exercise\n●●●</string>
-    <string name="soul9">Exercise\n◦◦◦</string>
-    <string name="soul9_on">Exercise\n●●●</string>
-    <string name="soul10">Exercise\n◦◦◦</string>
-    <string name="soul10_on">Exercise\n●●●</string>
+    <string name="soul1">Say «no»\n◦◦◦</string>
+    <string name="soul1_on">Say «no»\n●●●</string>
+    <string name="soul2">Ask for help\n◦◦◦</string>
+    <string name="soul2_on">Ask for help\n●●●</string>
+    <string name="soul3">Catch up \nwith friends\n◦◦◦</string>
+    <string name="soul3_on">Catch up \nwith friends\n◦●●●</string>
+    <string name="soul4">Unplug\nfor an hour\n◦◦◦</string>
+    <string name="soul4_on">Unplug\nfor an hour \n●●●</string>
+    <string name="soul5">Act of kindness \n◦◦◦</string>
+    <string name="soul5_on">Act of kindness \n●●●</string>
+    <string name="soul6">Read a book\n◦◦</string>
+    <string name="soul6_on">Read a book\n●●</string>
+    <string name="soul7">Enjoyable\nactivities\n◦◦</string>
+    <string name="soul7_on">Enjoyable\nactivities\n●●</string>
+    <string name="soul8">Professional \nsupport\n◦◦</string>
+    <string name="soul8_on">Professional \nsupport\n●●</string>
+    <string name="soul9">Time\n◦◦◦</string>
+    <string name="soul9_on">Time\n●●●</string>
+    <string name="soul10">Volunteering \n◦</string>
+    <string name="soul10_on">Volunteering \n●</string>
+
+
+
+
+
 
 </resources>
