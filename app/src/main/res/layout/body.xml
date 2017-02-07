@@ -35,13 +35,13 @@
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeTwoPoints"
+        android:onClick="changeThreePoints"
         android:textOff="@string/body5"
         android:textOn="@string/body5_on"/>
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeThreePoints"
+        android:onClick="changeTwoPoints"
         android:textOff="@string/body6"
         android:textOn="@string/body6_on"/>
 

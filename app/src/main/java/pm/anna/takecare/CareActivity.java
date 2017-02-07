@@ -81,6 +81,15 @@ public class CareActivity extends BaseActivity {
             Fade_animation.fade_in(this, mSoulList);
         }
     }
+    public void changeFivePoints(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 5;
+        } else {
+            howMany -= 5;
+        }
+        changeCare(howMany);
+    }
 
     public void changeThreePoints(View v) {
         boolean isChecked = ((ToggleButton) v).isChecked();

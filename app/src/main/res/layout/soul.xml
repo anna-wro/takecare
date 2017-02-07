@@ -15,8 +15,7 @@
 
     <ToggleButton
         style="@style/Button"
-        android:layout_columnWeight="1"
-        android:onClick="changeTwoPoints"
+        android:onClick="changeFivePoints"
         android:textOff="@string/soul2"
         android:textOn="@string/soul2_on"/>
 
