@@ -5,25 +5,21 @@
     <string name="soul2">Ask for help\n◦◦◦◦◦</string>
     <string name="soul2_on">Ask for help\n●●●●●</string>
     <string name="soul3">Catch up \nwith friends\n◦◦◦</string>
-    <string name="soul3_on">Catch up \nwith friends\n◦●●●</string>
+    <string name="soul3_on">Catch up \nwith friends\n●●●</string>
     <string name="soul4">Unplug\nfor an hour\n◦◦◦</string>
     <string name="soul4_on">Unplug\nfor an hour \n●●●</string>
-    <string name="soul5">Make someone smile\n◦◦◦</string>
-    <string name="soul5_on">Make someone smile\n●●●</string>
-    <string name="soul6">Read a book\n◦</string>
-    <string name="soul6_on">Read a book\n●</string>
-    <string name="soul7">Enjoyable\nactivities\n◦◦</string>
-    <string name="soul7_on">Enjoyable\nactivities\n●●</string>
-    <string name="soul8">Professional \nsupport\n◦◦</string>
-    <string name="soul8_on">Professional \nsupport\n●●</string>
-    <string name="soul9">Time\n◦◦◦</string>
-    <string name="soul9_on">Time\n●●●</string>
-    <string name="soul10">Volunteer\n◦</string>
-    <string name="soul10_on">Volunteer\n●</string>
-
-
-
-
+    <string name="soul5">Read a book\n◦</string>
+    <string name="soul5_on">Read a book\n●</string>
+    <string name="soul6">Make\nsomeone smile\n◦◦</string>
+    <string name="soul6_on">Make\nsomeone smile\n●●</string>
+    <string name="soul7">Baby animals \nvideos\n◦◦</string>
+    <string name="soul7_on">Baby animals \nvideos\n●●</string>
+    <string name="soul8">Enjoyable\nactivities\n◦◦◦</string>
+    <string name="soul8_on">Enjoyable\nactivities\n●●●</string>
+    <string name="soul9">Volunteering\n◦</string>
+    <string name="soul9_on">Volunteering\n●</string>
+    <string name="soul10">Professional \nsupport\n◦◦◦</string>
+    <string name="soul10_on">Professional \nsupport\n●●●</string>
 
 
 </resources>

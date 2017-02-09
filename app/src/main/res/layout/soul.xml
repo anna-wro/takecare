@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/soul_list"
     style="@style/section"
-    tools:showIn="@layout/activity_care"
+
     >  >
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeTwoPoints"
+        android:onClick="changeThreePoints"
         android:textOff="@string/soul1"
         android:textOn="@string/soul1_on"
         />
@@ -27,20 +27,20 @@
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeTwoPoints"
+        android:onClick="changeThreePoints"
         android:textOff="@string/soul4"
         android:textOn="@string/soul4_on"/>
 
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeThreePoints"
+        android:onClick="changeOnePoint"
         android:textOff="@string/soul5"
         android:textOn="@string/soul5_on"/>
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeThreePoints"
+        android:onClick="changeTwoPoints"
         android:textOff="@string/soul6"
         android:textOn="@string/soul6_on"/>
 
@@ -59,7 +59,7 @@
 
     <ToggleButton
         style="@style/Button"
-        android:onClick="changeTwoPoints"
+        android:onClick="changeOnePoint"
         android:textOff="@string/soul9"
         android:textOn="@string/soul9_on"/>
 
