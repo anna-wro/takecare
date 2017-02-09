@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="mind1">University\n◦◦</string>
-    <string name="mind1_on">University\n●●</string>
-    <string name="mind2">Making progress\n◦◦◦</string>
-    <string name="mind2_on">Making progress\n●●●</string>
-    <string name="mind3">Reading\n◦◦◦</string>
-    <string name="mind3_on">Reading\n●●●</string>
-    <string name="mind4">Time offline\n◦◦◦</string>
-    <string name="mind4_on">Time offline\n●●●</string>
-    <string name="mind5">Do something new\n◦◦◦</string>
-    <string name="mind5_on">Do something new\n●●●</string>
-    <string name="mind6">Exercise\n◦◦◦</string>
-    <string name="mind6_on">Exercise\n●●●</string>
-    <string name="mind7">Exercise\n◦◦◦</string>
-    <string name="mind7_on">Exercise\n●●●</string>
-    <string name="mind8">Exercise\n◦◦◦</string>
-    <string name="mind8_on">Exercise\n●●●</string>
-    <string name="mind9">Exercise\n◦◦◦</string>
-    <string name="mind9_on">Exercise\n●●●</string>
-    <string name="mind10">Exercise\n◦◦◦</string>
-    <string name="mind10_on">Exercise\n●●●</string>
+    <string name="mind1">University\n◦◦◦</string>
+    <string name="mind1_on">University\n●●●</string>
+    <string name="mind2">Making\nprogress\n◦◦◦</string>
+    <string name="mind2_on">Making\nprogress\n●●●</string>
+    <string name="mind3">Design\n◦◦</string>
+    <string name="mind3_on">Design\n●●</string>
+    <string name="mind4">Sign language\n◦◦◦</string>
+    <string name="mind4_on">Sign language\n●●●</string>
+    <string name="mind5">Writing\n◦</string>
+    <string name="mind5_on">Writing\n●</string>
+    <string name="mind6">Photography\n◦</string>
+    <string name="mind6_on">Photography\n●</string>
+    <string name="mind7">Front-end\ndevelopment\n◦◦</string>
+    <string name="mind7_on">Front-end\ndevelopment\n●●</string>
+    <string name="mind8">Android\ndevelopment\n◦◦</string>
+    <string name="mind8_on">Android\ndevelopment\n●●</string>
 
 </resources>
