@@ -20,6 +20,10 @@
         <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
     </style>
 
+    <style name="hi_text.name">
+        <item name="android:paddingTop">@dimen/padding_smaller</item>
+    </style>
+
     <style name="question" parent="standardSize">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textColor">@color/semi_transparent</item>
@@ -27,7 +31,7 @@
         <item name="android:paddingTop">@dimen/padding</item>
     </style>
 
-    <style name="score" parent="standardSize">
+    <style name="counter" parent="standardSize">
         <item name="android:layout_below">@id/careText</item>
         <item name="android:paddingBottom">@dimen/padding_medium</item>
         <item name="android:paddingTop">@dimen/padding_smaller</item>

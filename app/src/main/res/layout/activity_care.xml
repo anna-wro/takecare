@@ -7,17 +7,12 @@
 
     <LinearLayout
         android:id="@+id/activity_care"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-
+        style="@style/linear_layout"
         >
 
         <TextView
-            style="@style/hi_text"
+            style="@style/hi_text.name"
             android:text="@string/hi_text"
-
             />
 
         <TextView
@@ -28,13 +23,10 @@
 
         <TextView
             android:id="@+id/howMany"
-            style="@style/standardSize"
+            style="@style/counter"
             android:layout_below="@id/careText"
-            android:paddingBottom="@dimen/padding_medium"
-            android:paddingTop="@dimen/padding_smaller"
             android:text="0"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/font_huge"/>
+            />
 
         <TextView
             android:id="@+id/body_title"
