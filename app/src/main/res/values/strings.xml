@@ -6,4 +6,5 @@
     <string name="soul_category">Soul</string>
     <string name="question">Have you taken \ncare of yourself today?</string>
     <string name="default_value">0</string>
+    <string name="dots">◦ ◦ ◦</string>
 </resources>

@@ -5,6 +5,14 @@
     <color name="colorPrimaryDark">@android:color/black</color>
     <color name="colorAccent">#FF8B6CC2</color>
     <color name="semi_transparent">#AAf5f5f5</color>
+    <color name="darker_transparent">#1B000000</color>
+    <color name="dark_transparent">#88000000</color>
     <color name="category_color">#33f5f5f5</color>
     <color name="background">#f5f5f5</color>
+    <color name="green">#62BFAD</color>
+    <color name="green_text">#56a697</color>
+    <color name="blue">#6676CC</color>
+    <color name="blue_text">#5866b0</color>
+    <color name="violet">#9357A9</color>
+    <color name="violet_text">#79488b</color>
 </resources>

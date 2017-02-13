@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -39,37 +39,67 @@
         <item name="android:textSize">@dimen/font_huge</item>
     </style>
 
+    <style name="counter.mini">
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:paddingBottom">@dimen/padding</item>
+        <item name="android:textColor">@color/semi_transparent</item>
+        <item name="android:paddingTop">@dimen/zero</item>
+        <item name="android:paddingLeft">@dimen/padding_medium</item>
+        <item name="android:paddingRight">@dimen/padding_medium</item>
+        <item name="android:layout_marginTop">@dimen/zero</item>
+        <item name="android:layout_marginBottom">@dimen/padding</item>
+    </style>
+
     <style name="section" parent="standardSize">
         <item name="android:columnCount">2</item>
         <item name="android:orientation">horizontal</item>
+
     </style>
 
     <style name="scroll">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:fillViewport">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:scrollbars">vertical</item>
         <item name="android:scrollbarStyle">insideOverlay</item>
-        <item name="android:paddingLeft">@dimen/padding</item>
-        <item name="android:paddingRight">@dimen/padding</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:paddingBottom">@dimen/padding_smaller</item>
     </style>
 
     <style name="linear_layout">
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
+    </style>
+    <style name="linear_layout.body">
+        <item name="android:background">@color/green</item>
+    </style>
+    <style name="linear_layout.mind">
+        <item name="android:background">@color/blue</item>
+    </style>
+    <style name="linear_layout.soul">
+        <item name="android:background">@color/violet</item>
     </style>
 
     <style name="Button" parent="standardSize">
         <item name="android:padding">@dimen/padding</item>
         <item name="android:layout_margin">@dimen/margin_button</item>
         <item name="android:background">@drawable/toggle_selector</item>
-        <item name="android:textColor">@color/toggle_color</item>
         <item name="android:textSize">@dimen/font_smaller</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:layout_gravity">fill</item>
+    </style>
+
+    <style name="Button.body">
+        <item name="android:textColor">@color/toggle_color_body</item>
+    </style>
+    <style name="Button.mind">
+        <item name="android:textColor">@color/toggle_color_mind</item>
+    </style>
+    <style name="Button.soul">
+        <item name="android:textColor">@color/toggle_color_soul</item>
     </style>
 
     <style name="category">
@@ -79,13 +109,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:clickable">true</item>
         <item name="android:padding">@dimen/padding</item>
-        <item name="android:textSize">@dimen/font_medium</item>
-        <item name="android:layout_margin">@dimen/padding_tiny</item>
-        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
-        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:layout_margin">@dimen/padding_smaller</item>
+        <item name="android:layout_marginBottom">@dimen/zero</item>
     </style>
-
 
 </resources>

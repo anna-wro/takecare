@@ -3,6 +3,7 @@
     <item
         android:drawable="@drawable/toggle_state_on"
         android:state_checked="true"
+
         />
     <item
         android:drawable="@drawable/toggle_state_off"

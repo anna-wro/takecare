@@ -12,9 +12,13 @@
     <string name="mind5_on">Writing\n●</string>
     <string name="mind6">Photography\n◦</string>
     <string name="mind6_on">Photography\n●</string>
-    <string name="mind7">Front-end\ndevelopment\n◦◦</string>
-    <string name="mind7_on">Front-end\ndevelopment\n●●</string>
-    <string name="mind8">Android\ndevelopment\n◦◦</string>
-    <string name="mind8_on">Android\ndevelopment\n●●</string>
+    <string name="mind7">Learning\nsomething new\n◦◦◦</string>
+    <string name="mind7_on">Learning\nsomething new\n●●●</string>
+    <string name="mind8">Studying\n◦◦</string>
+    <string name="mind8_on">Studying\n●●</string>
+    <string name="mind9">Front-end\ndevelopment\n◦◦</string>
+    <string name="mind9_on">Front-end\ndevelopment\n●●</string>
+    <string name="mind10">Android\ndevelopment\n◦◦</string>
+    <string name="mind10_on">Android\ndevelopment\n●●</string>
 
 </resources>
