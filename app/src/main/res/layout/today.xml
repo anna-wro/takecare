@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_care"
     style="@style/linear_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
     >
 
     <TextView
@@ -16,10 +18,36 @@
         android:text="@string/question"
         />
 
-    <TextView
+
+    <pm.anna.takecare.EqualWidthHeightTextView
         android:id="@+id/howMany"
-        style="@style/counter"
-        android:layout_below="@id/careText"
+        style="@style/counter.main"
         android:text="0"
         />
+
+    <ScrollView
+        style="@style/scroll">
+
+        <LinearLayout
+            style="@style/linear_layout">
+
+            <TextView
+                android:id="@+id/bodyDots"
+                style="@style/counter.mini.green"
+                android:text=""
+                />
+
+            <TextView
+                android:id="@+id/mindDots"
+                style="@style/counter.mini.blue"
+                android:text=""
+                />
+
+            <TextView
+                android:id="@+id/soulDots"
+                style="@style/counter.mini.violet"
+                android:text=""
+                />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:overScrollMode">never</item>
     </style>
 
     <style name="standardSize">
@@ -15,12 +16,13 @@
 
     <style name="hi_text" parent="standardSize">
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textColor">@color/semi_transparent</item>
-        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/font_medium</item>
         <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
     </style>
 
     <style name="hi_text.name">
+        <item name="android:textSize">@dimen/font_normal</item>
         <item name="android:paddingTop">@dimen/padding_smaller</item>
     </style>
 
@@ -33,10 +35,18 @@
 
     <style name="counter" parent="standardSize">
         <item name="android:layout_below">@id/careText</item>
-        <item name="android:paddingBottom">@dimen/padding_medium</item>
-        <item name="android:paddingTop">@dimen/padding_smaller</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_marginBottom">@dimen/padding_smaller</item>
+        <item name="android:layout_marginTop">@dimen/padding_normal</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/font_huge</item>
+    </style>
+
+    <style name="counter.main">
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">number</item>
+        <item name="android:background">@drawable/circle</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">@dimen/padding_circle</item>
     </style>
 
     <style name="counter.mini">
@@ -49,6 +59,24 @@
         <item name="android:paddingRight">@dimen/padding_medium</item>
         <item name="android:layout_marginTop">@dimen/zero</item>
         <item name="android:layout_marginBottom">@dimen/padding</item>
+    </style>
+
+    <style name="counter.mini.green">
+        <item name="android:layout_marginBottom">@dimen/zero</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="counter.mini.blue">
+        <item name="android:layout_marginBottom">@dimen/zero</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="counter.mini.violet">
+        <item name="android:layout_marginBottom">@dimen/zero</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/violet</item>
     </style>
 
     <style name="section" parent="standardSize">
@@ -67,18 +95,21 @@
     </style>
 
     <style name="linear_layout">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/background_color</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
     </style>
+
     <style name="linear_layout.body">
         <item name="android:background">@color/green</item>
     </style>
+
     <style name="linear_layout.mind">
         <item name="android:background">@color/blue</item>
     </style>
+
     <style name="linear_layout.soul">
         <item name="android:background">@color/violet</item>
     </style>
@@ -95,9 +126,11 @@
     <style name="Button.body">
         <item name="android:textColor">@color/toggle_color_body</item>
     </style>
+
     <style name="Button.mind">
         <item name="android:textColor">@color/toggle_color_mind</item>
     </style>
+
     <style name="Button.soul">
         <item name="android:textColor">@color/toggle_color_soul</item>
     </style>

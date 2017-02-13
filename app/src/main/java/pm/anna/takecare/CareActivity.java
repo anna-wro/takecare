@@ -21,6 +21,9 @@ public class CareActivity extends BaseActivity {
     TextView mHowManyBody;
     TextView mHowManyMind;
     TextView mHowManySoul;
+    TextView mBodyDots;
+    TextView mMindDots;
+    TextView mSoulDots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class CareActivity extends BaseActivity {
         mHowManyBody = (TextView) findViewById(R.id.howManyBody);
         mHowManyMind = (TextView) findViewById(R.id.howManyMind);
         mHowManySoul = (TextView) findViewById(R.id.howManySoul);
+        mBodyDots = (TextView) findViewById(R.id.bodyDots);
+        mMindDots = (TextView) findViewById(R.id.mindDots);
+        mSoulDots = (TextView) findViewById(R.id.soulDots);
         mViewPager = (ViewPager) findViewById(R.id.pager);
         WizardPagerAdapter adapter = new WizardPagerAdapter();
         mViewPager.setAdapter(adapter);
@@ -96,6 +102,8 @@ public class CareActivity extends BaseActivity {
     }
 
     public void changeCareBody(String s) {
+        if (s.length() > 0) {mBodyDots.setText(s);}
+        else {mBodyDots.setText("");}
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyBody.setText(s);
     }
@@ -155,6 +163,8 @@ public class CareActivity extends BaseActivity {
     }
 
     public void changeCareMind(String s) {
+        if (s.length() > 0) {mMindDots.setText(s);}
+        else {mMindDots.setText("");}
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyMind.setText(s);
     }
@@ -213,6 +223,8 @@ public class CareActivity extends BaseActivity {
     }
 
     public void changeCareSoul(String s) {
+        if (s.length() > 0) {mSoulDots.setText(s);}
+        else {mSoulDots.setText("");}
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManySoul.setText(s);
     }
@@ -220,8 +232,6 @@ public class CareActivity extends BaseActivity {
     public void changeCare(int num) {
         mHowMany.setText(String.valueOf(num));
     }
-
-
 
 
 }
