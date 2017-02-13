@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_care"
+    style="@style/linear_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <TextView
+        style="@style/hi_text.name"
+        android:text="@string/hi_text"
+        />
+
+    <TextView
+        android:id="@+id/careText"
+        style="@style/hi_text"
+        android:text="@string/question"
+        />
+
+    <TextView
+        android:id="@+id/howMany"
+        style="@style/counter"
+        android:layout_below="@id/careText"
+        android:text="0"
+        />
+</LinearLayout>

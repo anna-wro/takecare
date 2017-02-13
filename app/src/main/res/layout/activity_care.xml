@@ -1,58 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/scroll"
-            style="@style/scroll"
-            tools:context="pm.anna.takecare.CareActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/activity_care"
-        style="@style/linear_layout"
-        >
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            style="@style/hi_text.name"
-            android:text="@string/hi_text"
-            />
-
-        <TextView
-            android:id="@+id/careText"
-            style="@style/hi_text"
-            android:text="@string/question"
-            />
-
-        <TextView
-            android:id="@+id/howMany"
-            style="@style/counter"
-            android:layout_below="@id/careText"
-            android:text="0"
-            />
-
-        <TextView
-            android:id="@+id/body_title"
-            style="@style/category"
-            android:onClick="toggle_body"
-            android:text="@string/body_category"
-            />
-
+        <include layout="@layout/today"></include>
         <include layout="@layout/body"></include>
-
-        <TextView
-            android:id="@+id/mind_title"
-            style="@style/category"
-            android:onClick="toggle_mind"
-            android:text="@string/mind_category"
-            />
-
         <include layout="@layout/mind"></include>
-
-        <TextView
-            android:id="@+id/soul_title"
-            style="@style/category"
-            android:onClick="toggle_soul"
-            android:text="@string/soul_category"
-            />
-
         <include layout="@layout/soul"></include>
-    </LinearLayout>
-</ScrollView>
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

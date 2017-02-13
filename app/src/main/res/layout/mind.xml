@@ -1,63 +1,88 @@
-<GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mind_list"
-    style="@style/section"
-    tools:showIn="@layout/activity_care"
-    >
-    >
 
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeThreePoints"
-        android:textOff="@string/mind1"
-        android:textOn="@string/mind1_on"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_mind"
+    style="@style/linear_layout.mind">
+    <TextView
+        style="@style/category"
+        android:text="@string/mind_category"
         />
 
-    <ToggleButton
-        style="@style/Button"
-        android:layout_columnWeight="1"
-        android:onClick="changeThreePoints"
-        android:textOff="@string/mind2"
-        android:textOn="@string/mind2_on"/>
+    <TextView
+        android:id="@+id/howManyMind"
+        style="@style/counter.mini"
+        android:freezesText="true"
+        android:text="@string/dots"
+        />
+    <ScrollView
+        style="@style/scroll">
+    <GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mind_list"
+        style="@style/section"
+        >
 
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeTwoPoints"
-        android:textOff="@string/mind3"
-        android:textOn="@string/mind3_on"/>
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeThreePointsMind"
+            android:textOff="@string/mind1"
+            android:textOn="@string/mind1_on"
+            />
 
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeThreePoints"
-        android:textOff="@string/mind4"
-        android:textOn="@string/mind4_on"/>
+        <ToggleButton
+            style="@style/Button.mind"
+            android:layout_columnWeight="1"
+            android:onClick="changeThreePointsMind"
+            android:textOff="@string/mind2"
+            android:textOn="@string/mind2_on"/>
 
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeTwoPointsMind"
+            android:textOff="@string/mind3"
+            android:textOn="@string/mind3_on"/>
 
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeOnePoint"
-        android:textOff="@string/mind5"
-        android:textOn="@string/mind5_on"/>
-
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeOnePoint"
-        android:textOff="@string/mind6"
-        android:textOn="@string/mind6_on"/>
-
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeTwoPoints"
-        android:textOff="@string/mind7"
-        android:textOn="@string/mind7_on"/>
-
-    <ToggleButton
-        style="@style/Button"
-        android:onClick="changeTwoPoints"
-        android:textOff="@string/mind8"
-        android:textOn="@string/mind8_on"/>
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeThreePointsMind"
+            android:textOff="@string/mind4"
+            android:textOn="@string/mind4_on"/>
 
 
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeOnePointMind"
+            android:textOff="@string/mind5"
+            android:textOn="@string/mind5_on"/>
 
-</GridLayout>
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeOnePointMind"
+            android:textOff="@string/mind6"
+            android:textOn="@string/mind6_on"/>
+
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeThreePointsMind"
+            android:textOff="@string/mind7"
+            android:textOn="@string/mind7_on"/>
+
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeTwoPointsMind"
+            android:textOff="@string/mind8"
+            android:textOn="@string/mind8_on"/>
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeTwoPointsMind"
+            android:textOff="@string/mind9"
+            android:textOn="@string/mind9_on"/>
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeTwoPointsMind"
+            android:textOff="@string/mind10"
+            android:textOn="@string/mind10_on"/>
+
+
+    </GridLayout></ScrollView>
+</LinearLayout>

@@ -2,6 +2,7 @@ package pm.anna.takecare;
 
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -9,10 +10,17 @@ import android.widget.ToggleButton;
 
 public class CareActivity extends BaseActivity {
     int howMany = 0;
+    String howManyBody = "";
+    String howManyMind = "";
+    String howManySoul = "";
     GridLayout mBodyList;
     GridLayout mMindList;
     GridLayout mSoulList;
-    private TextView mHowMany;
+    ViewPager mViewPager;
+    TextView mHowMany;
+    TextView mHowManyBody;
+    TextView mHowManyMind;
+    TextView mHowManySoul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,117 +28,200 @@ public class CareActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care);
 
-
         mBodyList = (GridLayout) findViewById(R.id.body_list);
         mMindList = (GridLayout) findViewById(R.id.mind_list);
         mSoulList = (GridLayout) findViewById(R.id.soul_list);
         mHowMany = (TextView) findViewById(R.id.howMany);
-        // hide until its title is clicked
-        mBodyList.setVisibility(View.GONE);
-        mMindList.setVisibility(View.GONE);
-        mSoulList.setVisibility(View.GONE);
-
+        mHowManyBody = (TextView) findViewById(R.id.howManyBody);
+        mHowManyMind = (TextView) findViewById(R.id.howManyMind);
+        mHowManySoul = (TextView) findViewById(R.id.howManySoul);
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        WizardPagerAdapter adapter = new WizardPagerAdapter();
+        mViewPager.setAdapter(adapter);
+        mViewPager.setOffscreenPageLimit(5);
     }
 
-    /**
-     * onClick handler
-     */
-    public void toggle_body(View v) throws InterruptedException {
-        if (mBodyList.isShown()) {
-            Fade_animation.fade_out(this, mBodyList);
-            v.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mBodyList.setVisibility(View.GONE);
-                }
-            }, 450);
+    /* * * CHANGE POINTS - BODY  * * */
 
-        } else {
-            mBodyList.setVisibility(View.VISIBLE);
-            Fade_animation.fade_in(this, mBodyList);
-        }
-    }
-
-    public void toggle_mind(View v) throws InterruptedException {
-        if (mMindList.isShown()) {
-            Fade_animation.fade_out(this, mMindList);
-            v.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mMindList.setVisibility(View.GONE);
-                }
-            }, 450);
-
-        } else {
-            mMindList.setVisibility(View.VISIBLE);
-            Fade_animation.fade_in(this, mMindList);
-        }
-    }
-
-    public void toggle_soul(View v) throws InterruptedException {
-        if (mSoulList.isShown()) {
-            Fade_animation.fade_out(this, mSoulList);
-            v.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mSoulList.setVisibility(View.GONE);
-                }
-            }, 450);
-
-        } else {
-            mSoulList.setVisibility(View.VISIBLE);
-            Fade_animation.fade_in(this, mSoulList);
-        }
-    }
-
-    public void changeFivePoints(View v) {
+    public void changeFivePointsBody(View v) {
         boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
             howMany += 5;
+            howManyBody += "● ● ● ● ● ";
         } else {
             howMany -= 5;
+            howManyBody = howManyBody.substring(0, howManyBody.length() - 10);
         }
+        changeCareBody(howManyBody);
         changeCare(howMany);
     }
 
-    public void changeThreePoints(View v) {
+    public void changeThreePointsBody(View v) {
         boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
             howMany += 3;
+            howManyBody += "● ● ● ";
         } else {
             howMany -= 3;
+            howManyBody = howManyBody.substring(0, howManyBody.length() - 6);
         }
+        changeCareBody(howManyBody);
         changeCare(howMany);
     }
 
-    public void changeTwoPoints(View v) {
+    public void changeTwoPointsBody(View v) {
         boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
             howMany += 2;
+            howManyBody += "● ● ";
         } else {
             howMany -= 2;
+            howManyBody = howManyBody.substring(0, howManyBody.length() - 4);
         }
+        changeCareBody(howManyBody);
         changeCare(howMany);
     }
 
-    public void changeOnePoint(View v) {
+    public void changeOnePointBody(View v) {
         boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
             howMany += 1;
+            howManyBody += "● ";
         } else {
             howMany -= 1;
+            howManyBody = howManyBody.substring(0, howManyBody.length() - 2);
         }
+        changeCareBody(howManyBody);
         changeCare(howMany);
     }
 
-    public void resetCare(View v) {
-        howMany = 0;
+    public void changeCareBody(String s) {
+        if (s.length() == 0) s = "◦ ◦ ◦";
+        mHowManyBody.setText(s);
+    }
+
+    /* * * CHANGE POINTS - MIND * * */
+
+    public void changeFivePointsMind(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 5;
+            howManyMind += "● ● ● ● ● ";
+        } else {
+            howMany -= 5;
+            howManyMind = howManyMind.substring(0, howManyMind.length() - 10);
+        }
+        changeCareMind(howManyMind);
         changeCare(howMany);
+    }
+
+    public void changeThreePointsMind(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 3;
+            howManyMind += "● ● ● ";
+        } else {
+            howMany -= 3;
+            howManyMind = howManyMind.substring(0, howManyMind.length() - 6);
+        }
+        changeCareMind(howManyMind);
+        changeCare(howMany);
+    }
+
+    public void changeTwoPointsMind(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 2;
+            howManyMind += "● ● ";
+        } else {
+            howMany -= 2;
+            howManyMind = howManyMind.substring(0, howManyMind.length() - 4);
+        }
+        changeCareMind(howManyMind);
+        changeCare(howMany);
+    }
+
+    public void changeOnePointMind(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 1;
+            howManyMind += "● ";
+        } else {
+            howMany -= 1;
+            howManyMind = howManyMind.substring(0, howManyMind.length() - 2);
+        }
+        changeCareMind(howManyMind);
+        changeCare(howMany);
+    }
+
+    public void changeCareMind(String s) {
+        if (s.length() == 0) s = "◦ ◦ ◦";
+        mHowManyMind.setText(s);
+    }
+
+    /* * * CHANGE POINTS - SOUL * * */
+    public void changeFivePointsSoul(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 5;
+            howManySoul += "● ● ● ● ● ";
+        } else {
+            howMany -= 5;
+            howManySoul = howManySoul.substring(0, howManySoul.length() - 10);
+        }
+        changeCareSoul(howManySoul);
+        changeCare(howMany);
+    }
+
+    public void changeThreePointsSoul(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 3;
+            howManySoul += "● ● ● ";
+        } else {
+            howMany -= 3;
+            howManySoul = howManySoul.substring(0, howManySoul.length() - 6);
+        }
+        changeCareSoul(howManySoul);
+        changeCare(howMany);
+    }
+
+    public void changeTwoPointsSoul(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 2;
+            howManySoul += "● ● ";
+        } else {
+            howMany -= 2;
+            howManySoul = howManySoul.substring(0, howManySoul.length() - 4);
+        }
+        changeCareSoul(howManySoul);
+        changeCare(howMany);
+    }
+
+    public void changeOnePointSoul(View v) {
+        boolean isChecked = ((ToggleButton) v).isChecked();
+        if (isChecked) {
+            howMany += 1;
+            howManySoul += "● ";
+        } else {
+            howMany -= 1;
+            howManySoul = howManySoul.substring(0, howManySoul.length() - 2);
+        }
+        changeCareSoul(howManySoul);
+        changeCare(howMany);
+    }
+
+    public void changeCareSoul(String s) {
+        if (s.length() == 0) s = "◦ ◦ ◦";
+        mHowManySoul.setText(s);
     }
 
     public void changeCare(int num) {
         mHowMany.setText(String.valueOf(num));
     }
+
+
 
 
 }
