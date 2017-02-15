@@ -7,11 +7,13 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:overScrollMode">never</item>
+
     </style>
 
     <style name="standardSize">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+
     </style>
 
     <style name="hi_text" parent="standardSize">
@@ -86,6 +88,7 @@
     </style>
 
     <style name="scroll">
+
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:scrollbars">vertical</item>
@@ -95,6 +98,7 @@
     </style>
 
     <style name="linear_layout">
+
         <item name="android:background">@color/background_color</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">match_parent</item>

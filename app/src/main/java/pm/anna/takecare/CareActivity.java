@@ -45,6 +45,7 @@ public class CareActivity extends BaseActivity {
         WizardPagerAdapter adapter = new WizardPagerAdapter();
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setPageTransformer(true, new DepthPageTransformer());
     }
 
     /* * * CHANGE POINTS - BODY  * * */
@@ -102,8 +103,11 @@ public class CareActivity extends BaseActivity {
     }
 
     public void changeCareBody(String s) {
-        if (s.length() > 0) {mBodyDots.setText(s);}
-        else {mBodyDots.setText("");}
+        if (s.length() > 0) {
+            mBodyDots.setText(s);
+        } else {
+            mBodyDots.setText("");
+        }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyBody.setText(s);
     }
@@ -163,8 +167,11 @@ public class CareActivity extends BaseActivity {
     }
 
     public void changeCareMind(String s) {
-        if (s.length() > 0) {mMindDots.setText(s);}
-        else {mMindDots.setText("");}
+        if (s.length() > 0) {
+            mMindDots.setText(s);
+        } else {
+            mMindDots.setText("");
+        }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyMind.setText(s);
     }
@@ -223,8 +230,11 @@ public class CareActivity extends BaseActivity {
     }
 
     public void changeCareSoul(String s) {
-        if (s.length() > 0) {mSoulDots.setText(s);}
-        else {mSoulDots.setText("");}
+        if (s.length() > 0) {
+            mSoulDots.setText(s);
+        } else {
+            mSoulDots.setText("");
+        }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManySoul.setText(s);
     }
