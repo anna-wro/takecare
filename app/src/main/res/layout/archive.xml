@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/archive"
     style="@style/linear_layout.days"
-    android:gravity="center"
     >
 
+    <LinearLayout
+        style="@style/linear_layout.days"
+        android:gravity="center">
+
+        <pm.anna.takecare.EqualWidthHeightTextView
+            android:id="@+id/howManyDays"
+            style="@style/counter.main.days"
+            android:text="X"
+
+            />
+
+        <TextView
+            style="@style/hi_text.days"
+            android:text="@string/archive_text"
+            />
+
+        <ScrollView
+            style="@style/scroll">
+
+            <LinearLayout
+                style="@style/linear_layout.days">
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
     <pm.anna.takecare.EqualWidthHeightTextView
-        android:id="@+id/howMany"
-        style="@style/counter.main.days"
-        android:text="X"
-        />
-    <TextView
-        style="@style/hi_text.days"
-        android:text="@string/archive_text"
+        android:id="@+id/addButton"
+        style="@style/counter.main.add"
+        android:text="+"
+
         />
 
-    <ScrollView
-        style="@style/scroll">
-
-        <LinearLayout
-            style="@style/linear_layout">
-
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</RelativeLayout>

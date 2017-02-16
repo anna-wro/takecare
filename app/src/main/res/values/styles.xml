@@ -55,9 +55,19 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:padding">@dimen/padding_circle</item>
     </style>
+
     <style name="counter.main.days">
         <item name="android:textSize">@dimen/font_big</item>
         <item name="android:background">@drawable/circle_days</item>
+    </style>
+
+    <style name="counter.main.add">
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:background">@drawable/circle_days</item>
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
     </style>
 
     <style name="counter.mini">
@@ -107,7 +117,6 @@
     </style>
 
     <style name="linear_layout">
-
         <item name="android:background">@color/background_color</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">match_parent</item>
