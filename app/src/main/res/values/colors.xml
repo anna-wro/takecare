@@ -15,4 +15,6 @@
     <color name="blue_text">#5866b0</color>
     <color name="violet">#FF8B6CC2</color>
     <color name="violet_text">#7750bc</color>
+    <color name="archive_color">#aab4eb</color>
+    <color name="circle_days">#6676CC</color>
 </resources>

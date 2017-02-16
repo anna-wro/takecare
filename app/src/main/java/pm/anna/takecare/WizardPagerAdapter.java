@@ -25,13 +25,16 @@ class WizardPagerAdapter extends PagerAdapter {
             case 3:
                 resId = R.id.layout_soul;
                 break;
+            case 4:
+                resId = R.id.archive;
+                break;
         }
         return collection.findViewById(resId);
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 
     @Override

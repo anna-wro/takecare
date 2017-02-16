@@ -3,17 +3,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/archive"
-    style="@style/linear_layout"
+    style="@style/linear_layout.days"
     android:gravity="center"
     >
 
     <pm.anna.takecare.EqualWidthHeightTextView
         android:id="@+id/howMany"
-        style="@style/counter.main"
+        style="@style/counter.main.days"
         android:text="X"
         />
     <TextView
-        style="@style/hi_text"
+        style="@style/hi_text.days"
         android:text="@string/archive_text"
         />
 
@@ -23,23 +23,6 @@
         <LinearLayout
             style="@style/linear_layout">
 
-            <TextView
-                android:id="@+id/bodyDots"
-                style="@style/counter.mini.green"
-                android:text=""
-                />
-
-            <TextView
-                android:id="@+id/mindDots"
-                style="@style/counter.mini.blue"
-                android:text=""
-                />
-
-            <TextView
-                android:id="@+id/soulDots"
-                style="@style/counter.mini.violet"
-                android:text=""
-                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

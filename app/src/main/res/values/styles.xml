@@ -28,6 +28,11 @@
         <item name="android:paddingTop">@dimen/padding_smaller</item>
     </style>
 
+
+    <style name="hi_text.days">
+        <item name="android:textColor">@color/blue_text</item>
+    </style>
+
     <style name="question" parent="standardSize">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textColor">@color/semi_transparent</item>
@@ -49,6 +54,10 @@
         <item name="android:background">@drawable/circle</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:padding">@dimen/padding_circle</item>
+    </style>
+    <style name="counter.main.days">
+        <item name="android:textSize">@dimen/font_big</item>
+        <item name="android:background">@drawable/circle_days</item>
     </style>
 
     <style name="counter.mini">
@@ -104,6 +113,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="linear_layout.days">
+        <item name="android:background">@color/archive_color</item>
     </style>
 
     <style name="linear_layout.body">
