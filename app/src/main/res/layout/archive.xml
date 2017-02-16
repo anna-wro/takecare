@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/archive"
+    style="@style/linear_layout"
+    android:gravity="center"
+    >
+
+    <pm.anna.takecare.EqualWidthHeightTextView
+        android:id="@+id/howMany"
+        style="@style/counter.main"
+        android:text="X"
+        />
+    <TextView
+        style="@style/hi_text"
+        android:text="@string/archive_text"
+        />
+
+    <ScrollView
+        style="@style/scroll">
+
+        <LinearLayout
+            style="@style/linear_layout">
+
+            <TextView
+                android:id="@+id/bodyDots"
+                style="@style/counter.mini.green"
+                android:text=""
+                />
+
+            <TextView
+                android:id="@+id/mindDots"
+                style="@style/counter.mini.blue"
+                android:text=""
+                />
+
+            <TextView
+                android:id="@+id/soulDots"
+                style="@style/counter.mini.violet"
+                android:text=""
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

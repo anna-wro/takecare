@@ -23,7 +23,7 @@
 
         <ToggleButton
             style="@style/Button.soul"
-            android:onClick="changeThreePointsSoul"
+            android:onClick="changeFivePointsSoul"
             android:textOff="@string/soul1"
             android:textOn="@string/soul1_on"
             />
@@ -74,7 +74,7 @@
 
         <ToggleButton
             style="@style/Button.soul"
-            android:onClick="changeOnePointSoul"
+            android:onClick="changeThreePointsSoul"
             android:textOff="@string/soul9"
             android:textOn="@string/soul9_on"/>
 

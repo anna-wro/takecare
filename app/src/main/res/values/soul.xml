@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="soul1">Say «no»\n◦◦◦</string>
-    <string name="soul1_on">Say «no»\n●●●</string>
+    <string name="soul1">Say «no»\n◦◦◦◦◦</string>
+    <string name="soul1_on">Say «no»\n●●●●●</string>
     <string name="soul2">Ask for help\n◦◦◦◦◦</string>
     <string name="soul2_on">Ask for help\n●●●●●</string>
     <string name="soul3">Catch up \nwith friends\n◦◦◦</string>
@@ -16,8 +16,8 @@
     <string name="soul7_on">Baby animals \nvideos\n●●</string>
     <string name="soul8">Enjoyable\nactivities\n◦◦◦</string>
     <string name="soul8_on">Enjoyable\nactivities\n●●●</string>
-    <string name="soul9">Volunteering\n◦</string>
-    <string name="soul9_on">Volunteering\n●</string>
+    <string name="soul9">Volunteering\n◦◦◦</string>
+    <string name="soul9_on">Volunteering\n●●●</string>
     <string name="soul10">Professional \nsupport\n◦◦◦</string>
     <string name="soul10_on">Professional \nsupport\n●●●</string>
 </resources>
