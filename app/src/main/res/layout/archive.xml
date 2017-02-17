@@ -46,7 +46,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="17.02.2017"
+        android:text="test date"
         android:id="@+id/editDate"
         android:layout_alignParentBottom="true"
         android:inputType="date"
@@ -58,6 +58,7 @@
         android:text="0"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:inputType="number"/>
+        android:focusable="false"/>
+
 
 </RelativeLayout>

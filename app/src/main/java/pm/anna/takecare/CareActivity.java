@@ -1,7 +1,6 @@
 package pm.anna.takecare;
 
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -11,8 +10,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+import static pm.anna.takecare.R.id.addButton;
 
 public class CareActivity extends BaseActivity {
     int howMany = 0;
@@ -34,10 +37,6 @@ public class CareActivity extends BaseActivity {
     EditText mPointsEdit;
     EditText mDateEdit;
     EqualWidthHeightTextView mAddButton;
-    private ArchiveDbAdapter mArchiveDbAdapter;
-    private Cursor mArchiveCursor;
-    private List<ArchiveItem> items;
-    private ArchiveItemsAdapter mListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +47,19 @@ public class CareActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(5);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
-        initListView();
-        initButtonsOnClickListeners();
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy (EEE)", Locale.US);
+        String formattedDate = df.format(c.getTime());
+        mDateEdit.setText(formattedDate);
+        try {
+            EditTextDatePicker fromDate = new EditTextDatePicker(this, mDateEdit);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
+
     private void initUiElements() {
         mBodyList = (GridLayout) findViewById(R.id.body_list);
         mMindList = (GridLayout) findViewById(R.id.mind_list);
@@ -66,89 +75,10 @@ public class CareActivity extends BaseActivity {
         mItemsList = (ListView) findViewById(R.id.list);
         mPointsEdit = (EditText) findViewById(R.id.editPoints);
         mDateEdit = (EditText) findViewById(R.id.editDate);
-        mAddButton = (EqualWidthHeightTextView) findViewById(R.id.addButton);
-    }
-
-    private void initListView() {
-        fillListViewData();
+        mAddButton = (EqualWidthHeightTextView) findViewById(addButton);
 
     }
 
-    private void fillListViewData() {
-        mArchiveDbAdapter = new ArchiveDbAdapter(getApplicationContext());
-        mArchiveDbAdapter.open();
-        getAllItems();
-        mListAdapter = new ArchiveItemsAdapter(this, items);
-        mItemsList.setAdapter(mListAdapter);
-    }
-
-    private void getAllItems() {
-        items = new ArrayList<ArchiveItem>();
-        mArchiveCursor = getAllEntriesFromDb();
-        updateTaskList();
-    }
-
-    private Cursor getAllEntriesFromDb() {
-        mArchiveCursor = mArchiveDbAdapter.getAllItems();
-        if(mArchiveCursor != null) {
-            startManagingCursor(mArchiveCursor);
-            mArchiveCursor.moveToFirst();
-        }
-        return mArchiveCursor;
-    }
-
-    private void updateTaskList() {
-        if(mArchiveCursor != null && mArchiveCursor.moveToFirst()) {
-            do {
-                long id = mArchiveCursor.getLong(mArchiveDbAdapter.ID_COLUMN);
-                String date = mArchiveCursor.getString(mArchiveDbAdapter.DATE_COLUMN);
-                int points = mArchiveCursor.getInt(mArchiveDbAdapter.POINTS_COLUMN);
-                items.add(new ArchiveItem(id, date, points));
-            } while(mArchiveCursor.moveToNext());
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        if(mArchiveDbAdapter != null)
-            mArchiveDbAdapter.close();
-        super.onDestroy();
-    }
-    private void initButtonsOnClickListeners() {
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.addButton:
-                        saveNewTask();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-        mAddButton.setOnClickListener(onClickListener);
-    }
-
-    private void saveNewTask(){
-        String chosenDate = mDateEdit.getText().toString();
-        int pointsNumber = Integer.valueOf(mPointsEdit.getText().toString());
-        if(chosenDate.equals("") || pointsNumber < 0){
-            mDateEdit.setError("This field can't be empty");
-        } else {
-            mArchiveDbAdapter.insertArchiveItem(chosenDate, pointsNumber);
-            mDateEdit.setText("");
-            mPointsEdit.setText("0");
-        }
-        updateListViewData();
-    }
-
-    private void updateListViewData() {
-        mArchiveCursor.requery();
-        items.clear();
-        updateTaskList();
-        mListAdapter.notifyDataSetChanged();
-    }
 
     /* * * CHANGE POINTS - BODY  * * */
 
@@ -345,6 +275,5 @@ public class CareActivity extends BaseActivity {
         mHowMany.setText(String.valueOf(num));
         mPointsEdit.setText(Integer.toString(num));
     }
-
 
 }
