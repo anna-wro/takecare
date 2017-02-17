@@ -8,15 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.Date;
-
 /**
  * Created by Anna on 17.02.2017.
  */
 
 public class ArchiveDbAdapter {
     private static final String DEBUG_TAG = "SqLiteArchiveManager";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 4;
     private static final String DB_NAME = "database.db";
 
     private static final String DB_ARCHIVE_TABLE = "archive";
@@ -83,7 +81,7 @@ public class ArchiveDbAdapter {
         dbHelper.close();
     }
 
-    public long insertArchiveItem(Date date, int points) {
+    public long insertArchiveItem(String date, int points) {
         ContentValues newArchiveValues = new ContentValues();
         newArchiveValues.put(KEY_DATE, String.valueOf(date));
         newArchiveValues.put(KEY_POINTS, points);

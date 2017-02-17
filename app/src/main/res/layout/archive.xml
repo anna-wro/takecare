@@ -28,7 +28,7 @@
             style="@style/scroll">
 
             <ListView
-                android:id="@android:id/list"
+                android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -43,5 +43,21 @@
         android:text="+"
 
         />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="17.02.2017"
+        android:id="@+id/editDate"
+        android:layout_alignParentBottom="true"
+        android:inputType="date"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPoints"
+        android:text="0"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:inputType="number"/>
 
 </RelativeLayout>
