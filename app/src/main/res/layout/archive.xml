@@ -19,8 +19,9 @@
             />
 
         <TextView
+            android:id="@+id/comment_days"
             style="@style/hi_text.days"
-            android:text="@string/archive_text"
+            android:text="@string/archive_zero"
             android:paddingBottom="@dimen/padding_medium"
             />
 
@@ -46,19 +47,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test date"
         android:id="@+id/editDate"
         android:layout_alignParentBottom="true"
-        android:inputType="date"
+        android:focusable="false"
+
         />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editPoints"
+        android:id="@+id/pointsNumber"
         android:text="0"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:focusable="false"/>
+       android:inputType="number"
+        />
 
 
 </RelativeLayout>

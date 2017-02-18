@@ -52,15 +52,17 @@ public class EditTextDatePicker implements View.OnClickListener, DatePickerDialo
     public void onClick(View v) {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 
-        DatePickerDialog dialog = new DatePickerDialog(_context, this,
+        DatePickerDialog dialog = new DatePickerDialog(_context,  R.style.dialog,  this,
                 calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
+        DatePicker datePicker = dialog.getDatePicker();
+        datePicker.setMaxDate(calendar.getTimeInMillis());
         dialog.show();
     }
 
     // updates the date in the EditText
-    private void DisplayDate(){
-      chosenDate = _day + "." + (_monthWithZero) + "." + _year + " (" + _dayOfWeek + ")";
+    private void DisplayDate() {
+        chosenDate = _day + "." + (_monthWithZero) + "." + _year + " (" + _dayOfWeek + ")";
         _editText.setText(chosenDate);
     }
 }

@@ -1,6 +1,8 @@
 package pm.anna.takecare;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -14,6 +16,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import pm.anna.takecare.data.ArchiveContract.ArchiveEntry;
+import pm.anna.takecare.data.ArchiveDbHelper;
 
 import static pm.anna.takecare.R.id.addButton;
 
@@ -34,9 +39,12 @@ public class CareActivity extends BaseActivity {
     TextView mMindDots;
     TextView mSoulDots;
     ListView mItemsList;
-    EditText mPointsEdit;
+    TextView mPointsNumber;
     EditText mDateEdit;
+    TextView mCommentDays;
+    EqualWidthHeightTextView mHowManyDays;
     EqualWidthHeightTextView mAddButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,7 @@ public class CareActivity extends BaseActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        displayDatabaseInfo();
 
     }
 
@@ -68,17 +77,31 @@ public class CareActivity extends BaseActivity {
         mHowManyBody = (TextView) findViewById(R.id.howManyBody);
         mHowManyMind = (TextView) findViewById(R.id.howManyMind);
         mHowManySoul = (TextView) findViewById(R.id.howManySoul);
+        mHowManyDays = (EqualWidthHeightTextView) findViewById(R.id.howManyDays);
         mBodyDots = (TextView) findViewById(R.id.bodyDots);
         mMindDots = (TextView) findViewById(R.id.mindDots);
         mSoulDots = (TextView) findViewById(R.id.soulDots);
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mItemsList = (ListView) findViewById(R.id.list);
-        mPointsEdit = (EditText) findViewById(R.id.editPoints);
+        mPointsNumber = (TextView) findViewById(R.id.pointsNumber);
         mDateEdit = (EditText) findViewById(R.id.editDate);
         mAddButton = (EqualWidthHeightTextView) findViewById(addButton);
-
+        mCommentDays = (TextView) findViewById(R.id.comment_days);
     }
 
+    private void displayDatabaseInfo() {
+        ArchiveDbHelper mDbHelper = new ArchiveDbHelper(this);
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + ArchiveEntry.TABLE_NAME, null);
+        int days = cursor.getCount();
+        try {
+            if (days == 0) mCommentDays.setText(R.string.archive_zero);
+            else mCommentDays.setText(R.string.archive_text);
+            mHowManyDays.setText("" + days);
+        } finally {
+            cursor.close();
+        }
+    }
 
     /* * * CHANGE POINTS - BODY  * * */
 
@@ -273,7 +296,7 @@ public class CareActivity extends BaseActivity {
 
     public void changeCare(int num) {
         mHowMany.setText(String.valueOf(num));
-        mPointsEdit.setText(Integer.toString(num));
+        mPointsNumber.setText(Integer.toString(num));
     }
 
 }
