@@ -42,6 +42,7 @@
         android:id="@+id/addButton"
         style="@style/counter.main.add"
         android:text="+"
+        android:onClick="insertArchiveItem"
 
         />
     <EditText

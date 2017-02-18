@@ -1,6 +1,8 @@
 package pm.anna.takecare;
 
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.text.ParseException;
@@ -44,7 +47,7 @@ public class CareActivity extends BaseActivity {
     TextView mCommentDays;
     EqualWidthHeightTextView mHowManyDays;
     EqualWidthHeightTextView mAddButton;
-
+    private ArchiveDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class CareActivity extends BaseActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        mDbHelper = new ArchiveDbHelper(this);
         displayDatabaseInfo();
 
     }
@@ -90,7 +94,7 @@ public class CareActivity extends BaseActivity {
     }
 
     private void displayDatabaseInfo() {
-        ArchiveDbHelper mDbHelper = new ArchiveDbHelper(this);
+
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + ArchiveEntry.TABLE_NAME, null);
         int days = cursor.getCount();
@@ -102,6 +106,39 @@ public class CareActivity extends BaseActivity {
             cursor.close();
         }
     }
+
+    public void insertArchiveItem(View v) {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        String date = mDateEdit.getText().toString();
+        int allPoints = Integer.parseInt(mHowMany.getText().toString());
+        int bodyPoints = mBodyDots.length()/2;
+        int mindPoints = mMindDots.length()/2;
+        int soulPoints = mSoulDots.length()/2;
+        // Create a ContentValues object where column names are the keys,
+        // and Toto's pet attributes are the values.
+        ContentValues values = new ContentValues();
+        values.put(ArchiveEntry.COLUMN_DATE, date);
+        values.put(ArchiveEntry.COLUMN_POINTS_ALL, allPoints);
+        values.put(ArchiveEntry.COLUMN_POINTS_BODY, bodyPoints);
+        values.put(ArchiveEntry.COLUMN_POINTS_MIND, mindPoints);
+        values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
+
+        // Insert a new row for Toto in the database, returning the ID of that new row.
+        // The first argument for db.insert() is the pets table name.
+        // The second argument provides the name of a column in which the framework
+        // can insert NULL in the event that the ContentValues is empty (if
+        // this is set to "null", then the framework will not insert a row when
+        // there are no values).
+        // The third argument is the ContentValues object containing the info for Toto.
+        long newRowId = db.insert(ArchiveEntry.TABLE_NAME, null, values);
+        displayDatabaseInfo();
+        Context context = getApplicationContext();
+        CharSequence text = "You've tracked another day! Yay!";
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
 
     /* * * CHANGE POINTS - BODY  * * */
 
