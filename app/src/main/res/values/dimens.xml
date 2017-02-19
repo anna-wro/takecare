@@ -15,6 +15,7 @@
     <dimen name="corner_radius">8dp</dimen>
     <dimen name="padding">10dp</dimen>
     <dimen name="padding_circle">16dp</dimen>
+    <dimen name="padding_add">32dp</dimen>
     <dimen name="padding_tiny">8dp</dimen>
     <dimen name="margin_button">4dp</dimen>
     <dimen name="zero">0dp</dimen>

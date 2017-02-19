@@ -65,8 +65,9 @@
     </style>
 
     <style name="counter.main.days">
-        <item name="android:textSize">@dimen/font_big</item>
+        <item name="android:textSize">@dimen/font_normal</item>
         <item name="android:background">@drawable/circle_days</item>
+        <item name="android:layout_marginTop">@dimen/padding_medium</item>
     </style>
 
     <style name="counter.main.add">
@@ -76,6 +77,19 @@
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/padding_add</item>
+
+        <item name="android:paddingTop">@dimen/zero</item>
+
+    </style>
+
+    <style name="counter.main.delete">
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:background">@drawable/circle_delete</item>
+        <item name="android:padding">@dimen/zero</item>
+        <item name="android:layout_toLeftOf">@id/addButton</item>
+        <item name="android:layout_alignTop">@id/addButton</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_padding</item>
     </style>
 
     <style name="counter.mini">
@@ -135,6 +149,24 @@
     <style name="linear_layout.add">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/circle_days</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="linear_layout.sections">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/circle_days</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingBottom">@dimen/padding_circle</item>
+
+    </style>
+
+    <style name="threelines" parent="standardSize">
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/padding</item>
     </style>
 
     <style name="linear_layout.days">
@@ -153,6 +185,12 @@
         <item name="android:background">@color/violet</item>
     </style>
 
+    <style name="yesNoButtons" parent="standardSize">
+        <item name="android:gravity">center|top</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/padding_tiny</item>
+    </style>
+
     <style name="Button" parent="standardSize">
         <item name="android:padding">@dimen/padding</item>
         <item name="android:layout_margin">@dimen/margin_button</item>
@@ -160,6 +198,18 @@
         <item name="android:textSize">@dimen/font_smaller</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:layout_gravity">fill</item>
+    </style>
+
+    <style name="Button.yes">
+        <item name="android:src">@drawable/ic_check_circle_white_48dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="Button.no">
+        <item name="android:layout_below">@id/anchor</item>
+        <item name="android:layout_toRightOf">@id/anchor</item>
+        <item name="android:padding">@dimen/zero</item>
+        <item name="android:src">@drawable/ic_cancel_white_36dp</item>
     </style>
 
     <style name="Button.body">
@@ -172,6 +222,11 @@
 
     <style name="Button.soul">
         <item name="android:textColor">@color/toggle_color_soul</item>
+    </style>
+
+    <style name="anchor">
+        <item name="android:layout_width">@dimen/padding_medium</item>
+        <item name="android:layout_height">@dimen/anchor_height</item>
     </style>
 
     <style name="category">
@@ -187,17 +242,45 @@
         <item name="android:layout_marginBottom">@dimen/zero</item>
     </style>
 
+    <style name="question_save" parent="standardSize">
+        <item name="android:paddingBottom">@dimen/padding_circle</item>
+        <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:textColor">@color/semi_transparent</item>
+        <item name="android:textSize">@dimen/font_smaller</item>
+    </style>
+
     <style name="addValues" parent="standardSize">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/font_smaller</item>
         <item name="android:drawablePadding">@dimen/padding_tiny</item>
         <item name="android:paddingRight">@dimen/padding_tiny</item>
         <item name="android:paddingTop">@dimen/zero</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
+    <style name="addValues.cal">
+        <item name="android:drawableLeft">@drawable/ic_date_range_white_18dp</item>
+        <item name="android:focusable">false</item>
     </style>
 
     <style name="addValues.number">
         <item name="android:inputType">number</item>
         <item name="android:text">@string/default_value</item>
+    </style>
+
+    <style name="addValues.number.all">
+        <item name="android:drawableLeft">@drawable/ic_bubble_chart_white_18dp</item>
+    </style>
+
+    <style name="addValues.number.body">
+        <item name="android:drawableLeft">@drawable/ic_face_white_18dp</item>
+    </style>
+
+    <style name="addValues.number.mind">
+        <item name="android:drawableLeft">@drawable/ic_extension_white_18dp</item>
+    </style>
+
+    <style name="addValues.number.soul">
+        <item name="android:drawableLeft">@drawable/ic_favorite_white_18dp</item>
     </style>
 </resources>

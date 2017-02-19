@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/addPanel"
+              style="@style/linear_layout.add">
+
+    <TextView
+        style="@style/question_save"
+        android:text="@string/saveornot"
+        />
+
+    <LinearLayout
+        style="@style/linear_layout.sections">
+
+        <LinearLayout
+            style="@style/threelines"
+            >
+
+            <EditText
+                android:id="@+id/editDate"
+                style="@style/addValues.cal"
+                />
+
+            <LinearLayout
+                style="@style/standardSize">
+
+                <EditText
+                    android:id="@+id/pointsNumber"
+                    style="@style/addValues.number.all"
+                    />
+
+                <TextView
+                    style="@style/addValues"
+                    android:text="@string/points"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/standardSize"
+                >
+
+                <EditText
+                    android:id="@+id/bodyPointsNumber"
+                    style="@style/addValues.number.body"
+                    />
+
+                <EditText
+                    android:id="@+id/mindPointsNumber"
+                    style="@style/addValues.number.mind"
+
+                    />
+
+                <EditText
+                    android:id="@+id/soulPointsNumber"
+                    style="@style/addValues.number.soul"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/yesNoButtons"
+            >
+
+            <ImageButton
+                android:id="@+id/yesButton"
+                style="@style/Button.yes"
+                android:onClick="insertArchiveItem"
+                />
+
+            <View
+                android:id="@+id/anchor"
+                style="@style/anchor"
+                />
+
+            <ImageButton
+                android:id="@+id/noButton"
+                style="@style/Button.no"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

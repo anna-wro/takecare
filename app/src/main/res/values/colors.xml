@@ -3,7 +3,7 @@
     <color name="colorPrimary">#FF8B6CC2</color>
     <color name="darker_violet">#7750bc</color>
     <color name="colorPrimaryDark">@android:color/black</color>
-    <color name="colorAccent">#FF8B6CC2</color>
+    <color name="colorAccent">#fff</color>
     <color name="semi_transparent">#AAf5f5f5</color>
     <color name="darker_transparent">#1B000000</color>
     <color name="dark_transparent">#88000000</color>
@@ -17,4 +17,5 @@
     <color name="violet_text">#7750bc</color>
     <color name="archive_color">#aab4eb</color>
     <color name="circle_days">#6676CC</color>
+    <color name="circle_delete">#cc666b</color>
 </resources>
