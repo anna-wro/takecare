@@ -9,4 +9,5 @@
     <string name="dots">◦ ◦ ◦</string>
     <string name="archive_text">Yup, that\'s how many days\nyou\'ve tracked. \nYou\'re awesome!</string>
     <string name="archive_zero">Your archive is empty.\nToday\'s a great day to start!</string>
+    <string name="points">points</string>
 </resources>

@@ -15,14 +15,13 @@
             android:id="@+id/howManyDays"
             style="@style/counter.main.days"
             android:text="X"
-
             />
 
         <TextView
             android:id="@+id/comment_days"
             style="@style/hi_text.days"
-            android:text="@string/archive_zero"
             android:paddingBottom="@dimen/padding_medium"
+            android:text="@string/archive_zero"
             />
 
         <ScrollView
@@ -32,7 +31,6 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 />
 
         </ScrollView>
@@ -42,26 +40,58 @@
         android:id="@+id/addButton"
         style="@style/counter.main.add"
         android:text="+"
-        android:onClick="insertArchiveItem"
 
         />
-    <EditText
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        style="@style/linear_layout.add"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editDate"
-        android:layout_alignParentBottom="true"
-        android:focusable="false"
+        android:layout_alignParentBottom="true">
 
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pointsNumber"
-        android:text="0"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-       android:inputType="number"
-        />
+        <EditText
+            android:id="@+id/editDate"
+            style="@style/addValues"
+            android:drawableLeft="@drawable/ic_date_range_white_18dp"
+            android:focusable="false"
+            android:text="Sample date"
+            />
 
+        <LinearLayout
+            style="@style/standardSize">
 
+            <EditText
+                android:id="@+id/pointsNumber"
+                style="@style/addValues.number"
+                android:drawableLeft="@drawable/ic_bubble_chart_white_18dp"
+                />
+
+            <TextView
+                style="@style/addValues"
+                android:text="@string/points"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/standardSize">
+
+            <EditText
+                android:id="@+id/bodyPointsNumber"
+                style="@style/addValues.number"
+                android:drawableLeft="@drawable/ic_face_white_18dp"
+                />
+
+            <EditText
+                android:id="@+id/mindPointsNumber"
+                style="@style/addValues.number"
+                android:drawableLeft="@drawable/ic_extension_white_18dp"
+                />
+
+            <EditText
+                android:id="@+id/soulPointsNumber"
+                style="@style/addValues.number"
+                android:drawableLeft="@drawable/ic_favorite_white_18dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

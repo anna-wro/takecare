@@ -132,6 +132,11 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="linear_layout.add">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/circle_days</item>
+    </style>
+
     <style name="linear_layout.days">
         <item name="android:background">@color/archive_color</item>
     </style>
@@ -182,4 +187,16 @@
         <item name="android:layout_marginBottom">@dimen/zero</item>
     </style>
 
+    <style name="addValues" parent="standardSize">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/font_smaller</item>
+        <item name="android:drawablePadding">@dimen/padding_tiny</item>
+        <item name="android:paddingRight">@dimen/padding_tiny</item>
+
+    </style>
+
+    <style name="addValues.number">
+        <item name="android:inputType">number</item>
+        <item name="android:text">@string/default_value</item>
+    </style>
 </resources>
