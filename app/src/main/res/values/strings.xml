@@ -10,4 +10,7 @@
     <string name="archive_text">Yup, that\'s how many days\nyou\'ve tracked. \nYou\'re awesome!</string>
     <string name="archive_zero">Your archive is empty.\nToday\'s a great day to start!</string>
     <string name="points">points</string>
+    <string name="saveornot">Do you want to save this entry?</string>
+    <string name="save_ok">You\'ve tracked another day! Yay!</string>
+    <string name="save_error">Error with saving entry</string>
 </resources>

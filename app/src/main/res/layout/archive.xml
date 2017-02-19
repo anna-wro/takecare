@@ -14,7 +14,6 @@
         <pm.anna.takecare.EqualWidthHeightTextView
             android:id="@+id/howManyDays"
             style="@style/counter.main.days"
-            android:text="X"
             />
 
         <TextView
@@ -27,7 +26,7 @@
         <ScrollView
             style="@style/scroll">
 
-            <ListView
+            <TextView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,57 +40,126 @@
         style="@style/counter.main.add"
         android:text="+"
 
+
         />
 
+
     <LinearLayout
+        android:id="@+id/addPanel"
         style="@style/linear_layout.add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
 
-        <EditText
-            android:id="@+id/editDate"
-            style="@style/addValues"
-            android:drawableLeft="@drawable/ic_date_range_white_18dp"
-            android:focusable="false"
-            android:text="Sample date"
-            />
+        >
 
-        <LinearLayout
-            style="@style/standardSize">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_circle"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:text="@string/saveornot"
 
-            <EditText
-                android:id="@+id/pointsNumber"
-                style="@style/addValues.number"
-                android:drawableLeft="@drawable/ic_bubble_chart_white_18dp"
-                />
-
-            <TextView
-                style="@style/addValues"
-                android:text="@string/points"/>
-
-        </LinearLayout>
+            android:textColor="@color/semi_transparent"
+            android:textSize="@dimen/font_smaller"/>
 
         <LinearLayout
-            style="@style/standardSize">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_circle">
 
-            <EditText
-                android:id="@+id/bodyPointsNumber"
-                style="@style/addValues.number"
-                android:drawableLeft="@drawable/ic_face_white_18dp"
-                />
+            <LinearLayout
+                style="@style/standardSize"
+                android:layout_width="wrap_content"
+                android:paddingLeft="@dimen/padding"
+                android:gravity="right|center_vertical"
+                android:orientation="vertical"
+                >
 
-            <EditText
-                android:id="@+id/mindPointsNumber"
-                style="@style/addValues.number"
-                android:drawableLeft="@drawable/ic_extension_white_18dp"
-                />
+                <EditText
+                    android:id="@+id/editDate"
+                    style="@style/addValues"
+                    android:drawableLeft="@drawable/ic_date_range_white_18dp"
+                    android:focusable="false"
+                    android:text="Sample date"
+                    />
 
-            <EditText
-                android:id="@+id/soulPointsNumber"
-                style="@style/addValues.number"
-                android:drawableLeft="@drawable/ic_favorite_white_18dp"
-                />
+                <LinearLayout
+                    style="@style/standardSize">
+
+                    <EditText
+                        android:id="@+id/pointsNumber"
+                        style="@style/addValues.number"
+                        android:drawableLeft="@drawable/ic_bubble_chart_white_18dp"
+                        />
+
+                    <TextView
+                        style="@style/addValues"
+                        android:text="@string/points"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/standardSize"
+                    android:layout_width="match_parent"
+                    android:gravity="right">
+
+                    <EditText
+                        android:id="@+id/bodyPointsNumber"
+                        style="@style/addValues.number"
+                        android:drawableLeft="@drawable/ic_face_white_18dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/mindPointsNumber"
+                        style="@style/addValues.number"
+                        android:drawableLeft="@drawable/ic_extension_white_18dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/soulPointsNumber"
+                        style="@style/addValues.number"
+                        android:drawableLeft="@drawable/ic_favorite_white_18dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                style="@style/standardSize"
+                android:layout_gravity="center|top"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/padding_tiny"
+                >
+
+
+                <ImageButton
+                    android:id="@+id/yesButton"
+                    style="@style/Button"
+                    android:src="@drawable/ic_check_circle_white_48dp"
+                    android:layout_alignParentTop="true"
+                    android:onClick="insertArchiveItem"
+                  />
+                <View
+                    android:id="@+id/anchor"
+                    android:layout_width="@dimen/padding_medium"
+                    android:layout_height="@dimen/anchor_height"
+                   />
+
+                <ImageButton
+                    android:padding="@dimen/zero"
+                    style="@style/Button"
+                    android:id="@+id/noButton"
+                    android:src="@drawable/ic_cancel_white_36dp"
+                   android:layout_below="@id/anchor"
+                    android:layout_toRightOf="@id/anchor"
+
+                    />
+
+
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

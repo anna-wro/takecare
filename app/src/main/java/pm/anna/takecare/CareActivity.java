@@ -2,7 +2,6 @@ package pm.anna.takecare;
 
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,7 +11,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.ListView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -48,7 +48,7 @@ public class CareActivity extends BaseActivity {
     TextView mBodyDots;
     TextView mMindDots;
     TextView mSoulDots;
-    ListView mItemsList;
+    TextView mItemsList;
     TextView mPointsNumber;
     EditText mDateEdit;
     TextView mCommentDays;
@@ -57,6 +57,10 @@ public class CareActivity extends BaseActivity {
     EditText mSoulPointsNumber;
     EqualWidthHeightTextView mHowManyDays;
     EqualWidthHeightTextView mAddButton;
+    LinearLayout mAddPanel;
+    ImageButton mYesButton;
+    ImageButton mNoButton;
+
     private ArchiveDbHelper mDbHelper;
 
     @Override
@@ -69,7 +73,7 @@ public class CareActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(5);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
-
+        mAddPanel.setVisibility(View.INVISIBLE);
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy (EEE)", Locale.US);
         String formattedDate = df.format(c.getTime());
@@ -80,13 +84,13 @@ public class CareActivity extends BaseActivity {
             e.printStackTrace();
         }
         mDbHelper = new ArchiveDbHelper(this);
-        displayDaysInfo();
 
         mBodyPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (mBodyPointsNumber.getText().toString().equals("")) mBodyPointsNumber.setText("0");
+                    if (mBodyPointsNumber.getText().toString().equals(""))
+                        mBodyPointsNumber.setText("0");
                 }
             }
         });
@@ -95,23 +99,27 @@ public class CareActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(final Editable s) {
                 if ((!mBodyPointsNumber.getText().toString().equals(""))
                         && mBodyPointsNumber.getText().toString().equals(s.toString())) {
                     bodyPoints = Integer.parseInt(s.toString());
-                   changeSum();
-                };
+                    changeSum();
+                }
+                ;
             }
         });
         mMindPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (mMindPointsNumber.getText().toString().equals("")) mMindPointsNumber.setText("0");
+                    if (mMindPointsNumber.getText().toString().equals(""))
+                        mMindPointsNumber.setText("0");
                 }
             }
         });
@@ -120,23 +128,27 @@ public class CareActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(final Editable s) {
                 if ((!mMindPointsNumber.getText().toString().equals(""))
                         && mMindPointsNumber.getText().toString().equals(s.toString())) {
                     mindPoints = Integer.parseInt(s.toString());
                     changeSum();
-                };
+                }
+                ;
             }
         });
         mSoulPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (mSoulPointsNumber.getText().toString().equals("")) mSoulPointsNumber.setText("0");
+                    if (mSoulPointsNumber.getText().toString().equals(""))
+                        mSoulPointsNumber.setText("0");
                 }
             }
         });
@@ -145,19 +157,43 @@ public class CareActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(final Editable s) {
                 if ((!mSoulPointsNumber.getText().toString().equals(""))
                         && mSoulPointsNumber.getText().toString().equals(s.toString())) {
                     soulPoints = Integer.parseInt(s.toString());
                     changeSum();
-                };
+                }
+                ;
+            }
+        });
+
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAddPanel.setVisibility(View.VISIBLE);
+            }
+        });
+        mNoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAddPanel.setVisibility(View.INVISIBLE);
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        displayArchiveInfo();
+    }
+
+
 
     private void initUiElements() {
         mBodyList = (GridLayout) findViewById(R.id.body_list);
@@ -172,7 +208,7 @@ public class CareActivity extends BaseActivity {
         mMindDots = (TextView) findViewById(R.id.mindDots);
         mSoulDots = (TextView) findViewById(R.id.soulDots);
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mItemsList = (ListView) findViewById(R.id.list);
+        mItemsList = (TextView) findViewById(R.id.list);
         mPointsNumber = (TextView) findViewById(R.id.pointsNumber);
         mDateEdit = (EditText) findViewById(R.id.editDate);
         mAddButton = (EqualWidthHeightTextView) findViewById(addButton);
@@ -180,41 +216,105 @@ public class CareActivity extends BaseActivity {
         mBodyPointsNumber = (EditText) findViewById(bodyPointsNumber);
         mMindPointsNumber = (EditText) findViewById(R.id.mindPointsNumber);
         mSoulPointsNumber = (EditText) findViewById(R.id.soulPointsNumber);
+        mAddPanel = (LinearLayout) findViewById(R.id.addPanel);
+        mYesButton = (ImageButton) findViewById(R.id.yesButton);
+        mNoButton = (ImageButton) findViewById(R.id.noButton);
     }
 
-    private void displayDaysInfo() {
+    private void displayArchiveInfo() {
 
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + ArchiveEntry.TABLE_NAME, null);
+
+        String[] projection = {
+                ArchiveEntry._ID,
+                ArchiveEntry.COLUMN_DATE,
+                ArchiveEntry.COLUMN_POINTS_ALL,
+                ArchiveEntry.COLUMN_POINTS_BODY,
+                ArchiveEntry.COLUMN_POINTS_MIND,
+                ArchiveEntry.COLUMN_POINTS_SOUL
+        };
+        Cursor cursor = db.query(
+                ArchiveEntry.TABLE_NAME, projection, null, null, null, null, null
+        );
+
         int days = cursor.getCount();
+
+
         try {
             if (days == 0) mCommentDays.setText(R.string.archive_zero);
             else mCommentDays.setText(R.string.archive_text);
             mHowManyDays.setText("" + days);
+
+            mItemsList.append(ArchiveEntry._ID + " - " +
+                    ArchiveEntry.COLUMN_DATE + " - " +
+                    ArchiveEntry.COLUMN_POINTS_ALL + " - ( " +
+                    ArchiveEntry.COLUMN_POINTS_BODY + " / " +
+                    ArchiveEntry.COLUMN_POINTS_MIND + " / " +
+                    ArchiveEntry.COLUMN_POINTS_SOUL + ")\n");
+
+            int idColumnIndex = cursor.getColumnIndex(ArchiveEntry._ID);
+            int dateColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_DATE);
+            int pointsColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_ALL);
+            int bodyColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_BODY);
+            int mindColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_MIND);
+            int soulColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_SOUL);
+
+            // Iterate through all the returned rows in the cursor
+            while (cursor.moveToNext()) {
+                // Use that index to extract the String or Int value of the word
+                // at the current row the cursor is on.
+                int currentID = cursor.getInt(idColumnIndex);
+                String currentDate = cursor.getString(dateColumnIndex);
+                int currentPoints = cursor.getInt(pointsColumnIndex);
+                int currentBody = cursor.getInt(bodyColumnIndex);
+                int currentMind = cursor.getInt(mindColumnIndex);
+                int currentSoul = cursor.getInt(soulColumnIndex);
+                // Display the values from each column of the current row in the cursor in the TextView
+                mItemsList.append(("\n" + currentID + " - " +
+                        currentDate + " - " +
+                        currentPoints + " points (" +
+                        currentBody + ", " +
+                        currentMind + ", " +
+                        currentSoul)+ ")");
+            }
         } finally {
             cursor.close();
         }
     }
 
+
+
     public void insertArchiveItem(View v) {
 
+        // Create database helper
+        ArchiveDbHelper mDbHelper = new ArchiveDbHelper(this);
+
+        // Gets the database in write mode
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
         String date = mDateEdit.getText().toString();
+
+        // Create a ContentValues object where column names are the keys,
         ContentValues values = new ContentValues();
         values.put(ArchiveEntry.COLUMN_DATE, date);
         values.put(ArchiveEntry.COLUMN_POINTS_ALL, pointsNum);
         values.put(ArchiveEntry.COLUMN_POINTS_BODY, bodyPoints);
         values.put(ArchiveEntry.COLUMN_POINTS_MIND, mindPoints);
         values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Insert a new row for pet in the database, returning the ID of that new row.
         long newRowId = db.insert(ArchiveEntry.TABLE_NAME, null, values);
 
-        displayDaysInfo();
+        displayArchiveInfo();
+        mAddPanel.setVisibility(View.INVISIBLE);
 
-        Context context = getApplicationContext();
-        CharSequence text = "You've tracked another day! Yay!";
-        int duration = Toast.LENGTH_LONG;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        if (newRowId == -1) {
+            // If the row ID is -1, then there was an error with insertion.
+            Toast.makeText(this, R.string.save_error, Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast
+            Toast.makeText(this, R.string.save_ok, Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
@@ -365,6 +465,7 @@ public class CareActivity extends BaseActivity {
     }
 
     /* * * CHANGE POINTS - SOUL * * */
+
     public void changeFivePointsSoul(View v) {
         boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
@@ -446,6 +547,4 @@ public class CareActivity extends BaseActivity {
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mPointsNumber.setText(String.valueOf(pointsNum));
     }
-
-
 }

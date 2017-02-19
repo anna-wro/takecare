@@ -192,6 +192,7 @@
         <item name="android:textSize">@dimen/font_smaller</item>
         <item name="android:drawablePadding">@dimen/padding_tiny</item>
         <item name="android:paddingRight">@dimen/padding_tiny</item>
+        <item name="android:paddingTop">@dimen/zero</item>
 
     </style>
 
