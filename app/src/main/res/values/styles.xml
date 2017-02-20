@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -21,6 +21,20 @@
     <style name="standardSize">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="scroll">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:scrollbarStyle">insideOverlay</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:paddingBottom">@dimen/padding_smaller</item>
+    </style>
+
+    <style name="section" parent="standardSize">
+        <item name="android:columnCount">2</item>
+        <item name="android:orientation">horizontal</item>
 
     </style>
 
@@ -39,6 +53,7 @@
 
     <style name="hi_text.days">
         <item name="android:textColor">@color/blue_text</item>
+        <item name="android:paddingTop">@dimen/zero</item>
     </style>
 
     <style name="question" parent="standardSize">
@@ -47,6 +62,8 @@
         <item name="android:textSize">@dimen/font_medium</item>
         <item name="android:paddingTop">@dimen/padding</item>
     </style>
+
+    <!--  COUNTERS  -->
 
     <style name="counter" parent="standardSize">
         <item name="android:layout_below">@id/careText</item>
@@ -70,6 +87,13 @@
         <item name="android:layout_marginTop">@dimen/padding_medium</item>
     </style>
 
+    <style name="counter.main.huge">
+        <item name="android:textSize">@dimen/font_huge</item>
+        <item name="android:background">@drawable/circle_days</item>
+        <item name="android:layout_margin">@dimen/padding_normal</item>
+        <item name="android:padding">@dimen/padding_normal</item>
+    </style>
+
     <style name="counter.main.add">
         <item name="android:textSize">@dimen/font_medium</item>
         <item name="android:background">@drawable/circle_days</item>
@@ -78,9 +102,7 @@
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
         <item name="android:layout_marginBottom">@dimen/padding_add</item>
-
         <item name="android:paddingTop">@dimen/zero</item>
-
     </style>
 
     <style name="counter.main.delete">
@@ -122,21 +144,7 @@
         <item name="android:textColor">@color/violet</item>
     </style>
 
-    <style name="section" parent="standardSize">
-        <item name="android:columnCount">2</item>
-        <item name="android:orientation">horizontal</item>
-
-    </style>
-
-    <style name="scroll">
-
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:scrollbars">vertical</item>
-        <item name="android:scrollbarStyle">insideOverlay</item>
-        <item name="android:overScrollMode">never</item>
-        <item name="android:paddingBottom">@dimen/padding_smaller</item>
-    </style>
+    <!--  LINEAR LAYOUTS  -->
 
     <style name="linear_layout">
         <item name="android:background">@color/background_color</item>
@@ -173,6 +181,10 @@
         <item name="android:background">@color/archive_color</item>
     </style>
 
+    <style name="linear_layout.days.empty">
+        <item name="android:paddingTop">@dimen/padding_smaller</item>
+    </style>
+
     <style name="linear_layout.body">
         <item name="android:background">@color/green</item>
     </style>
@@ -184,6 +196,41 @@
     <style name="linear_layout.soul">
         <item name="android:background">@color/violet</item>
     </style>
+
+    <!--  LIST VIEW  -->
+
+    <style name="list">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/padding_normal</item>
+        <item name="android:divider">@android:color/transparent</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="list_item" parent="linear_layout.days">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">@dimen/padding</item>
+    </style>
+
+    <style name="list_element">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/font_smaller</item>
+    </style>
+
+    <style name="list_element.date">
+        <item name="android:layout_weight">2</item>
+        <item name="android:paddingLeft">@dimen/padding_normal</item>
+    </style>
+
+    <style name="list_element.points">
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingRight">@dimen/padding_medium</item>
+        <item name="android:gravity">right</item>
+    </style>
+
+    <!--  BUTTONS  -->
 
     <style name="yesNoButtons" parent="standardSize">
         <item name="android:gravity">center|top</item>
@@ -241,6 +288,8 @@
         <item name="android:layout_margin">@dimen/padding_smaller</item>
         <item name="android:layout_marginBottom">@dimen/zero</item>
     </style>
+
+    <!--  ADD ARCHIVE ITEM  -->
 
     <style name="question_save" parent="standardSize">
         <item name="android:paddingBottom">@dimen/padding_circle</item>
