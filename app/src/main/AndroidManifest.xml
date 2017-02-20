@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <provider
+            android:name=".data.ArchiveProvider"
+            android:authorities="pm.anna.takecare"
+            android:exported="false" />
     </application>
 
 </manifest>
