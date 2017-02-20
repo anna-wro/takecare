@@ -2,33 +2,41 @@ package pm.anna.takecare;
 
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 import pm.anna.takecare.data.ArchiveContract.ArchiveEntry;
-import pm.anna.takecare.data.ArchiveDbHelper;
 
 import static pm.anna.takecare.R.id.addButton;
 import static pm.anna.takecare.R.id.bodyPointsNumber;
 
-public class CareActivity extends BaseActivity {
+public class CareActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>  {
+
+    private static final int ARCHIVE_LOADER = 0;
+    ArchiveCursorAdapter mCursorAdapter;
     int howMany = 0;
     int bodyPoints = 0;
     int mindPoints = 0;
@@ -48,7 +56,7 @@ public class CareActivity extends BaseActivity {
     TextView mBodyDots;
     TextView mMindDots;
     TextView mSoulDots;
-    TextView mItemsList;
+    ListView mItemsList;
     TextView mPointsNumber;
     EditText mDateEdit;
     TextView mCommentDays;
@@ -60,8 +68,8 @@ public class CareActivity extends BaseActivity {
     LinearLayout mAddPanel;
     ImageButton mYesButton;
     ImageButton mNoButton;
+    RelativeLayout mEmptyView;
 
-    private ArchiveDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +82,8 @@ public class CareActivity extends BaseActivity {
         mViewPager.setOffscreenPageLimit(5);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
         mAddPanel.setVisibility(View.INVISIBLE);
+        mItemsList.setEmptyView(mEmptyView);
+
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy (EEE)", Locale.US);
         String formattedDate = df.format(c.getTime());
@@ -83,8 +93,6 @@ public class CareActivity extends BaseActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        mDbHelper = new ArchiveDbHelper(this);
-
         mBodyPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -185,14 +193,12 @@ public class CareActivity extends BaseActivity {
                 mAddPanel.setVisibility(View.INVISIBLE);
             }
         });
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        displayArchiveInfo();
-    }
+        mCursorAdapter = new ArchiveCursorAdapter(this, null);
+        mItemsList.setAdapter(mCursorAdapter);
+        getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
 
+    }
 
 
     private void initUiElements() {
@@ -208,7 +214,7 @@ public class CareActivity extends BaseActivity {
         mMindDots = (TextView) findViewById(R.id.mindDots);
         mSoulDots = (TextView) findViewById(R.id.soulDots);
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mItemsList = (TextView) findViewById(R.id.list);
+        mItemsList = (ListView) findViewById(R.id.list);
         mPointsNumber = (TextView) findViewById(R.id.pointsNumber);
         mDateEdit = (EditText) findViewById(R.id.editDate);
         mAddButton = (EqualWidthHeightTextView) findViewById(addButton);
@@ -219,78 +225,11 @@ public class CareActivity extends BaseActivity {
         mAddPanel = (LinearLayout) findViewById(R.id.addPanel);
         mYesButton = (ImageButton) findViewById(R.id.yesButton);
         mNoButton = (ImageButton) findViewById(R.id.noButton);
+        mEmptyView = (RelativeLayout) findViewById(R.id.empty);
     }
-
-    private void displayArchiveInfo() {
-
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        String[] projection = {
-                ArchiveEntry._ID,
-                ArchiveEntry.COLUMN_DATE,
-                ArchiveEntry.COLUMN_POINTS_ALL,
-                ArchiveEntry.COLUMN_POINTS_BODY,
-                ArchiveEntry.COLUMN_POINTS_MIND,
-                ArchiveEntry.COLUMN_POINTS_SOUL
-        };
-        Cursor cursor = db.query(
-                ArchiveEntry.TABLE_NAME, projection, null, null, null, null, null
-        );
-
-        int days = cursor.getCount();
-
-
-        try {
-            if (days == 0) mCommentDays.setText(R.string.archive_zero);
-            else mCommentDays.setText(R.string.archive_text);
-            mHowManyDays.setText("" + days);
-
-            mItemsList.append(ArchiveEntry._ID + " - " +
-                    ArchiveEntry.COLUMN_DATE + " - " +
-                    ArchiveEntry.COLUMN_POINTS_ALL + " - ( " +
-                    ArchiveEntry.COLUMN_POINTS_BODY + " / " +
-                    ArchiveEntry.COLUMN_POINTS_MIND + " / " +
-                    ArchiveEntry.COLUMN_POINTS_SOUL + ")\n");
-
-            int idColumnIndex = cursor.getColumnIndex(ArchiveEntry._ID);
-            int dateColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_DATE);
-            int pointsColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_ALL);
-            int bodyColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_BODY);
-            int mindColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_MIND);
-            int soulColumnIndex = cursor.getColumnIndex(ArchiveEntry.COLUMN_POINTS_SOUL);
-
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word
-                // at the current row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentDate = cursor.getString(dateColumnIndex);
-                int currentPoints = cursor.getInt(pointsColumnIndex);
-                int currentBody = cursor.getInt(bodyColumnIndex);
-                int currentMind = cursor.getInt(mindColumnIndex);
-                int currentSoul = cursor.getInt(soulColumnIndex);
-                // Display the values from each column of the current row in the cursor in the TextView
-                mItemsList.append(("\n" + currentID + " - " +
-                        currentDate + " - " +
-                        currentPoints + " points (" +
-                        currentBody + ", " +
-                        currentMind + ", " +
-                        currentSoul)+ ")");
-            }
-        } finally {
-            cursor.close();
-        }
-    }
-
-
 
     public void insertArchiveItem(View v) {
 
-        // Create database helper
-        ArchiveDbHelper mDbHelper = new ArchiveDbHelper(this);
-
-        // Gets the database in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
         String date = mDateEdit.getText().toString();
 
         // Create a ContentValues object where column names are the keys,
@@ -301,20 +240,32 @@ public class CareActivity extends BaseActivity {
         values.put(ArchiveEntry.COLUMN_POINTS_MIND, mindPoints);
         values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
 
-        // Insert a new row for pet in the database, returning the ID of that new row.
-        long newRowId = db.insert(ArchiveEntry.TABLE_NAME, null, values);
-
-        displayArchiveInfo();
-        mAddPanel.setVisibility(View.INVISIBLE);
-
-        if (newRowId == -1) {
-            // If the row ID is -1, then there was an error with insertion.
-            Toast.makeText(this, R.string.save_error, Toast.LENGTH_SHORT).show();
+        Uri newUri = getContentResolver().insert(ArchiveEntry.CONTENT_URI, values);
+        if (newUri == null) {
+            // If the new content URI is null, then there was an error with insertion.
+            Toast.makeText(this, getString(R.string.save_error),
+                    Toast.LENGTH_SHORT).show();
         } else {
-            // Otherwise, the insertion was successful and we can display a toast
-            Toast.makeText(this, R.string.save_ok, Toast.LENGTH_LONG).show();
+            // Otherwise, the insertion was successful and we can display a toast.
+            Toast.makeText(this, getString(R.string.save_ok),
+                    Toast.LENGTH_LONG).show();
         }
 
+        pointsNum = 0;
+        bodyPoints = 0;
+        mindPoints = 0;
+        soulPoints = 0;
+        mSoulPointsNumber.setText(Integer.toString(soulPoints));
+        mBodyPointsNumber.setText(Integer.toString(bodyPoints));
+        mMindPointsNumber.setText(Integer.toString(mindPoints));
+        changeSum();
+        mAddPanel.setVisibility(View.INVISIBLE);
+
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 
@@ -546,5 +497,31 @@ public class CareActivity extends BaseActivity {
     public void changeSum() {
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mPointsNumber.setText(String.valueOf(pointsNum));
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        String[] projection = {
+                ArchiveEntry._ID,
+                ArchiveEntry.COLUMN_DATE,
+                ArchiveEntry.COLUMN_POINTS_ALL,
+                ArchiveEntry.COLUMN_POINTS_BODY,
+                ArchiveEntry.COLUMN_POINTS_MIND,
+                ArchiveEntry.COLUMN_POINTS_SOUL
+        };
+
+        return new CursorLoader(this, ArchiveEntry.CONTENT_URI, projection, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mCursorAdapter.swapCursor(data);
+        int days = mCursorAdapter.getCount();
+        mHowManyDays.setText("" + days);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mCursorAdapter.swapCursor(null);
     }
 }
