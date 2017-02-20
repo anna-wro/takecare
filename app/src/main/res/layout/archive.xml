@@ -16,30 +16,19 @@
             style="@style/counter.main.days"
             />
 
-        <TextView
-            android:id="@+id/comment_days"
-            style="@style/hi_text.days"
-            android:text="@string/archive_zero"
+        <ListView
+            android:id="@+id/list"
+            style="@style/list"
             />
-
-        <ScrollView
-            style="@style/scroll">
-
-            <TextView
-                android:id="@+id/list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-        </ScrollView>
     </LinearLayout>
+
+    <include layout="@layout/empty_archive"></include>
 
     <pm.anna.takecare.EqualWidthHeightTextView
         android:id="@+id/addButton"
         style="@style/counter.main.add"
         android:text="@string/plus"
         />
-
 
     <pm.anna.takecare.EqualWidthHeightTextView
         android:id="@+id/deleteButton"

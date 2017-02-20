@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/empty"
+                style="@style/linear_layout.days.empty">
+
+    <pm.anna.takecare.EqualWidthHeightTextView
+        android:id="@+id/zero_counter"
+        style="@style/counter.main.huge"
+        android:text="@string/default_value"
+        />
+
+    <TextView
+        android:id="@+id/comment_days"
+        style="@style/hi_text.days"
+        android:layout_below="@id/zero_counter"
+        android:text="@string/archive_zero"
+        />
+</RelativeLayout>

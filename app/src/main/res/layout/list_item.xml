@@ -1,0 +1,15 @@
+<!-- Layout for a single list item in the list -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/list_item"
+    >
+
+    <TextView
+        android:id="@+id/date"
+        style="@style/list_element.date">
+    </TextView>
+
+    <TextView
+        android:id="@+id/points"
+        style="@style/list_element.points"/>
+</LinearLayout>
