@@ -332,4 +332,6 @@
     <style name="addValues.number.soul">
         <item name="android:drawableLeft">@drawable/ic_favorite_white_18dp</item>
     </style>
+
+
 </resources>

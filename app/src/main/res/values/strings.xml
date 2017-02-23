@@ -13,5 +13,31 @@
     <string name="points">points</string>
     <string name="saveornot">Do you want to save this entry?</string>
     <string name="save_ok">You\'ve tracked another day! Yay!</string>
-    <string name="save_error">Error with saving entry</string>
+    <string name="save_error">Oops! Something went wrong</string>
+    <string name="delete_dialog_msg">Delete last entry?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string-array name="done">
+        <item>Yay!</item>
+        <item>Well done!</item>
+        <item>Congrats!</item>
+        <item>Way to go!</item>
+        <item>That\'s the way to do it!</item>
+        <item>Marvelous!</item>
+        <item>Keep up the good work!</item>
+        <item>Good job!</item>
+        <item>You\'re on the right track!</item>
+        <item>Good work!</item>
+        <item>Right on!</item>
+        <item>Look at you go!</item>
+        <item>Nice going!</item>
+        <item>Great!</item>
+        <item>I knew you could do it!</item>
+        <item>Super!</item>
+        <item>That\'s good!</item>
+        <item>Keep it up!</item>
+        <item>Nothing can stop you now!</item>
+        <item>Nice going!</item>
+        <item>You\'re doing beautifully!</item>
+    </string-array>
 </resources>

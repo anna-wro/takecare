@@ -3,6 +3,7 @@ package pm.anna.takecare;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,10 +11,12 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -23,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -65,6 +69,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     EditText mSoulPointsNumber;
     EqualWidthHeightTextView mHowManyDays;
     EqualWidthHeightTextView mAddButton;
+    EqualWidthHeightTextView mDeleteButton;
     LinearLayout mAddPanel;
     ImageButton mYesButton;
     ImageButton mNoButton;
@@ -193,13 +198,51 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                 mAddPanel.setVisibility(View.INVISIBLE);
             }
         });
+        mDeleteButton.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+                showDeleteConfirmationDialog();
+            }
+        });
         mCursorAdapter = new ArchiveCursorAdapter(this, null);
         mItemsList.setAdapter(mCursorAdapter);
         getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
 
     }
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_dialog_msg);
 
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                deleteArchiveItem();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked the "Cancel" button, so dismiss the dialog
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(getResources().getColor(R.color.green));
+
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(getResources().getColor(R.color.circle_delete));
+    }
+
+    private void deleteArchiveItem() {
+        Cursor c = getContentResolver().query(ArchiveEntry.CONTENT_URI, null, null, null, null);
+        c.moveToLast();
+        String dayToDelete = c.getString(c.getColumnIndex(ArchiveEntry._ID));
+        getContentResolver().delete(ArchiveEntry.CONTENT_URI, ArchiveEntry._ID + "=?", new String[] { dayToDelete });
+    }
 
     private void initUiElements() {
         mBodyList = (GridLayout) findViewById(R.id.body_list);
@@ -226,6 +269,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mYesButton = (ImageButton) findViewById(R.id.yesButton);
         mNoButton = (ImageButton) findViewById(R.id.noButton);
         mEmptyView = (RelativeLayout) findViewById(R.id.empty);
+        mDeleteButton = (EqualWidthHeightTextView) findViewById(R.id.deleteButton);
     }
 
     public void insertArchiveItem(View v) {
