@@ -61,10 +61,9 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     TextView mBodyDots;
     TextView mMindDots;
     TextView mSoulDots;
-    ListView mItemsList;
     TextView mPointsNumber;
-    EditText mDateEdit;
     TextView mCommentDays;
+    EditText mDateEdit;
     EditText mBodyPointsNumber;
     EditText mMindPointsNumber;
     EditText mSoulPointsNumber;
@@ -72,6 +71,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     EqualWidthHeightTextView mAddButton;
     EqualWidthHeightTextView mDeleteButton;
     LinearLayout mAddPanel;
+    ListView mItemsList;
     ImageButton mYesButton;
     ImageButton mNoButton;
     RelativeLayout mEmptyView;
@@ -81,16 +81,53 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_care);
         initUiElements();
+        makeSlides();
+        setDate();
+        addListeners();
+        initDatabase();
+    }
 
+    private void initUiElements() {
+        setContentView(R.layout.activity_care);
+        mBodyList = (GridLayout) findViewById(R.id.body_list);
+        mMindList = (GridLayout) findViewById(R.id.mind_list);
+        mSoulList = (GridLayout) findViewById(R.id.soul_list);
+        mHowMany = (TextView) findViewById(R.id.howMany);
+        mHowManyBody = (TextView) findViewById(R.id.howManyBody);
+        mHowManyMind = (TextView) findViewById(R.id.howManyMind);
+        mHowManySoul = (TextView) findViewById(R.id.howManySoul);
+        mHowManyDays = (EqualWidthHeightTextView) findViewById(R.id.howManyDays);
+        mBodyDots = (TextView) findViewById(R.id.bodyDots);
+        mMindDots = (TextView) findViewById(R.id.mindDots);
+        mSoulDots = (TextView) findViewById(R.id.soulDots);
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mItemsList = (ListView) findViewById(R.id.list);
+        mPointsNumber = (TextView) findViewById(R.id.pointsNumber);
+        mDateEdit = (EditText) findViewById(R.id.editDate);
+        mAddButton = (EqualWidthHeightTextView) findViewById(addButton);
+        mCommentDays = (TextView) findViewById(R.id.comment_days);
+        mBodyPointsNumber = (EditText) findViewById(bodyPointsNumber);
+        mMindPointsNumber = (EditText) findViewById(R.id.mindPointsNumber);
+        mSoulPointsNumber = (EditText) findViewById(R.id.soulPointsNumber);
+        mAddPanel = (LinearLayout) findViewById(R.id.addPanel);
+        mYesButton = (ImageButton) findViewById(R.id.yesButton);
+        mNoButton = (ImageButton) findViewById(R.id.noButton);
+        mEmptyView = (RelativeLayout) findViewById(R.id.empty);
+        mDeleteButton = (EqualWidthHeightTextView) findViewById(R.id.deleteButton);
+        mDoneArray = getResources().getStringArray(R.array.done);
+    }
+
+    private void makeSlides(){
         WizardPagerAdapter adapter = new WizardPagerAdapter();
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(5);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
         mAddPanel.setVisibility(View.INVISIBLE);
         mItemsList.setEmptyView(mEmptyView);
+    }
 
+    private void setDate(){
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy (EEE)", Locale.US);
         String formattedDate = df.format(c.getTime());
@@ -100,6 +137,9 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addListeners(){
         mBodyPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -207,11 +247,41 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                 showDeleteConfirmationDialog();
             }
         });
+    }
+
+    /* * * ARCHIVE * * */
+
+    private void initDatabase(){
         mCursorAdapter = new ArchiveCursorAdapter(this, null);
         mItemsList.setAdapter(mCursorAdapter);
         getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
-
     }
+
+    public void insertArchiveItem(View v) {
+
+        String date = mDateEdit.getText().toString();
+
+        ContentValues values = new ContentValues();
+        values.put(ArchiveEntry.COLUMN_DATE, date);
+        values.put(ArchiveEntry.COLUMN_POINTS_ALL, pointsNum);
+        values.put(ArchiveEntry.COLUMN_POINTS_BODY, bodyPoints);
+        values.put(ArchiveEntry.COLUMN_POINTS_MIND, mindPoints);
+        values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
+
+        Uri newUri = getContentResolver().insert(ArchiveEntry.CONTENT_URI, values);
+        if (newUri == null) {
+            Toast.makeText(this, getString(R.string.save_error), Toast.LENGTH_SHORT).show();
+        } else {
+            Random generator = new Random();
+            int num = generator.nextInt(mDoneArray.length);
+            Toast.makeText(this, mDoneArray[num], Toast.LENGTH_SHORT).show();
+        }
+
+        resetPoints();
+        changeSum();
+        hidePanel();
+    }
+
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);
@@ -245,76 +315,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         String dayToDelete = c.getString(c.getColumnIndex(ArchiveEntry._ID));
         getContentResolver().delete(ArchiveEntry.CONTENT_URI, ArchiveEntry._ID + "=?", new String[] { dayToDelete });
     }
-
-    private void initUiElements() {
-        mBodyList = (GridLayout) findViewById(R.id.body_list);
-        mMindList = (GridLayout) findViewById(R.id.mind_list);
-        mSoulList = (GridLayout) findViewById(R.id.soul_list);
-        mHowMany = (TextView) findViewById(R.id.howMany);
-        mHowManyBody = (TextView) findViewById(R.id.howManyBody);
-        mHowManyMind = (TextView) findViewById(R.id.howManyMind);
-        mHowManySoul = (TextView) findViewById(R.id.howManySoul);
-        mHowManyDays = (EqualWidthHeightTextView) findViewById(R.id.howManyDays);
-        mBodyDots = (TextView) findViewById(R.id.bodyDots);
-        mMindDots = (TextView) findViewById(R.id.mindDots);
-        mSoulDots = (TextView) findViewById(R.id.soulDots);
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mItemsList = (ListView) findViewById(R.id.list);
-        mPointsNumber = (TextView) findViewById(R.id.pointsNumber);
-        mDateEdit = (EditText) findViewById(R.id.editDate);
-        mAddButton = (EqualWidthHeightTextView) findViewById(addButton);
-        mCommentDays = (TextView) findViewById(R.id.comment_days);
-        mBodyPointsNumber = (EditText) findViewById(bodyPointsNumber);
-        mMindPointsNumber = (EditText) findViewById(R.id.mindPointsNumber);
-        mSoulPointsNumber = (EditText) findViewById(R.id.soulPointsNumber);
-        mAddPanel = (LinearLayout) findViewById(R.id.addPanel);
-        mYesButton = (ImageButton) findViewById(R.id.yesButton);
-        mNoButton = (ImageButton) findViewById(R.id.noButton);
-        mEmptyView = (RelativeLayout) findViewById(R.id.empty);
-        mDeleteButton = (EqualWidthHeightTextView) findViewById(R.id.deleteButton);
-        mDoneArray = getResources().getStringArray(R.array.done);
-    }
-
-    public void insertArchiveItem(View v) {
-
-        String date = mDateEdit.getText().toString();
-
-        // Create a ContentValues object where column names are the keys,
-        ContentValues values = new ContentValues();
-        values.put(ArchiveEntry.COLUMN_DATE, date);
-        values.put(ArchiveEntry.COLUMN_POINTS_ALL, pointsNum);
-        values.put(ArchiveEntry.COLUMN_POINTS_BODY, bodyPoints);
-        values.put(ArchiveEntry.COLUMN_POINTS_MIND, mindPoints);
-        values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
-
-        Uri newUri = getContentResolver().insert(ArchiveEntry.CONTENT_URI, values);
-        if (newUri == null) {
-            // If the new content URI is null, then there was an error with insertion.
-            Toast.makeText(this, getString(R.string.save_error),
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            Random generator = new Random();
-            int num = generator.nextInt(mDoneArray.length);
-            Toast.makeText(this, mDoneArray[num], Toast.LENGTH_SHORT).show();
-        }
-
-        pointsNum = 0;
-        bodyPoints = 0;
-        mindPoints = 0;
-        soulPoints = 0;
-        mSoulPointsNumber.setText(Integer.toString(soulPoints));
-        mBodyPointsNumber.setText(Integer.toString(bodyPoints));
-        mMindPointsNumber.setText(Integer.toString(mindPoints));
-        changeSum();
-        mAddPanel.setVisibility(View.INVISIBLE);
-
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
 
     /* * * CHANGE POINTS - BODY  * * */
 
@@ -535,6 +535,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mSoulPointsNumber.setText(Integer.toString(soulPoints));
     }
 
+    /* * * POINTS-RELATED * * */
+
     public void changeCare(int num) {
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mHowMany.setText(String.valueOf(num));
@@ -545,6 +547,24 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mPointsNumber.setText(String.valueOf(pointsNum));
     }
+
+    public void resetPoints(){
+        pointsNum = bodyPoints = mindPoints = soulPoints = 0;
+        mSoulPointsNumber.setText(Integer.toString(soulPoints));
+        mBodyPointsNumber.setText(Integer.toString(bodyPoints));
+        mMindPointsNumber.setText(Integer.toString(mindPoints));
+    }
+
+    private void hidePanel(){
+        mAddPanel.setVisibility(View.INVISIBLE);
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    };
+
+     /* * * CURSOR * * */
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -571,4 +591,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     public void onLoaderReset(Loader<Cursor> loader) {
         mCursorAdapter.swapCursor(null);
     }
-}
+
+
+};
+
