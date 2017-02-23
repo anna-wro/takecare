@@ -31,6 +31,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 
 import pm.anna.takecare.data.ArchiveContract.ArchiveEntry;
 
@@ -74,6 +75,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     ImageButton mYesButton;
     ImageButton mNoButton;
     RelativeLayout mEmptyView;
+    String mDoneArray[];
 
 
     @Override
@@ -270,6 +272,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mNoButton = (ImageButton) findViewById(R.id.noButton);
         mEmptyView = (RelativeLayout) findViewById(R.id.empty);
         mDeleteButton = (EqualWidthHeightTextView) findViewById(R.id.deleteButton);
+        mDoneArray = getResources().getStringArray(R.array.done);
     }
 
     public void insertArchiveItem(View v) {
@@ -290,9 +293,9 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             Toast.makeText(this, getString(R.string.save_error),
                     Toast.LENGTH_SHORT).show();
         } else {
-            // Otherwise, the insertion was successful and we can display a toast.
-            Toast.makeText(this, getString(R.string.save_ok),
-                    Toast.LENGTH_LONG).show();
+            Random generator = new Random();
+            int num = generator.nextInt(mDoneArray.length);
+            Toast.makeText(this, mDoneArray[num], Toast.LENGTH_SHORT).show();
         }
 
         pointsNum = 0;
