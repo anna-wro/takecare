@@ -26,5 +26,8 @@
     <dimen name="corner_radius">8dp</dimen>
     <dimen name="anchor_height">52dp</dimen>
     <dimen name="zero">0dp</dimen>
+    <dimen name="detail_height">28dp</dimen>
+    <dimen name="detail_hide">-28dp</dimen>
+    <dimen name="detail_width">100dp</dimen>
 
 </resources>

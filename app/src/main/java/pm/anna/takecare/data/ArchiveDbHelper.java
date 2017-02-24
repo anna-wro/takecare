@@ -39,8 +39,6 @@ public class ArchiveDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion == 2) {
-            db.execSQL("ALTER TABLE " + ArchiveEntry.TABLE_NAME + " ADD COLUMN " + ArchiveEntry.COLUMN_DESCRIPTION + " TEXT");
-        }
+
     }
 }

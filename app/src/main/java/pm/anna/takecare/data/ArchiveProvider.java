@@ -120,6 +120,7 @@ public class ArchiveProvider extends ContentProvider {
         Integer body = values.getAsInteger(ArchiveEntry.COLUMN_POINTS_BODY);
         Integer mind = values.getAsInteger(ArchiveEntry.COLUMN_POINTS_MIND);
         Integer soul = values.getAsInteger(ArchiveEntry.COLUMN_POINTS_SOUL);
+        String thought = values.getAsString(ArchiveEntry.COLUMN_DESCRIPTION);
         if (values.size() == 0) {
             return 0;
         }

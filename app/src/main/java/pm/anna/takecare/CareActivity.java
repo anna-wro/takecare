@@ -68,6 +68,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     EditText mBodyPointsNumber;
     EditText mMindPointsNumber;
     EditText mSoulPointsNumber;
+    EditText mThoughtsEdit;
     EqualWidthHeightTextView mHowManyDays;
     ImageButton mAddButton;
     EqualWidthHeightTextView mDeleteButton;
@@ -87,19 +88,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         setDate();
         addListeners();
         initDatabase();
-
-        mItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-
-                View toolbar = view.findViewById(R.id.details);
-
-                // Creating the expand animation for the item
-                ExpandAnimation expandAni = new ExpandAnimation(toolbar, 500);
-
-                // Start the animation on the toolbar
-                toolbar.startAnimation(expandAni);
-            }
-        });
     }
 
 
@@ -132,6 +120,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mDeleteButton = (EqualWidthHeightTextView) findViewById(R.id.deleteButton);
         mDoneArray = getResources().getStringArray(R.array.done);
         mShowDetailsButton = (ImageButton) findViewById(R.id.showDetails);
+        mThoughtsEdit = (EditText) findViewById(R.id.anyThoughts);
     }
 
     private void makeSlides() {
@@ -251,12 +240,14 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                 mAddPanel.setVisibility(View.VISIBLE);
             }
         });
+
         mNoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAddPanel.setVisibility(View.INVISIBLE);
             }
         });
+
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -264,6 +255,20 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                 showDeleteConfirmationDialog();
             }
         });
+
+        mItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
+                View toolbar = view.findViewById(R.id.details);
+
+                // Creating the expand animation for the item
+                ExpandAnimation expandAni = new ExpandAnimation(toolbar, 500);
+
+                // Start the animation on the toolbar
+                toolbar.startAnimation(expandAni);
+            }
+        });
+
     }
 
     /* * * ARCHIVE * * */
@@ -277,13 +282,14 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     public void insertArchiveItem(View v) {
 
         String date = mDateEdit.getText().toString();
-
+        String thought = mThoughtsEdit.getText().toString();
         ContentValues values = new ContentValues();
         values.put(ArchiveEntry.COLUMN_DATE, date);
         values.put(ArchiveEntry.COLUMN_POINTS_ALL, pointsNum);
         values.put(ArchiveEntry.COLUMN_POINTS_BODY, bodyPoints);
         values.put(ArchiveEntry.COLUMN_POINTS_MIND, mindPoints);
         values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
+        values.put(ArchiveEntry.COLUMN_DESCRIPTION, thought);
 
         Uri newUri = getContentResolver().insert(ArchiveEntry.CONTENT_URI, values);
         if (newUri == null) {
@@ -570,6 +576,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mSoulPointsNumber.setText(Integer.toString(soulPoints));
         mBodyPointsNumber.setText(Integer.toString(bodyPoints));
         mMindPointsNumber.setText(Integer.toString(mindPoints));
+        mThoughtsEdit.setText("");
     }
 
     private void hidePanel() {
@@ -593,7 +600,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                 ArchiveEntry.COLUMN_POINTS_ALL,
                 ArchiveEntry.COLUMN_POINTS_BODY,
                 ArchiveEntry.COLUMN_POINTS_MIND,
-                ArchiveEntry.COLUMN_POINTS_SOUL
+                ArchiveEntry.COLUMN_POINTS_SOUL,
+                ArchiveEntry.COLUMN_DESCRIPTION
         };
 
         return new CursorLoader(this, ArchiveEntry.CONTENT_URI, projection, null, null, null);

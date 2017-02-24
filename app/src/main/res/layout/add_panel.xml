@@ -53,8 +53,12 @@
                     style="@style/addValues.number.soul"
                     />
             </LinearLayout>
-        </LinearLayout>
+            <EditText
+                android:id="@+id/anyThoughts"
+                style="@style/question_save.thoughts"
 
+                />
+        </LinearLayout>
         <RelativeLayout
             style="@style/yesNoButtons"
             >

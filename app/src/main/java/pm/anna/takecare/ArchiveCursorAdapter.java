@@ -56,24 +56,26 @@ public class ArchiveCursorAdapter extends CursorAdapter {
         TextView tvMind = (TextView) view.findViewById(R.id.mind);
         TextView tvSoul = (TextView) view.findViewById(R.id.soul);
         LinearLayout mDetails = (LinearLayout) view.findViewById(R.id.details);
-
+        TextView tvThought = (TextView) view.findViewById(R.id.thoughts);
         int dateColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_DATE);
         int pointsColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_POINTS_ALL);
         int bodyColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_POINTS_BODY);
         int mindColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_POINTS_MIND);
         int soulColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_POINTS_SOUL);
+        int thoughtColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_DESCRIPTION);
 
         String date = cursor.getString(dateColumnIndex);
         int points = cursor.getInt(pointsColumnIndex);
         int body = cursor.getInt(bodyColumnIndex);
         int mind = cursor.getInt(mindColumnIndex);
         int soul = cursor.getInt(soulColumnIndex);
+        String thought = cursor.getString(thoughtColumnIndex);
         tvDate.setText(date);
         tvPoints.setText(String.valueOf(points + " pts"));
         tvBody.setText(String.valueOf(body));
         tvMind.setText(String.valueOf(mind));
         tvSoul.setText(String.valueOf(soul));
-
+        tvThought.setText(thought);
 
     }
 }
