@@ -2,14 +2,51 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               style="@style/list_item"
+              android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/date"
-        style="@style/list_element.date">
-    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/points"
-        style="@style/list_element.points"/>
+        <TextView
+            android:id="@+id/date"
+            style="@style/list_element.date">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/points"
+
+            style="@style/list_element.points"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="-50dip"
+        android:visibility="gone"
+        android:layout_height="50dip"
+        android:id="@+id/details">
+
+
+        <TextView
+            android:id="@+id/body"
+            android:layout_height="50dip"
+            style="@style/list_element.points"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/mind"
+            android:layout_height="50dip"
+            style="@style/list_element.points"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/soul"
+            android:layout_height="50dip"
+            style="@style/list_element.points"
+            android:layout_weight="1"/>
+    </LinearLayout>
 </LinearLayout>

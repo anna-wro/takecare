@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import pm.anna.takecare.data.ArchiveContract;
@@ -51,9 +52,10 @@ public class ArchiveCursorAdapter extends CursorAdapter {
         // Find fields to populate in inflated template
         TextView tvDate = (TextView) view.findViewById(R.id.date);
         TextView tvPoints = (TextView) view.findViewById(R.id.points);
-//        TextView tvAll = (TextView) view.findViewById(R.id.all);
-//        TextView tvMind = (TextView) view.findViewById(R.id.mind);
-//        TextView tvSoul = (TextView) view.findViewById(R.id.soul);
+        TextView tvBody = (TextView) view.findViewById(R.id.body);
+        TextView tvMind = (TextView) view.findViewById(R.id.mind);
+        TextView tvSoul = (TextView) view.findViewById(R.id.soul);
+        LinearLayout mDetails = (LinearLayout) view.findViewById(R.id.details);
 
         int dateColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_DATE);
         int pointsColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_POINTS_ALL);
@@ -68,9 +70,10 @@ public class ArchiveCursorAdapter extends CursorAdapter {
         int soul = cursor.getInt(soulColumnIndex);
         tvDate.setText(date);
         tvPoints.setText(String.valueOf(points + " pts"));
-//        tvAll.setText(String.valueOf("(Body - " + body  + ", mind - " + mind + ", soul - " + soul + ")") );
-//        tvMind.setText(String.valueOf(mind));
-//        tvSoul.setText(String.valueOf(soul));
+        tvBody.setText(String.valueOf(body));
+        tvMind.setText(String.valueOf(mind));
+        tvSoul.setText(String.valueOf(soul));
+
 
     }
 }

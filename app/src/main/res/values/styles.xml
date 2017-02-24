@@ -85,6 +85,7 @@
         <item name="android:textSize">@dimen/font_normal</item>
         <item name="android:background">@drawable/circle_days</item>
         <item name="android:layout_marginTop">@dimen/padding_medium</item>
+        <item name="android:layout_marginBottom">@dimen/padding_normal</item>
     </style>
 
     <style name="counter.main.huge">
@@ -94,24 +95,18 @@
         <item name="android:padding">@dimen/padding_normal</item>
     </style>
 
-    <style name="counter.main.add">
-        <item name="android:textSize">@dimen/font_medium</item>
-        <item name="android:background">@drawable/circle_days</item>
-        <item name="android:padding">@dimen/padding</item>
-        <item name="android:layout_alignParentBottom">true</item>
+    <style name="counter_add">
+          <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentRight">true</item>
-        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
-        <item name="android:layout_marginBottom">@dimen/padding_add</item>
-        <item name="android:paddingTop">@dimen/zero</item>
+        <item name="android:layout_marginRight">@dimen/padding_smaller</item>
+
     </style>
 
     <style name="counter.main.delete">
         <item name="android:textSize">@dimen/font_medium</item>
         <item name="android:background">@drawable/circle_delete</item>
         <item name="android:padding">@dimen/zero</item>
-        <item name="android:layout_toLeftOf">@id/addButton</item>
-        <item name="android:layout_alignTop">@id/addButton</item>
-        <item name="android:paddingBottom">@dimen/activity_vertical_padding</item>
+
     </style>
 
     <style name="counter.mini">

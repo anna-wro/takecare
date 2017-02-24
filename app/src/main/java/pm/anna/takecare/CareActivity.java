@@ -16,6 +16,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -38,7 +39,7 @@ import pm.anna.takecare.data.ArchiveContract.ArchiveEntry;
 import static pm.anna.takecare.R.id.addButton;
 import static pm.anna.takecare.R.id.bodyPointsNumber;
 
-public class CareActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>  {
+public class CareActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int ARCHIVE_LOADER = 0;
     ArchiveCursorAdapter mCursorAdapter;
@@ -68,15 +69,15 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     EditText mMindPointsNumber;
     EditText mSoulPointsNumber;
     EqualWidthHeightTextView mHowManyDays;
-    EqualWidthHeightTextView mAddButton;
+    ImageButton mAddButton;
     EqualWidthHeightTextView mDeleteButton;
     LinearLayout mAddPanel;
     ListView mItemsList;
     ImageButton mYesButton;
     ImageButton mNoButton;
+    ImageButton mShowDetailsButton;
     RelativeLayout mEmptyView;
     String mDoneArray[];
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,21 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         setDate();
         addListeners();
         initDatabase();
+
+        mItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
+                View toolbar = view.findViewById(R.id.details);
+
+                // Creating the expand animation for the item
+                ExpandAnimation expandAni = new ExpandAnimation(toolbar, 500);
+
+                // Start the animation on the toolbar
+                toolbar.startAnimation(expandAni);
+            }
+        });
     }
+
 
     private void initUiElements() {
         setContentView(R.layout.activity_care);
@@ -105,7 +120,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mItemsList = (ListView) findViewById(R.id.list);
         mPointsNumber = (TextView) findViewById(R.id.pointsNumber);
         mDateEdit = (EditText) findViewById(R.id.editDate);
-        mAddButton = (EqualWidthHeightTextView) findViewById(addButton);
+        mAddButton = (ImageButton) findViewById(addButton);
         mCommentDays = (TextView) findViewById(R.id.comment_days);
         mBodyPointsNumber = (EditText) findViewById(bodyPointsNumber);
         mMindPointsNumber = (EditText) findViewById(R.id.mindPointsNumber);
@@ -116,9 +131,10 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mEmptyView = (RelativeLayout) findViewById(R.id.empty);
         mDeleteButton = (EqualWidthHeightTextView) findViewById(R.id.deleteButton);
         mDoneArray = getResources().getStringArray(R.array.done);
+        mShowDetailsButton = (ImageButton) findViewById(R.id.showDetails);
     }
 
-    private void makeSlides(){
+    private void makeSlides() {
         WizardPagerAdapter adapter = new WizardPagerAdapter();
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(5);
@@ -127,7 +143,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mItemsList.setEmptyView(mEmptyView);
     }
 
-    private void setDate(){
+    private void setDate() {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy (EEE)", Locale.US);
         String formattedDate = df.format(c.getTime());
@@ -139,7 +155,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         }
     }
 
-    private void addListeners(){
+    private void addListeners() {
+
         mBodyPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -240,7 +257,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                 mAddPanel.setVisibility(View.INVISIBLE);
             }
         });
-        mDeleteButton.setOnClickListener(new View.OnClickListener(){
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -251,7 +268,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * ARCHIVE * * */
 
-    private void initDatabase(){
+    private void initDatabase() {
         mCursorAdapter = new ArchiveCursorAdapter(this, null);
         mItemsList.setAdapter(mCursorAdapter);
         getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
@@ -313,7 +330,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         Cursor c = getContentResolver().query(ArchiveEntry.CONTENT_URI, null, null, null, null);
         c.moveToLast();
         String dayToDelete = c.getString(c.getColumnIndex(ArchiveEntry._ID));
-        getContentResolver().delete(ArchiveEntry.CONTENT_URI, ArchiveEntry._ID + "=?", new String[] { dayToDelete });
+        getContentResolver().delete(ArchiveEntry.CONTENT_URI, ArchiveEntry._ID + "=?", new String[]{dayToDelete});
     }
 
     /* * * CHANGE POINTS - BODY  * * */
@@ -548,21 +565,23 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mPointsNumber.setText(String.valueOf(pointsNum));
     }
 
-    public void resetPoints(){
+    public void resetPoints() {
         pointsNum = bodyPoints = mindPoints = soulPoints = 0;
         mSoulPointsNumber.setText(Integer.toString(soulPoints));
         mBodyPointsNumber.setText(Integer.toString(bodyPoints));
         mMindPointsNumber.setText(Integer.toString(mindPoints));
     }
 
-    private void hidePanel(){
+    private void hidePanel() {
         mAddPanel.setVisibility(View.INVISIBLE);
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    };
+    }
+
+    ;
 
      /* * * CURSOR * * */
 
@@ -591,7 +610,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     public void onLoaderReset(Loader<Cursor> loader) {
         mCursorAdapter.swapCursor(null);
     }
-
 
 };
 
