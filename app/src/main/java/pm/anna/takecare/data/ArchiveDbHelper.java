@@ -17,7 +17,7 @@ public class ArchiveDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = ArchiveDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "archive.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public ArchiveDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,13 +31,16 @@ public class ArchiveDbHelper extends SQLiteOpenHelper {
                 + ArchiveEntry.COLUMN_POINTS_ALL + " INTEGER NOT NULL DEFAULT 0, "
                 + ArchiveEntry.COLUMN_POINTS_BODY + " INTEGER DEFAULT 0, "
                 + ArchiveEntry.COLUMN_POINTS_MIND + " INTEGER DEFAULT 0, "
-                + ArchiveEntry.COLUMN_POINTS_SOUL + " INTEGER DEFAULT 0);";
+                + ArchiveEntry.COLUMN_POINTS_SOUL + " INTEGER DEFAULT 0, "
+                + ArchiveEntry.COLUMN_DESCRIPTION + " TEXT);";
 
         db.execSQL(SQL_CREATE_ARCHIVE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (newVersion == 2) {
+            db.execSQL("ALTER TABLE " + ArchiveEntry.TABLE_NAME + " ADD COLUMN " + ArchiveEntry.COLUMN_DESCRIPTION + " TEXT");
+        }
     }
 }

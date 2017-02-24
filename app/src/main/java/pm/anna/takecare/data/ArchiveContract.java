@@ -32,5 +32,6 @@ public final class ArchiveContract {
         public static final String COLUMN_POINTS_BODY = "body";
         public static final String COLUMN_POINTS_MIND = "mind";
         public static final String COLUMN_POINTS_SOUL = "soul";
+        public static final String COLUMN_DESCRIPTION = "description";
     }
 }
