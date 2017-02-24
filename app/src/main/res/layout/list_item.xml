@@ -6,82 +6,50 @@
     >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+       style="@style/linear_layout.detail"
+       >
 
         <TextView
             android:id="@+id/date"
             style="@style/list_element.date">
-
         </TextView>
 
         <TextView
             android:id="@+id/points"
-
             style="@style/list_element.points"/>
+
     </LinearLayout>
 
     <LinearLayout
+        style="@style/hidden_details"
         android:id="@+id/details"
-        android:layout_height="92dp"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="-92dp"
-        android:visibility="gone"
-        android:orientation="horizontal"
-        android:alpha="0.85"
 
         >
 
-            <TextView
-                android:paddingTop="5dp"
-                android:lineSpacingMultiplier="1.25"
-                android:paddingLeft="@dimen/padding_normal"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_smaller"
-                android:id="@+id/thoughts"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+        <TextView
+            style="@style/display_thoughts"
+            android:id="@+id/thoughts"
+           />
 
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:paddingTop="4dp"
-            android:layout_marginRight="4dp"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/padding_tiny"
-           >
+            style="@style/linear_layout.detail_points"
+            >
 
             <TextView
                 android:id="@+id/body"
-                style="@style/list_element.points"
-                android:layout_width="@dimen/detail_width"
-                android:layout_height="@dimen/detail_height"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/padding_tiny"
-                android:drawableRight="@drawable/ic_face_white_18dp"
+                style="@style/list_element.points.detail.b"
                 />
 
             <TextView
                 android:id="@+id/mind"
-                style="@style/list_element.points"
-                android:layout_width="@dimen/detail_width"
-                android:layout_height="@dimen/detail_height"
-                android:drawablePadding="@dimen/padding_tiny"
-                android:drawableRight="@drawable/ic_extension_white_18dp"/>
+                style="@style/list_element.points.detail.m"
+                />
 
             <TextView
                 android:id="@+id/soul"
-                style="@style/list_element.points"
-                android:layout_width="@dimen/detail_width"
-                android:layout_height="@dimen/detail_height"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/padding_tiny"
-                android:drawableRight="@drawable/ic_favorite_white_18dp"/>
+                style="@style/list_element.points.detail.s"
+                />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

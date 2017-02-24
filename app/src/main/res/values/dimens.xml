@@ -16,6 +16,7 @@
     <dimen name="padding_circle">16dp</dimen>
     <dimen name="padding">10dp</dimen>
     <dimen name="padding_tiny">8dp</dimen>
+    <dimen name="padding_detail">5dp</dimen>
 
     <dimen name="font_huge">64sp</dimen>
     <dimen name="font_big">40sp</dimen>
@@ -27,7 +28,8 @@
     <dimen name="anchor_height">52dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="detail_height">28dp</dimen>
-    <dimen name="detail_hide">-28dp</dimen>
+    <dimen name="details">92dp</dimen>
+    <dimen name="details_hide">-92dp</dimen>
     <dimen name="detail_width">100dp</dimen>
 
 </resources>

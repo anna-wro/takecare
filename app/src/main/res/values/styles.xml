@@ -192,6 +192,25 @@
         <item name="android:background">@color/violet</item>
     </style>
 
+    <style name="linear_layout.detail">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/archive_color</item>
+    </style>
+
+    <style name="linear_layout.detail_points">
+        <item name="android:layout_width">@dimen/detail_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_marginRight">@dimen/margin_button</item>
+        <item name="android:gravity">right</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/padding_tiny</item>
+        <item name="android:paddingTop">@dimen/margin_button</item>
+        <item name="android:background">@color/archive_color</item>
+    </style>
+
     <!--  LIST VIEW  -->
 
     <style name="list">
@@ -212,6 +231,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/font_smaller</item>
+        <item name="android:background">@color/archive_color</item>
     </style>
 
     <style name="list_element.date">
@@ -223,6 +243,24 @@
         <item name="android:layout_weight">1</item>
         <item name="android:paddingRight">@dimen/padding_medium</item>
         <item name="android:gravity">right</item>
+    </style>
+
+    <style name="list_element.points.detail">
+        <item name="android:layout_width">@dimen/detail_width</item>
+        <item name="android:layout_height">@dimen/detail_height</item>
+        <item name="android:drawablePadding">@dimen/padding_tiny</item>
+    </style>
+
+    <style name="list_element.points.detail.b">
+        <item name="android:drawableRight">@drawable/ic_face_white_18dp</item>
+    </style>
+
+    <style name="list_element.points.detail.m">
+        <item name="android:drawableRight">@drawable/ic_extension_white_18dp</item>
+    </style>
+
+    <style name="list_element.points.detail.s">
+        <item name="android:drawableRight">@drawable/ic_favorite_white_18dp</item>
     </style>
 
     <!--  BUTTONS  -->
@@ -309,6 +347,26 @@
         <item name="android:background">@android:color/transparent</item>
         <item name="android:drawableLeft">@drawable/ic_mode_comment_white_18dp</item>
         <item name="android:drawablePadding">@dimen/padding_tiny</item>
+    </style>
+
+    <style name="display_thoughts">
+        <item name="android:layout_width">@dimen/zero</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:lineSpacingMultiplier">1.25</item>
+        <item name="android:paddingLeft">@dimen/padding_normal</item>
+        <item name="android:paddingTop">@dimen/padding_detail</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/font_smaller</item>
+    </style>
+
+    <style name="hidden_details">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/details</item>
+        <item name="android:layout_marginBottom">@dimen/details_hide</item>
+        <item name="android:alpha">0.85</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="addValues" parent="standardSize">
