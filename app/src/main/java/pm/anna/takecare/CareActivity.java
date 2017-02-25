@@ -42,6 +42,7 @@ import static pm.anna.takecare.R.id.bodyPointsNumber;
 public class CareActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int ARCHIVE_LOADER = 0;
+
     ArchiveCursorAdapter mCursorAdapter;
     int howMany = 0;
     int bodyPoints = 0;
@@ -73,12 +74,15 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     ImageButton mAddButton;
     EqualWidthHeightTextView mDeleteButton;
     LinearLayout mAddPanel;
+    RelativeLayout mArchive;
     ListView mItemsList;
     ImageButton mYesButton;
     ImageButton mNoButton;
     ImageButton mShowDetailsButton;
+    ImageButton mShowSimpleButton;
     RelativeLayout mEmptyView;
     String mDoneArray[];
+    boolean detailsVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +96,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
 
     private void initUiElements() {
+
         setContentView(R.layout.activity_care);
         mBodyList = (GridLayout) findViewById(R.id.body_list);
         mMindList = (GridLayout) findViewById(R.id.mind_list);
@@ -114,12 +119,14 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mMindPointsNumber = (EditText) findViewById(R.id.mindPointsNumber);
         mSoulPointsNumber = (EditText) findViewById(R.id.soulPointsNumber);
         mAddPanel = (LinearLayout) findViewById(R.id.addPanel);
+        mArchive = (RelativeLayout) findViewById(R.id.archive);
         mYesButton = (ImageButton) findViewById(R.id.yesButton);
         mNoButton = (ImageButton) findViewById(R.id.noButton);
         mEmptyView = (RelativeLayout) findViewById(R.id.empty);
         mDeleteButton = (EqualWidthHeightTextView) findViewById(R.id.deleteButton);
         mDoneArray = getResources().getStringArray(R.array.done);
         mShowDetailsButton = (ImageButton) findViewById(R.id.showDetails);
+        mShowSimpleButton = (ImageButton) findViewById(R.id.showSimple);
         mThoughtsEdit = (EditText) findViewById(R.id.anyThoughts);
     }
 
@@ -269,16 +276,41 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             }
         });
         mShowDetailsButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-
-                for (int i = 0; i < mItemsList.getAdapter().getCount(); i++) {
-                    mItemsList.getChildAt(i).performClick();//click the item one by one
+                if (detailsVisible == false) {
+                    for (int i = 0; i < mItemsList.getAdapter().getCount(); i++) {
+                        mItemsList.performItemClick(
+                                getViewByPosition(i),
+                                i,
+                                mItemsList.getAdapter().getItemId(i));
+                    }
+                    detailsVisible = true;
                 }
+
             }
         });
+        mShowSimpleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mItemsList.setAdapter(mCursorAdapter);
+                detailsVisible = false;
+            }
+        });
+    }
 
-    };
+    public View getViewByPosition(int position) {
+        int firstItemPosition = mItemsList.getFirstVisiblePosition();
+        int lastItemPosition = firstItemPosition + mItemsList.getChildCount() - 1;
+
+        if (position < firstItemPosition || position > lastItemPosition) {//is invisible
+            return mItemsList.getAdapter().getView(position, null, mItemsList);
+        } else {
+            int childIndex = position - firstItemPosition;//is visible
+            return mItemsList.getChildAt(childIndex);
+        }
+    }
 
     /* * * ARCHIVE * * */
 
