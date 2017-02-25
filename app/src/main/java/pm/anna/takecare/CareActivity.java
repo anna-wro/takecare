@@ -251,7 +251,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mNoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAddPanel.setVisibility(View.INVISIBLE);
+                hidePanel();
             }
         });
 
@@ -300,6 +300,16 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         });
     }
 
+
+
+    /* * * ARCHIVE * * */
+
+    private void initDatabase() {
+        mCursorAdapter = new ArchiveCursorAdapter(this, null);
+        mItemsList.setAdapter(mCursorAdapter);
+        getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
+    }
+
     public View getViewByPosition(int position) {
         int firstItemPosition = mItemsList.getFirstVisiblePosition();
         int lastItemPosition = firstItemPosition + mItemsList.getChildCount() - 1;
@@ -311,15 +321,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             return mItemsList.getChildAt(childIndex);
         }
     }
-
-    /* * * ARCHIVE * * */
-
-    private void initDatabase() {
-        mCursorAdapter = new ArchiveCursorAdapter(this, null);
-        mItemsList.setAdapter(mCursorAdapter);
-        getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
-    }
-
     public void insertArchiveItem(View v) {
 
         String date = mDateEdit.getText().toString();

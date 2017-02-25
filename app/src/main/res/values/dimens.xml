@@ -31,5 +31,7 @@
     <dimen name="details">92dp</dimen>
     <dimen name="details_hide">-92dp</dimen>
     <dimen name="detail_width">100dp</dimen>
+    <dimen name="icon">30dp</dimen>
+    <dimen name="counter">48dp</dimen>
 
 </resources>

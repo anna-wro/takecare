@@ -8,23 +8,17 @@
     >
 
     <LinearLayout
-        style="@style/linear_layout.days"
-        android:gravity="top|center"
-
-        android:paddingBottom="@dimen/padding_bigger">
+        style="@style/linear_layout.days.2"
+       >
 
         <pm.anna.takecare.EqualWidthHeightTextView
             android:id="@+id/howManyDays"
             style="@style/counter.main.days"
-
             />
 
         <ListView
             android:id="@+id/list"
             style="@style/list"
-            android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll"
-
             />
     </LinearLayout>
 
@@ -33,56 +27,33 @@
     <ImageButton
         android:id="@+id/addButton"
         style="@style/counter_add"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:layout_marginBottom="@dimen/padding_smaller"
         app:srcCompat="@drawable/ic_add_circle_white_48px"
-
-
         />
 
     <pm.anna.takecare.EqualWidthHeightTextView
         android:id="@+id/deleteButton"
         style="@style/counter.main.delete"
-        android:paddingBottom="@dimen/padding_medium"
-        android:layout_toLeftOf="@id/addButton"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/padding"
-        android:layout_marginBottom="@dimen/padding_add"
         />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_alignParentBottom="true"
-    android:layout_marginBottom="@dimen/padding_smaller"
-    android:layout_marginLeft="@dimen/padding_normal"
-    >
-    <ImageButton
-        android:id="@+id/showSimple"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_lens_black_48px"/>
-    <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="@dimen/padding_tiny"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:id="@+id/showDetails"
-        app:srcCompat="@drawable/ic_grain_white_48px"/>
-    <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="@dimen/padding_tiny"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_timelapse_black_48px"/>
-</LinearLayout>
-   <include layout="@layout/add_panel"></include>
+
+    <LinearLayout
+        style="@style/iconContainer"
+        >
+
+        <ImageButton
+            android:id="@+id/showSimple"
+            style="@style/showIcon"
+            app:srcCompat="@drawable/ic_lens_black_48px"/>
+
+        <ImageButton
+            android:id="@+id/showDetails"
+            style="@style/showIcon.margin"
+            app:srcCompat="@drawable/ic_grain_white_48px"/>
+
+        <ImageButton
+            style="@style/showIcon.margin"
+            app:srcCompat="@drawable/ic_timelapse_black_48px"/>
+    </LinearLayout>
+
+    <include layout="@layout/add_panel"></include>
 
 </RelativeLayout>

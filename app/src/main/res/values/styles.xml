@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
 
@@ -99,14 +99,22 @@
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_marginRight">@dimen/padding_smaller</item>
-
+        <item name="android:layout_width">@dimen/counter</item>
+        <item name="android:layout_height">@dimen/counter</item>
+        <item name="android:layout_marginBottom">@dimen/padding_smaller</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:scaleType">fitXY</item>
     </style>
 
     <style name="counter.main.delete">
         <item name="android:textSize">@dimen/font_medium</item>
         <item name="android:background">@drawable/circle_delete</item>
         <item name="android:padding">@dimen/zero</item>
-
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">@dimen/padding_add</item>
+        <item name="android:layout_marginRight">@dimen/padding</item>
+        <item name="android:layout_toLeftOf">@id/addButton</item>
+        <item name="android:paddingBottom">@dimen/padding_medium</item>
     </style>
 
     <style name="counter.mini">
@@ -176,6 +184,11 @@
         <item name="android:background">@color/archive_color</item>
     </style>
 
+    <style name="linear_layout.days.2">
+        <item name="android:gravity">top|center</item>
+        <item name="android:paddingBottom">@dimen/padding_bigger</item>
+    </style>
+
     <style name="linear_layout.days.empty">
         <item name="android:paddingTop">@dimen/padding_smaller</item>
     </style>
@@ -211,6 +224,13 @@
         <item name="android:background">@color/archive_color</item>
     </style>
 
+    <style name="iconContainer" parent="standardSize">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">@dimen/padding_smaller</item>
+        <item name="android:layout_marginLeft">@dimen/padding_normal</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <!--  LIST VIEW  -->
 
     <style name="list">
@@ -219,6 +239,8 @@
         <item name="android:layout_marginBottom">@dimen/padding_normal</item>
         <item name="android:divider">@android:color/transparent</item>
         <item name="android:dividerHeight">1dp</item>
+        <item name="android:stackFromBottom">true</item>
+        <item name="android:transcriptMode">alwaysScroll</item>
     </style>
 
     <style name="list_item" parent="linear_layout.days">
@@ -404,5 +426,15 @@
         <item name="android:drawableLeft">@drawable/ic_favorite_white_18dp</item>
     </style>
 
+    <style name="showIcon">
+        <item name="android:layout_width">@dimen/icon</item>
+        <item name="android:layout_height">@dimen/icon</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="showIcon.margin">
+        <item name="android:layout_marginLeft">@dimen/padding_tiny</item>
+    </style>
 
 </resources>
