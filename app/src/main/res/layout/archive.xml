@@ -61,6 +61,7 @@
     android:layout_marginLeft="@dimen/padding_normal"
     >
     <ImageButton
+        android:id="@+id/showSimple"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@android:color/transparent"

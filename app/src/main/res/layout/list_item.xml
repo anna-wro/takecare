@@ -6,8 +6,8 @@
     >
 
     <LinearLayout
-       style="@style/linear_layout.detail"
-       >
+        style="@style/linear_layout.detail"
+        >
 
         <TextView
             android:id="@+id/date"
@@ -21,15 +21,14 @@
     </LinearLayout>
 
     <LinearLayout
-        style="@style/hidden_details"
         android:id="@+id/details"
-
+        style="@style/hidden_details"
         >
 
         <TextView
-            style="@style/display_thoughts"
             android:id="@+id/thoughts"
-           />
+            style="@style/display_thoughts"
+            />
 
 
         <LinearLayout
