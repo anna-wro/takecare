@@ -57,15 +57,22 @@
 
         <ToggleButton
             style="@style/Button.mind"
-            android:onClick="changeOnePointMind"
-            android:textOff="@string/mind6"
-            android:textOn="@string/mind6_on"/>
+            android:onClick="changeThreePointsMind"
+            android:textOff="@string/mind11"
+            android:textOn="@string/mind11_on"/>
 
         <ToggleButton
             style="@style/Button.mind"
             android:onClick="changeThreePointsMind"
             android:textOff="@string/mind7"
             android:textOn="@string/mind7_on"/>
+
+        <ToggleButton
+            style="@style/Button.mind"
+            android:onClick="changeOnePointMind"
+            android:textOff="@string/mind6"
+            android:textOn="@string/mind6_on"/>
+
 
         <ToggleButton
             style="@style/Button.mind"
