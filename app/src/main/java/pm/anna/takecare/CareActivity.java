@@ -321,6 +321,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             return mItemsList.getChildAt(childIndex);
         }
     }
+
     public void insertArchiveItem(View v) {
 
         String date = mDateEdit.getText().toString();
@@ -603,10 +604,28 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     /* * * POINTS-RELATED * * */
 
     public void changeCare(int num) {
+        preventNegative();
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mHowMany.setText(String.valueOf(num));
         mPointsNumber.setText(String.valueOf(pointsNum));
     }
+
+    private void preventNegative() {
+        if (howMany < 0) howMany = 0;
+        if (bodyPoints < 0) {
+            bodyPoints = 0;
+            mBodyPointsNumber.setText(Integer.toString(bodyPoints));
+        }
+        if (mindPoints < 0) {
+            mindPoints = 0;
+            mMindPointsNumber.setText(Integer.toString(mindPoints));
+        }
+        if (soulPoints < 0) {
+            soulPoints = 0;
+            mSoulPointsNumber.setText(Integer.toString(soulPoints));
+        }
+    }
+
 
     public void changeSum() {
         pointsNum = bodyPoints + soulPoints + mindPoints;
