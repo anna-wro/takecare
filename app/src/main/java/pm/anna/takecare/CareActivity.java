@@ -433,7 +433,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             mindPoints -= pointsToChange;
             howManyMind = howManyMind.substring(0, howManyMind.length() - (pointsToChange * 2));
         }
-        changeCareBody(howManyMind);
+        changeCareMind(howManyMind);
         changeCare(howMany);
     }
 
@@ -466,7 +466,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             soulPoints -= pointsToChange;
             howManySoul = howManySoul.substring(0, howManySoul.length() - (pointsToChange * 2));
         }
-        changeCareBody(howManySoul);
+        changeCareSoul(howManySoul);
         changeCare(howMany);
     }
 
