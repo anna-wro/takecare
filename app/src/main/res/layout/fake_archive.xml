@@ -3,7 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/archive"
+    android:id="@+id/fake_archive"
     style="@style/linear_layout.days"
     >
 
@@ -12,27 +12,25 @@
         >
 
         <pm.anna.takecare.EqualWidthHeightTextView
-            android:id="@+id/howManyDays"
+            android:id="@+id/howManyDays_f"
             style="@style/counter.main.days"
             />
 
         <ListView
-            android:id="@+id/list"
+            android:id="@+id/list_f"
             style="@style/list"
             />
     </LinearLayout>
 
-    <include layout="@layout/empty_archive"></include>
-
     <ImageButton
-        android:id="@+id/addButton"
+        android:id="@+id/addButton_f"
         style="@style/counter_add"
         app:srcCompat="@drawable/ic_add_circle_white_48px"
         />
 
     <pm.anna.takecare.EqualWidthHeightTextView
-        android:id="@+id/deleteButton"
-        style="@style/counter.main.delete"
+        android:id="@+id/deleteButton_f"
+        style="@style/counter.main.delete.f"
         />
 
     <LinearLayout
@@ -40,12 +38,10 @@
         >
 
         <ImageButton
-            android:id="@+id/showSimple"
             style="@style/showIcon"
             app:srcCompat="@drawable/ic_lens_black_48px"/>
 
         <ImageButton
-            android:id="@+id/showDetails"
             style="@style/showIcon.margin"
             app:srcCompat="@drawable/ic_grain_white_48px"/>
 
@@ -53,7 +49,4 @@
             style="@style/showIcon.margin"
             app:srcCompat="@drawable/ic_timelapse_black_48px"/>
     </LinearLayout>
-
-    <include layout="@layout/add_panel"></include>
-
 </RelativeLayout>

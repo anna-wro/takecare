@@ -8,10 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include layout="@layout/fake_archive"></include>
         <include layout="@layout/today"></include>
         <include layout="@layout/body"></include>
         <include layout="@layout/mind"></include>
         <include layout="@layout/soul"></include>
         <include layout="@layout/archive"></include>
+        <include layout="@layout/fake_day"></include>
     </android.support.v4.view.ViewPager>
 </LinearLayout>

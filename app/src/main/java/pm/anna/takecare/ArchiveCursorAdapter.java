@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import pm.anna.takecare.data.ArchiveContract;
@@ -55,7 +54,6 @@ public class ArchiveCursorAdapter extends CursorAdapter {
         TextView tvBody = (TextView) view.findViewById(R.id.body);
         TextView tvMind = (TextView) view.findViewById(R.id.mind);
         TextView tvSoul = (TextView) view.findViewById(R.id.soul);
-        LinearLayout mDetails = (LinearLayout) view.findViewById(R.id.details);
         TextView tvThought = (TextView) view.findViewById(R.id.thoughts);
         int dateColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_DATE);
         int pointsColumnIndex = cursor.getColumnIndex(ArchiveContract.ArchiveEntry.COLUMN_POINTS_ALL);

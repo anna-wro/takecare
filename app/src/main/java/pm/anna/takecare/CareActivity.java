@@ -38,6 +38,7 @@ import pm.anna.takecare.data.ArchiveContract.ArchiveEntry;
 
 import static pm.anna.takecare.R.id.addButton;
 import static pm.anna.takecare.R.id.bodyPointsNumber;
+import static pm.anna.takecare.R.id.pager;
 
 public class CareActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -63,6 +64,9 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     TextView mBodyDots;
     TextView mMindDots;
     TextView mSoulDots;
+    TextView mBodyDots_f;
+    TextView mMindDots_f;
+    TextView mSoulDots_f;
     TextView mPointsNumber;
     TextView mCommentDays;
     EditText mDateEdit;
@@ -70,12 +74,15 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     EditText mMindPointsNumber;
     EditText mSoulPointsNumber;
     EditText mThoughtsEdit;
+    EqualWidthHeightTextView mHowMany_f;
     EqualWidthHeightTextView mHowManyDays;
+    EqualWidthHeightTextView mHowManyDays_f;
     ImageButton mAddButton;
     EqualWidthHeightTextView mDeleteButton;
     LinearLayout mAddPanel;
     RelativeLayout mArchive;
     ListView mItemsList;
+    ListView mItemsList_f;
     ImageButton mYesButton;
     ImageButton mNoButton;
     ImageButton mShowDetailsButton;
@@ -89,6 +96,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         super.onCreate(savedInstanceState);
         initUiElements();
         makeSlides();
+        fakeSlides();
         setDate();
         addListeners();
         initDatabase();
@@ -109,7 +117,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mBodyDots = (TextView) findViewById(R.id.bodyDots);
         mMindDots = (TextView) findViewById(R.id.mindDots);
         mSoulDots = (TextView) findViewById(R.id.soulDots);
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(pager);
         mItemsList = (ListView) findViewById(R.id.list);
         mPointsNumber = (TextView) findViewById(R.id.pointsNumber);
         mDateEdit = (EditText) findViewById(R.id.editDate);
@@ -133,10 +141,20 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     private void makeSlides() {
         WizardPagerAdapter adapter = new WizardPagerAdapter();
         mViewPager.setAdapter(adapter);
-        mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setOffscreenPageLimit(7);
+        mViewPager.setCurrentItem(1, false);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
         mAddPanel.setVisibility(View.INVISIBLE);
         mItemsList.setEmptyView(mEmptyView);
+    }
+
+    private void fakeSlides() {
+        mHowMany_f = (EqualWidthHeightTextView) findViewById(R.id.howMany_f);
+        mHowManyDays_f = (EqualWidthHeightTextView) findViewById(R.id.howManyDays_f);
+        mBodyDots_f = (TextView) findViewById(R.id.bodyDots_f);
+        mMindDots_f = (TextView) findViewById(R.id.mindDots_f);
+        mSoulDots_f = (TextView) findViewById(R.id.soulDots_f);
+        mItemsList_f = (ListView) findViewById(R.id.list_f);
     }
 
     private void setDate() {
@@ -298,8 +316,33 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                 detailsVisible = false;
             }
         });
-    }
 
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                // skip fake page (first), go to last page
+                if (position == 0) {
+                    mViewPager.setCurrentItem(5, false);
+
+                }
+                // skip fake page (last), go to first page
+                if (position == 6) {
+                    mViewPager.setCurrentItem(1, false); //notice how this jumps to position 1, and not position 0. Position 0 is the fake page!
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
 
 
     /* * * ARCHIVE * * */
@@ -307,6 +350,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     private void initDatabase() {
         mCursorAdapter = new ArchiveCursorAdapter(this, null);
         mItemsList.setAdapter(mCursorAdapter);
+        mItemsList_f.setAdapter(mCursorAdapter); // fake list
         getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
     }
 
@@ -384,7 +428,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * CHANGE POINTS - BODY  * * */
 
-    public void changePointsBody(View v){
+    public void changePointsBody(View v) {
         int pointsToChange = Integer.parseInt((String) v.getTag());
         boolean isChecked = ((ToggleButton) v).isChecked();
 
@@ -392,7 +436,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             howMany += pointsToChange;
             bodyPoints += pointsToChange;
 
-            for(int i=0; i<pointsToChange; i++){
+            for (int i = 0; i < pointsToChange; i++) {
                 howManyBody += "● ";
             }
         } else {
@@ -407,8 +451,10 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     public void changeCareBody(String s) {
         if (s.length() > 0) {
             mBodyDots.setText(s);
+            mBodyDots_f.setText(s);
         } else {
             mBodyDots.setText("");
+            mBodyDots_f.setText("");
         }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyBody.setText(s);
@@ -417,7 +463,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * CHANGE POINTS - MIND * * */
 
-    public void changePointsMind(View v){
+    public void changePointsMind(View v) {
         int pointsToChange = Integer.parseInt((String) v.getTag());
         boolean isChecked = ((ToggleButton) v).isChecked();
 
@@ -425,7 +471,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             howMany += pointsToChange;
             mindPoints += pointsToChange;
 
-            for(int i=0; i<pointsToChange; i++){
+            for (int i = 0; i < pointsToChange; i++) {
                 howManyMind += "● ";
             }
         } else {
@@ -440,8 +486,10 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     public void changeCareMind(String s) {
         if (s.length() > 0) {
             mMindDots.setText(s);
+            mMindDots_f.setText(s);
         } else {
             mMindDots.setText("");
+            mMindDots_f.setText("");
         }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyMind.setText(s);
@@ -450,7 +498,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * CHANGE POINTS - SOUL * * */
 
-    public void changePointsSoul(View v){
+    public void changePointsSoul(View v) {
         int pointsToChange = Integer.parseInt((String) v.getTag());
         boolean isChecked = ((ToggleButton) v).isChecked();
 
@@ -458,7 +506,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             howMany += pointsToChange;
             soulPoints += pointsToChange;
 
-            for(int i=0; i<pointsToChange; i++){
+            for (int i = 0; i < pointsToChange; i++) {
                 howManySoul += "● ";
             }
         } else {
@@ -473,7 +521,9 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     public void changeCareSoul(String s) {
         if (s.length() > 0) {
             mSoulDots.setText(s);
+            mSoulDots_f.setText(s);
         } else {
+            mSoulDots.setText("");
             mSoulDots.setText("");
         }
         if (s.length() == 0) s = "◦ ◦ ◦";
@@ -487,6 +537,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         preventNegative();
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mHowMany.setText(String.valueOf(num));
+        mHowMany_f.setText(String.valueOf(num));
         mPointsNumber.setText(String.valueOf(pointsNum));
     }
 
@@ -550,6 +601,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mCursorAdapter.swapCursor(data);
         int days = mCursorAdapter.getCount();
         mHowManyDays.setText("" + days);
+        mHowManyDays_f.setText("" + days);
     }
 
     @Override

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/fake_day"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:gravity="center">
+    <TextView
+        style="@style/hi_text.name"
+        android:text="@string/hi_text"
+        />
+
+    <TextView
+        android:id="@+id/careText"
+        style="@style/hi_text"
+        android:text="@string/question"
+        />
+
+
+    <pm.anna.takecare.EqualWidthHeightTextView
+        android:id="@+id/howMany_f"
+        style="@style/counter.main"
+        android:text="0"
+        />
+
+    <ScrollView
+        style="@style/scroll">
+
+        <LinearLayout
+            style="@style/linear_layout">
+
+            <TextView
+                android:id="@+id/bodyDots_f"
+                style="@style/counter.mini.green"
+                android:text=""
+                />
+
+            <TextView
+                android:id="@+id/mindDots_f"
+                style="@style/counter.mini.blue"
+                android:text=""
+                />
+
+            <TextView
+                android:id="@+id/soulDots_f"
+                style="@style/counter.mini.violet"
+                android:text=""
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

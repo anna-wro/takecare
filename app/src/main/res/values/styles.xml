@@ -117,6 +117,17 @@
         <item name="android:paddingBottom">@dimen/padding_medium</item>
     </style>
 
+    <style name="counter.main.delete.f">
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:background">@drawable/circle_delete</item>
+        <item name="android:padding">@dimen/zero</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">@dimen/padding_add</item>
+        <item name="android:layout_marginRight">@dimen/padding</item>
+        <item name="android:layout_toLeftOf">@id/addButton_f</item>
+        <item name="android:paddingBottom">@dimen/padding_medium</item>
+    </style>
+
     <style name="counter.mini">
         <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
         <item name="android:textSize">@dimen/font_medium</item>
