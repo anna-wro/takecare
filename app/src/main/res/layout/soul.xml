@@ -1,8 +1,8 @@
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_soul"
     style="@style/linear_layout.soul">
+
     <TextView
         style="@style/category"
         android:text="@string/soul_category"
@@ -14,75 +14,87 @@
         android:freezesText="true"
         android:text="@string/dots"
         />
+
     <ScrollView
         style="@style/scroll">
-    <GridLayout
-        android:id="@+id/soul_list"
-        style="@style/section"
-        >
 
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeFivePointsSoul"
-            android:textOff="@string/soul1"
-            android:textOn="@string/soul1_on"
-            />
+        <GridLayout
+            android:id="@+id/soul_list"
+            style="@style/section"
+            >
 
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeFivePointsSoul"
-            android:textOff="@string/soul2"
-            android:textOn="@string/soul2_on"/>
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="5"
+                android:textOff="@string/soul1"
+                android:textOn="@string/soul1_on"
+                />
 
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeThreePointsSoul"
-            android:textOff="@string/soul3"
-            android:textOn="@string/soul3_on"/>
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="5"
+                android:textOff="@string/soul2"
+                android:textOn="@string/soul2_on"/>
 
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeThreePointsSoul"
-            android:textOff="@string/soul4"
-            android:textOn="@string/soul4_on"/>
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="3"
+                android:textOff="@string/soul3"
+                android:textOn="@string/soul3_on"/>
 
-
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeOnePointSoul"
-            android:textOff="@string/soul5"
-            android:textOn="@string/soul5_on"/>
-
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeTwoPointsSoul"
-            android:textOff="@string/soul6"
-            android:textOn="@string/soul6_on"/>
-
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeTwoPointsSoul"
-            android:textOff="@string/soul7"
-            android:textOn="@string/soul7_on"/>
-
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeThreePointsSoul"
-            android:textOff="@string/soul8"
-            android:textOn="@string/soul8_on"/>
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="3"
+                android:textOff="@string/soul4"
+                android:textOn="@string/soul4_on"/>
 
 
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeThreePointsSoul"
-            android:textOff="@string/soul9"
-            android:textOn="@string/soul9_on"/>
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="1"
+                android:textOff="@string/soul5"
+                android:textOn="@string/soul5_on"/>
 
-        <ToggleButton
-            style="@style/Button.soul"
-            android:onClick="changeThreePointsSoul"
-            android:textOff="@string/soul10"
-            android:textOn="@string/soul10_on"/>
-    </GridLayout>
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="2"
+                android:textOff="@string/soul6"
+                android:textOn="@string/soul6_on"/>
+
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="2"
+                android:textOff="@string/soul7"
+                android:textOn="@string/soul7_on"/>
+
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="3"
+                android:textOff="@string/soul8"
+                android:textOn="@string/soul8_on"/>
+
+
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="3"
+                android:textOff="@string/soul9"
+                android:textOn="@string/soul9_on"/>
+
+            <ToggleButton
+                style="@style/Button.soul"
+                android:onClick="changePointsSoul"
+                android:tag="3"
+                android:textOff="@string/soul10"
+                android:textOn="@string/soul10_on"/>
+        </GridLayout>
     </ScrollView>
 </LinearLayout>

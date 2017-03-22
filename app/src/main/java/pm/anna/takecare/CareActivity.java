@@ -384,61 +384,21 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * CHANGE POINTS - BODY  * * */
 
-    public void changeFivePointsBody(View v) {
+    public void changePointsBody(View v){
+        int pointsToChange = Integer.parseInt((String) v.getTag());
         boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 5;
-            bodyPoints += 5;
-            howManyBody += "● ● ● ● ● ";
-        } else {
-            howMany -= 5;
-            bodyPoints -= 5;
-            howManyBody = howManyBody.substring(0, howManyBody.length() - 10);
-        }
-        changeCareBody(howManyBody);
-        changeCare(howMany);
-    }
 
-    public void changeThreePointsBody(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
-            howMany += 3;
-            bodyPoints += 3;
-            howManyBody += "● ● ● ";
-        } else {
-            howMany -= 3;
-            bodyPoints -= 3;
-            howManyBody = howManyBody.substring(0, howManyBody.length() - 6);
-        }
-        changeCareBody(howManyBody);
-        changeCare(howMany);
-    }
+            howMany += pointsToChange;
+            bodyPoints += pointsToChange;
 
-    public void changeTwoPointsBody(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 2;
-            bodyPoints += 2;
-            howManyBody += "● ● ";
+            for(int i=0; i<pointsToChange; i++){
+                howManyBody += "● ";
+            }
         } else {
-            howMany -= 2;
-            bodyPoints -= 2;
-            howManyBody = howManyBody.substring(0, howManyBody.length() - 4);
-        }
-        changeCareBody(howManyBody);
-        changeCare(howMany);
-    }
-
-    public void changeOnePointBody(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 1;
-            bodyPoints += 1;
-            howManyBody += "● ";
-        } else {
-            howMany -= 1;
-            bodyPoints -= 1;
-            howManyBody = howManyBody.substring(0, howManyBody.length() - 2);
+            howMany -= pointsToChange;
+            bodyPoints -= pointsToChange;
+            howManyBody = howManyBody.substring(0, howManyBody.length() - (pointsToChange * 2));
         }
         changeCareBody(howManyBody);
         changeCare(howMany);
@@ -457,63 +417,23 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * CHANGE POINTS - MIND * * */
 
-    public void changeFivePointsMind(View v) {
+    public void changePointsMind(View v){
+        int pointsToChange = Integer.parseInt((String) v.getTag());
         boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 5;
-            mindPoints += 5;
-            howManyMind += "● ● ● ● ● ";
-        } else {
-            howMany -= 5;
-            mindPoints -= 5;
-            howManyMind = howManyMind.substring(0, howManyMind.length() - 10);
-        }
-        changeCareMind(howManyMind);
-        changeCare(howMany);
-    }
 
-    public void changeThreePointsMind(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
-            howMany += 3;
-            mindPoints += 3;
-            howManyMind += "● ● ● ";
-        } else {
-            howMany -= 3;
-            mindPoints -= 3;
-            howManyMind = howManyMind.substring(0, howManyMind.length() - 6);
-        }
-        changeCareMind(howManyMind);
-        changeCare(howMany);
-    }
+            howMany += pointsToChange;
+            mindPoints += pointsToChange;
 
-    public void changeTwoPointsMind(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 2;
-            mindPoints += 2;
-            howManyMind += "● ● ";
+            for(int i=0; i<pointsToChange; i++){
+                howManyMind += "● ";
+            }
         } else {
-            howMany -= 2;
-            mindPoints -= 2;
-            howManyMind = howManyMind.substring(0, howManyMind.length() - 4);
+            howMany -= pointsToChange;
+            mindPoints -= pointsToChange;
+            howManyMind = howManyMind.substring(0, howManyMind.length() - (pointsToChange * 2));
         }
-        changeCareMind(howManyMind);
-        changeCare(howMany);
-    }
-
-    public void changeOnePointMind(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 1;
-            mindPoints += 1;
-            howManyMind += "● ";
-        } else {
-            howMany -= 1;
-            mindPoints -= 1;
-            howManyMind = howManyMind.substring(0, howManyMind.length() - 2);
-        }
-        changeCareMind(howManyMind);
+        changeCareBody(howManyMind);
         changeCare(howMany);
     }
 
@@ -530,63 +450,23 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * CHANGE POINTS - SOUL * * */
 
-    public void changeFivePointsSoul(View v) {
+    public void changePointsSoul(View v){
+        int pointsToChange = Integer.parseInt((String) v.getTag());
         boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 5;
-            soulPoints += 5;
-            howManySoul += "● ● ● ● ● ";
-        } else {
-            howMany -= 5;
-            soulPoints -= 5;
-            howManySoul = howManySoul.substring(0, howManySoul.length() - 10);
-        }
-        changeCareSoul(howManySoul);
-        changeCare(howMany);
-    }
 
-    public void changeThreePointsSoul(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
         if (isChecked) {
-            howMany += 3;
-            soulPoints += 3;
-            howManySoul += "● ● ● ";
-        } else {
-            howMany -= 3;
-            soulPoints -= 3;
-            howManySoul = howManySoul.substring(0, howManySoul.length() - 6);
-        }
-        changeCareSoul(howManySoul);
-        changeCare(howMany);
-    }
+            howMany += pointsToChange;
+            soulPoints += pointsToChange;
 
-    public void changeTwoPointsSoul(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 2;
-            soulPoints += 2;
-            howManySoul += "● ● ";
+            for(int i=0; i<pointsToChange; i++){
+                howManySoul += "● ";
+            }
         } else {
-            howMany -= 2;
-            soulPoints -= 2;
-            howManySoul = howManySoul.substring(0, howManySoul.length() - 4);
+            howMany -= pointsToChange;
+            soulPoints -= pointsToChange;
+            howManySoul = howManySoul.substring(0, howManySoul.length() - (pointsToChange * 2));
         }
-        changeCareSoul(howManySoul);
-        changeCare(howMany);
-    }
-
-    public void changeOnePointSoul(View v) {
-        boolean isChecked = ((ToggleButton) v).isChecked();
-        if (isChecked) {
-            howMany += 1;
-            soulPoints += 1;
-            howManySoul += "● ";
-        } else {
-            howMany -= 1;
-            soulPoints -= 1;
-            howManySoul = howManySoul.substring(0, howManySoul.length() - 2);
-        }
-        changeCareSoul(howManySoul);
+        changeCareBody(howManySoul);
         changeCare(howMany);
     }
 
@@ -626,7 +506,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         }
     }
 
-
     public void changeSum() {
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mPointsNumber.setText(String.valueOf(pointsNum));
@@ -648,8 +527,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
-    ;
 
      /* * * CURSOR * * */
 

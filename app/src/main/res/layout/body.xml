@@ -1,4 +1,3 @@
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_body"
@@ -16,63 +15,74 @@
         android:freezesText="true"
         android:text="@string/dots"
         />
+
     <ScrollView
         style="@style/scroll">
-    <GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/body_list"
-        style="@style/section"
-        >
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeTwoPointsBody"
-            android:textOff="@string/body1"
-            android:textOn="@string/body1_on"
-            />
+        <GridLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/body_list"
+            style="@style/section"
+            >
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeTwoPointsBody"
-            android:textOff="@string/body2"
-            android:textOn="@string/body2_on"/>
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="2"
+                android:textOff="@string/body1"
+                android:textOn="@string/body1_on"
+                />
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeTwoPointsBody"
-            android:textOff="@string/body3"
-            android:textOn="@string/body3_on"/>
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="2"
+                android:textOff="@string/body2"
+                android:textOn="@string/body2_on"/>
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeOnePointBody"
-            android:textOff="@string/body4"
-            android:textOn="@string/body4_on"/>
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="2"
+                android:textOff="@string/body3"
+                android:textOn="@string/body3_on"/>
+
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="1"
+                android:textOff="@string/body4"
+                android:textOn="@string/body4_on"/>
 
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeThreePointsBody"
-            android:textOff="@string/body5"
-            android:textOn="@string/body5_on"/>
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="3"
+                android:textOff="@string/body5"
+                android:textOn="@string/body5_on"/>
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeTwoPointsBody"
-            android:textOff="@string/body6"
-            android:textOn="@string/body6_on"/>
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="2"
+                android:textOff="@string/body6"
+                android:textOn="@string/body6_on"/>
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeThreePointsBody"
-            android:textOff="@string/body7"
-            android:textOn="@string/body7_on"/>
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="3"
+                android:textOff="@string/body7"
+                android:textOn="@string/body7_on"/>
 
-        <ToggleButton
-            style="@style/Button.body"
-            android:onClick="changeTwoPointsBody"
-            android:textOff="@string/body8"
-            android:textOn="@string/body8_on"/>
+            <ToggleButton
+                style="@style/Button.body"
+                android:onClick="changePointsBody"
+                android:tag="2"
+                android:textOff="@string/body8"
+                android:textOn="@string/body8_on"/>
 
-    </GridLayout></ScrollView>
+        </GridLayout>
+    </ScrollView>
 </LinearLayout>
