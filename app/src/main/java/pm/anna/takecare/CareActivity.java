@@ -92,6 +92,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     String mDoneArray[];
     boolean detailsVisible = false;
     boolean savedToday = false;
+    int wantsToAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         initDatabase();
         checkLastTime();
     }
-
 
     private void initUiElements() {
 
@@ -330,10 +330,13 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             public void onPageSelected(int position) {
 
                 // skip fake page (first), go to last page
+
+
                 if (position == 0) {
                     mViewPager.setCurrentItem(5, false);
 
                 }
+
                 // skip fake page (last), go to first page
                 if (position == 6) {
                     mViewPager.setCurrentItem(1, false); //notice how this jumps to position 1, and not position 0. Position 0 is the fake page!
@@ -365,9 +368,10 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         if (lastDay.equals(formattedDate)){
 
             savedToday = true;
-            
+
             pointsNum = c.getInt(c.getColumnIndex(ArchiveEntry.COLUMN_POINTS_ALL));
 
+            howMany = pointsNum;
             changeCare(pointsNum);
 
             bodyPoints = c.getInt(c.getColumnIndex(ArchiveEntry.COLUMN_POINTS_BODY));
@@ -388,6 +392,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             changeCareBody(howManyBody);
             changeCareMind(howManyMind);
             changeCareSoul(howManySoul);
+            wantsToAdd = 2;
         }
     }
 
@@ -467,8 +472,13 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     public void changePointsBody(View v) {
         int pointsToChange = Integer.parseInt((String) v.getTag());
-        boolean isChecked = ((ToggleButton) v).isChecked();
-
+        ToggleButton selected = ((ToggleButton) v);
+        boolean isChecked = selected.isChecked();
+        if(savedToday && wantsToAdd == 2) {
+            selected.toggle();
+            checkIfWantsToAdd();
+            return;
+        }
         if (isChecked) {
             howMany += pointsToChange;
             bodyPoints += pointsToChange;
@@ -502,7 +512,13 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     public void changePointsMind(View v) {
         int pointsToChange = Integer.parseInt((String) v.getTag());
-        boolean isChecked = ((ToggleButton) v).isChecked();
+        ToggleButton selected = ((ToggleButton) v);
+        boolean isChecked = selected.isChecked();
+        if(savedToday && wantsToAdd == 2) {
+            selected.toggle();
+            checkIfWantsToAdd();
+            return;
+        }
 
         if (isChecked) {
             howMany += pointsToChange;
@@ -537,8 +553,13 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     public void changePointsSoul(View v) {
         int pointsToChange = Integer.parseInt((String) v.getTag());
-        boolean isChecked = ((ToggleButton) v).isChecked();
-
+        ToggleButton selected = ((ToggleButton) v);
+        boolean isChecked = selected.isChecked();
+        if(savedToday && wantsToAdd == 2) {
+            selected.toggle();
+            checkIfWantsToAdd();
+            return;
+        }
         if (isChecked) {
             howMany += pointsToChange;
             soulPoints += pointsToChange;
@@ -576,6 +597,59 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mHowMany.setText(String.valueOf(num));
         mHowMany_f.setText(String.valueOf(num));
         mPointsNumber.setText(String.valueOf(pointsNum));
+    }
+
+    private void checkIfWantsToAdd(){
+        switch (wantsToAdd){
+            case 0:
+                resetEverything();
+                wantsToAdd = 1;
+                break;
+            case 1:
+                break;
+            case 2:
+                askWhatToDo();
+                break;
+        }
+
+    }
+
+    private void askWhatToDo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.today_dialog_msg);
+
+        builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                wantsToAdd = 1;
+            }
+        });
+        builder.setNegativeButton(R.string.reset, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                resetEverything();
+                wantsToAdd = 1;
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(getResources().getColor(R.color.circle_delete));
+
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(getResources().getColor(R.color.green));
+    };
+
+    private void resetEverything(){
+        resetPoints();
+        mHowMany.setText(String.valueOf(0));
+        mHowMany_f.setText(String.valueOf(0));
+        howManyMind = "";
+        howManyBody = "";
+        howManySoul = "";
+        changeCareBody(howManyBody);
+        changeCareMind(howManyMind);
+        changeCareSoul(howManySoul);
+        howMany = 0;
     }
 
     private void preventNegative() {

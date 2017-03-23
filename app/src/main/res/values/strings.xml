@@ -15,6 +15,9 @@
     <string name="save_ok">You\'ve tracked another day! Yay!</string>
     <string name="save_error">Oops! Something went wrong</string>
     <string name="delete_dialog_msg">Delete last entry?</string>
+    <string name="today_dialog_msg">Looks like you\'ve already tracked today!\nDo you want to add new points or start over? </string>
+    <string name="add">Add</string>
+    <string name="reset">Reset</string>
     <string name="comment_msg">Any thoughts?</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
