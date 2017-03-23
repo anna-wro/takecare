@@ -12,7 +12,7 @@
         />
 
     <TextView
-        android:id="@+id/careText"
+        android:id="@+id/careText_f"
         style="@style/hi_text"
         android:text="@string/question"
         />

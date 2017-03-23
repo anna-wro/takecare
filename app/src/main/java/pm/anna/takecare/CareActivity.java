@@ -53,6 +53,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     String howManyBody = "";
     String howManyMind = "";
     String howManySoul = "";
+    String formattedDate;
     GridLayout mBodyList;
     GridLayout mMindList;
     GridLayout mSoulList;
@@ -90,6 +91,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     RelativeLayout mEmptyView;
     String mDoneArray[];
     boolean detailsVisible = false;
+    boolean savedToday = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         setDate();
         addListeners();
         initDatabase();
+        checkLastTime();
     }
 
 
@@ -160,7 +163,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     private void setDate() {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy (EEE)", Locale.US);
-        String formattedDate = df.format(c.getTime());
+        formattedDate = df.format(c.getTime());
         mDateEdit.setText(formattedDate);
         try {
             EditTextDatePicker fromDate = new EditTextDatePicker(this, mDateEdit);
@@ -352,6 +355,40 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mItemsList.setAdapter(mCursorAdapter);
         mItemsList_f.setAdapter(mCursorAdapter); // fake list
         getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
+    }
+
+    private void checkLastTime(){
+        Cursor c = getContentResolver().query(ArchiveEntry.CONTENT_URI, null, null, null, null);
+        assert c != null;
+        c.moveToLast();
+        String lastDay = c.getString(c.getColumnIndex(ArchiveEntry.COLUMN_DATE));
+        if (lastDay.equals(formattedDate)){
+
+            savedToday = true;
+            
+            pointsNum = c.getInt(c.getColumnIndex(ArchiveEntry.COLUMN_POINTS_ALL));
+
+            changeCare(pointsNum);
+
+            bodyPoints = c.getInt(c.getColumnIndex(ArchiveEntry.COLUMN_POINTS_BODY));
+            for (int i = 0; i < bodyPoints; i++) {
+                howManyBody += "● ";
+            }
+
+            mindPoints = c.getInt(c.getColumnIndex(ArchiveEntry.COLUMN_POINTS_MIND));
+            for (int i = 0; i < mindPoints; i++) {
+                howManyMind += "● ";
+            }
+
+            soulPoints = c.getInt(c.getColumnIndex(ArchiveEntry.COLUMN_POINTS_SOUL));
+            for (int i = 0; i < soulPoints; i++) {
+                howManySoul += "● ";
+            }
+
+            changeCareBody(howManyBody);
+            changeCareMind(howManyMind);
+            changeCareSoul(howManySoul);
+        }
     }
 
     public View getViewByPosition(int position) {
