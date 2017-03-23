@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -432,6 +433,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         resetPoints();
         changeSum();
         hidePanel();
+        checkLastTime();
     }
 
     private void showDeleteConfirmationDialog() {
@@ -631,6 +633,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        TextView messageView = (TextView)alertDialog.findViewById(android.R.id.message);
+        messageView.setGravity(Gravity.CENTER);
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         negativeButton.setTextColor(getResources().getColor(R.color.circle_delete));
