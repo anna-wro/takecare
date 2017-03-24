@@ -1,7 +1,6 @@
 package pm.anna.takecare;
 
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -50,11 +49,11 @@ class WizardPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View arg0, Object arg1) {
-        return arg0 == ((View) arg1);
+        return arg0 == arg1;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ((ViewPager) container).removeView((View) object);
+        (container).removeView((View) object);
     }
 }

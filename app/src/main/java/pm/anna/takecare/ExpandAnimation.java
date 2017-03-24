@@ -8,7 +8,7 @@ import android.widget.LinearLayout.LayoutParams;
  * Created by Anna on 24.02.2017.
  */
 
-public class ExpandAnimation extends Animation {
+class ExpandAnimation extends Animation {
     private View mAnimatedView;
     private LayoutParams mViewLayoutParams;
     private int mMarginStart, mMarginEnd;
@@ -20,7 +20,7 @@ public class ExpandAnimation extends Animation {
      * @param view The layout we want to animate
      * @param duration The duration of the animation, in ms
      */
-    public ExpandAnimation(View view, int duration) {
+    ExpandAnimation(View view, int duration) {
 
         setDuration(duration);
         mAnimatedView = view;

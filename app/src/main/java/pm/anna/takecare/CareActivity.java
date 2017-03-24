@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
@@ -205,7 +206,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                     bodyPoints = Integer.parseInt(s.toString());
                     changeSum();
                 }
-                ;
             }
         });
         mMindPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -234,7 +234,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                     mindPoints = Integer.parseInt(s.toString());
                     changeSum();
                 }
-                ;
             }
         });
         mSoulPointsNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -263,7 +262,6 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
                     soulPoints = Integer.parseInt(s.toString());
                     changeSum();
                 }
-                ;
             }
         });
 
@@ -305,7 +303,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
             @Override
             public void onClick(View v) {
-                if (detailsVisible == false) {
+                if (!detailsVisible) {
                     for (int i = 0; i < mItemsList.getAdapter().getCount(); i++) {
                         mItemsList.performItemClick(
                                 getViewByPosition(i),
@@ -325,7 +323,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             }
         });
 
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
@@ -461,17 +459,19 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         alertDialog.show();
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        negativeButton.setTextColor(getResources().getColor(R.color.green));
+        negativeButton.setTextColor(ContextCompat.getColor(this, R.color.green));
 
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        positiveButton.setTextColor(getResources().getColor(R.color.circle_delete));
+        positiveButton.setTextColor(ContextCompat.getColor(this, R.color.circle_delete));
     }
 
     private void deleteArchiveItem() {
         Cursor c = getContentResolver().query(ArchiveEntry.CONTENT_URI, null, null, null, null);
+        assert c != null;
         c.moveToLast();
         String dayToDelete = c.getString(c.getColumnIndex(ArchiveEntry._ID));
         getContentResolver().delete(ArchiveEntry.CONTENT_URI, ArchiveEntry._ID + "=?", new String[]{dayToDelete});
+        c.close();
     }
 
     /* * * CHANGE POINTS - BODY  * * */
@@ -511,7 +511,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyBody.setText(s);
-        mBodyPointsNumber.setText(Integer.toString(bodyPoints));
+        mBodyPointsNumber.setText(String.valueOf(bodyPoints));
     }
 
     /* * * CHANGE POINTS - MIND * * */
@@ -552,7 +552,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManyMind.setText(s);
-        mMindPointsNumber.setText(Integer.toString(mindPoints));
+        mMindPointsNumber.setText(String.valueOf(mindPoints));
     }
 
     /* * * CHANGE POINTS - SOUL * * */
@@ -592,7 +592,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         }
         if (s.length() == 0) s = "◦ ◦ ◦";
         mHowManySoul.setText(s);
-        mSoulPointsNumber.setText(Integer.toString(soulPoints));
+        mSoulPointsNumber.setText(String.valueOf(soulPoints));
     }
 
     /* * * POINTS-RELATED * * */
@@ -638,16 +638,15 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
         TextView messageView = (TextView) alertDialog.findViewById(android.R.id.message);
+        assert messageView != null;
         messageView.setGravity(Gravity.CENTER);
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        negativeButton.setTextColor(getResources().getColor(R.color.circle_delete));
+        negativeButton.setTextColor(ContextCompat.getColor(this, R.color.circle_delete));
 
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        positiveButton.setTextColor(getResources().getColor(R.color.green));
+        positiveButton.setTextColor(ContextCompat.getColor(this, R.color.green));
     }
-
-    ;
 
     private void resetEverything() {
         resetPoints();
@@ -666,15 +665,15 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         if (howMany < 0) howMany = 0;
         if (bodyPoints < 0) {
             bodyPoints = 0;
-            mBodyPointsNumber.setText(Integer.toString(bodyPoints));
+            mBodyPointsNumber.setText(String.valueOf(bodyPoints));
         }
         if (mindPoints < 0) {
             mindPoints = 0;
-            mMindPointsNumber.setText(Integer.toString(mindPoints));
+            mMindPointsNumber.setText(String.valueOf(mindPoints));
         }
         if (soulPoints < 0) {
             soulPoints = 0;
-            mSoulPointsNumber.setText(Integer.toString(soulPoints));
+            mSoulPointsNumber.setText(String.valueOf(soulPoints));
         }
     }
 
@@ -685,9 +684,9 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     private void resetPoints() {
         pointsNum = bodyPoints = mindPoints = soulPoints = 0;
-        mSoulPointsNumber.setText(Integer.toString(soulPoints));
-        mBodyPointsNumber.setText(Integer.toString(bodyPoints));
-        mMindPointsNumber.setText(Integer.toString(mindPoints));
+        mSoulPointsNumber.setText(String.valueOf(soulPoints));
+        mBodyPointsNumber.setText(String.valueOf(bodyPoints));
+        mMindPointsNumber.setText(String.valueOf(mindPoints));
         mThoughtsEdit.setText("");
     }
 
@@ -721,8 +720,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mCursorAdapter.swapCursor(data);
         int days = mCursorAdapter.getCount();
-        mHowManyDays.setText("" + days);
-        mHowManyDays_f.setText("" + days);
+        mHowManyDays.setText(String.valueOf(days));
+        mHowManyDays_f.setText(String.valueOf(days));
     }
 
     @Override
@@ -730,6 +729,4 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mCursorAdapter.swapCursor(null);
     }
 
-
-};
-
+}

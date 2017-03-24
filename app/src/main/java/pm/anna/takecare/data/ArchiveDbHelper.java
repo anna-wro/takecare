@@ -4,7 +4,6 @@ package pm.anna.takecare.data;
  * Created by Anna on 18.02.2017.
  */
 
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -12,14 +11,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import pm.anna.takecare.data.ArchiveContract.ArchiveEntry;
 
 
-public class ArchiveDbHelper extends SQLiteOpenHelper {
+class ArchiveDbHelper extends SQLiteOpenHelper {
 
     public static final String LOG_TAG = ArchiveDbHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "archive.db";
     private static final int DATABASE_VERSION = 2;
 
-    public ArchiveDbHelper(Context context) {
+    ArchiveDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

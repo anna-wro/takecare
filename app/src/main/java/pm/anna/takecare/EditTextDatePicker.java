@@ -14,21 +14,16 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-/**
- * Created by Anna on 17.02.2017.
- */
+class EditTextDatePicker implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+    private EditText _editText;
+    private int _day;
+    private int _month;
+    private int _year;
+    private Context _context;
+    private String _dayOfWeek;
+    private String _monthWithZero;
 
-public class EditTextDatePicker implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
-    EditText _editText;
-    public int _day;
-    public int _month;
-    public int _year;
-    public Context _context;
-    public String _dayOfWeek;
-    public String _monthWithZero;
-    public String chosenDate;
-
-    public EditTextDatePicker(Context context, EditText editTextViewID) throws ParseException {
+    EditTextDatePicker(Context context, EditText editTextViewID) throws ParseException {
         Activity act = (Activity) context;
         this._editText = editTextViewID;
         this._editText.setOnClickListener(this);
@@ -62,7 +57,7 @@ public class EditTextDatePicker implements View.OnClickListener, DatePickerDialo
 
     // updates the date in the EditText
     private void DisplayDate() {
-        chosenDate = _day + "." + (_monthWithZero) + "." + _year + " (" + _dayOfWeek + ")";
+        String chosenDate = _day + "." + (_monthWithZero) + "." + _year + " (" + _dayOfWeek + ")";
         _editText.setText(chosenDate);
     }
 }

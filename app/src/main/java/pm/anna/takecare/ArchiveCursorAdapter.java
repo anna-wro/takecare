@@ -10,15 +10,10 @@ import android.widget.TextView;
 
 import pm.anna.takecare.data.ArchiveContract;
 
-/**
- * Created by Anna on 19.02.2017.
- */
+class ArchiveCursorAdapter extends CursorAdapter {
 
 
-public class ArchiveCursorAdapter extends CursorAdapter {
-
-
-    public ArchiveCursorAdapter(Context context, Cursor c) {
+    ArchiveCursorAdapter(Context context, Cursor c) {
         super(context, c, 0 /* flags */);
     }
 

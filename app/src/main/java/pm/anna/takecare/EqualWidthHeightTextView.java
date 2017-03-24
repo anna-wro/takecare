@@ -2,9 +2,8 @@ package pm.anna.takecare;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
-public class EqualWidthHeightTextView extends TextView {
+public class EqualWidthHeightTextView extends android.support.v7.widget.AppCompatTextView {
 
     public EqualWidthHeightTextView(Context context) {
         super(context);

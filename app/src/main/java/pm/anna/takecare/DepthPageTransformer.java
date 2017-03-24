@@ -3,9 +3,6 @@ package pm.anna.takecare;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-/**
- * Created by Anna on 15.02.2017.
- */
 public class DepthPageTransformer implements ViewPager.PageTransformer {
 
     public void transformPage(View view, float position) {

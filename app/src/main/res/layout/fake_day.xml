@@ -17,7 +17,6 @@
         android:text="@string/question"
         />
 
-
     <pm.anna.takecare.EqualWidthHeightTextView
         android:id="@+id/howMany_f"
         style="@style/counter.main"
