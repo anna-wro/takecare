@@ -421,6 +421,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
         values.put(ArchiveEntry.COLUMN_DESCRIPTION, thought);
 
+        if(savedToday && date.equals(formattedDate))deleteArchiveItem();
         Uri newUri = getContentResolver().insert(ArchiveEntry.CONTENT_URI, values);
         if (newUri == null) {
             Toast.makeText(this, getString(R.string.save_error), Toast.LENGTH_SHORT).show();
