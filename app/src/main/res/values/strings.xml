@@ -16,6 +16,7 @@
     <string name="save_error">Oops! Something went wrong</string>
     <string name="delete_dialog_msg">Delete last entry?</string>
     <string name="today_dialog_msg">\nYou\'ve already tracked\n your care today!\n\nDo you want to add\n new points or start over?</string>
+    <string name="comment">These are your points today:</string>
     <string name="add">Add</string>
     <string name="reset">Reset</string>
     <string name="comment_msg">Any thoughts?</string>

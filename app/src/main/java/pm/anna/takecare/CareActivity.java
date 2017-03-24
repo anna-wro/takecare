@@ -71,6 +71,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
     TextView mSoulDots_f;
     TextView mPointsNumber;
     TextView mCommentDays;
+    TextView mComment;
+    TextView mComment_f;
     EditText mDateEdit;
     EditText mBodyPointsNumber;
     EditText mMindPointsNumber;
@@ -114,6 +116,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mMindList = (GridLayout) findViewById(R.id.mind_list);
         mSoulList = (GridLayout) findViewById(R.id.soul_list);
         mHowMany = (TextView) findViewById(R.id.howMany);
+        mComment = (TextView) findViewById(R.id.careText);
+        mComment_f = (TextView) findViewById(R.id.careText_f);
         mHowManyBody = (TextView) findViewById(R.id.howManyBody);
         mHowManyMind = (TextView) findViewById(R.id.howManyMind);
         mHowManySoul = (TextView) findViewById(R.id.howManySoul);
@@ -324,23 +328,19 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
 
                 // skip fake page (first), go to last page
-
-
                 if (position == 0) {
                     mViewPager.setCurrentItem(5, false);
-
                 }
 
                 // skip fake page (last), go to first page
                 if (position == 6) {
-                    mViewPager.setCurrentItem(1, false); //notice how this jumps to position 1, and not position 0. Position 0 is the fake page!
+                    mViewPager.setCurrentItem(1, false);
                 }
             }
 
@@ -361,14 +361,16 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         getSupportLoaderManager().initLoader(ARCHIVE_LOADER, null, this);
     }
 
-    private void checkLastTime(){
+    private void checkLastTime() {
         Cursor c = getContentResolver().query(ArchiveEntry.CONTENT_URI, null, null, null, null);
         assert c != null;
         c.moveToLast();
         String lastDay = c.getString(c.getColumnIndex(ArchiveEntry.COLUMN_DATE));
-        if (lastDay.equals(formattedDate)){
+        if (lastDay.equals(formattedDate)) {
 
             savedToday = true;
+            mComment.setText(getResources().getString(R.string.comment));
+            mComment_f.setText(getResources().getString(R.string.comment));
 
             pointsNum = c.getInt(c.getColumnIndex(ArchiveEntry.COLUMN_POINTS_ALL));
 
@@ -395,9 +397,10 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
             changeCareSoul(howManySoul);
             wantsToAdd = 2;
         }
+        c.close();
     }
 
-    public View getViewByPosition(int position) {
+    private View getViewByPosition(int position) {
         int firstItemPosition = mItemsList.getFirstVisiblePosition();
         int lastItemPosition = firstItemPosition + mItemsList.getChildCount() - 1;
 
@@ -421,7 +424,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         values.put(ArchiveEntry.COLUMN_POINTS_SOUL, soulPoints);
         values.put(ArchiveEntry.COLUMN_DESCRIPTION, thought);
 
-        if(savedToday && date.equals(formattedDate))deleteArchiveItem();
+        if (savedToday && date.equals(formattedDate)) deleteArchiveItem();
         Uri newUri = getContentResolver().insert(ArchiveEntry.CONTENT_URI, values);
         if (newUri == null) {
             Toast.makeText(this, getString(R.string.save_error), Toast.LENGTH_SHORT).show();
@@ -477,7 +480,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         int pointsToChange = Integer.parseInt((String) v.getTag());
         ToggleButton selected = ((ToggleButton) v);
         boolean isChecked = selected.isChecked();
-        if(savedToday && wantsToAdd == 2) {
+        if (savedToday && wantsToAdd == 2) {
             selected.toggle();
             checkIfWantsToAdd();
             return;
@@ -498,7 +501,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         changeCare(howMany);
     }
 
-    public void changeCareBody(String s) {
+    private void changeCareBody(String s) {
         if (s.length() > 0) {
             mBodyDots.setText(s);
             mBodyDots_f.setText(s);
@@ -517,7 +520,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         int pointsToChange = Integer.parseInt((String) v.getTag());
         ToggleButton selected = ((ToggleButton) v);
         boolean isChecked = selected.isChecked();
-        if(savedToday && wantsToAdd == 2) {
+        if (savedToday && wantsToAdd == 2) {
             selected.toggle();
             checkIfWantsToAdd();
             return;
@@ -539,7 +542,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         changeCare(howMany);
     }
 
-    public void changeCareMind(String s) {
+    private void changeCareMind(String s) {
         if (s.length() > 0) {
             mMindDots.setText(s);
             mMindDots_f.setText(s);
@@ -558,7 +561,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         int pointsToChange = Integer.parseInt((String) v.getTag());
         ToggleButton selected = ((ToggleButton) v);
         boolean isChecked = selected.isChecked();
-        if(savedToday && wantsToAdd == 2) {
+        if (savedToday && wantsToAdd == 2) {
             selected.toggle();
             checkIfWantsToAdd();
             return;
@@ -579,7 +582,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         changeCare(howMany);
     }
 
-    public void changeCareSoul(String s) {
+    private void changeCareSoul(String s) {
         if (s.length() > 0) {
             mSoulDots.setText(s);
             mSoulDots_f.setText(s);
@@ -594,7 +597,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     /* * * POINTS-RELATED * * */
 
-    public void changeCare(int num) {
+    private void changeCare(int num) {
         preventNegative();
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mHowMany.setText(String.valueOf(num));
@@ -602,8 +605,8 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         mPointsNumber.setText(String.valueOf(pointsNum));
     }
 
-    private void checkIfWantsToAdd(){
-        switch (wantsToAdd){
+    private void checkIfWantsToAdd() {
+        switch (wantsToAdd) {
             case 0:
                 resetEverything();
                 wantsToAdd = 1;
@@ -617,7 +620,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     }
 
-    private void askWhatToDo(){
+    private void askWhatToDo() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.today_dialog_msg);
 
@@ -634,7 +637,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-        TextView messageView = (TextView)alertDialog.findViewById(android.R.id.message);
+        TextView messageView = (TextView) alertDialog.findViewById(android.R.id.message);
         messageView.setGravity(Gravity.CENTER);
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
@@ -642,9 +645,11 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(getResources().getColor(R.color.green));
-    };
+    }
 
-    private void resetEverything(){
+    ;
+
+    private void resetEverything() {
         resetPoints();
         mHowMany.setText(String.valueOf(0));
         mHowMany_f.setText(String.valueOf(0));
@@ -673,12 +678,12 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         }
     }
 
-    public void changeSum() {
+    private void changeSum() {
         pointsNum = bodyPoints + soulPoints + mindPoints;
         mPointsNumber.setText(String.valueOf(pointsNum));
     }
 
-    public void resetPoints() {
+    private void resetPoints() {
         pointsNum = bodyPoints = mindPoints = soulPoints = 0;
         mSoulPointsNumber.setText(Integer.toString(soulPoints));
         mBodyPointsNumber.setText(Integer.toString(bodyPoints));
