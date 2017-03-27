@@ -367,6 +367,7 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
         if (lastDay.equals(formattedDate)) {
 
             savedToday = true;
+            resetDots();
             mComment.setText(getResources().getString(R.string.comment));
             mComment_f.setText(getResources().getString(R.string.comment));
 
@@ -650,16 +651,20 @@ public class CareActivity extends BaseActivity implements LoaderManager.LoaderCa
 
     private void resetEverything() {
         resetPoints();
+        resetDots();
         mHowMany.setText(String.valueOf(0));
         mHowMany_f.setText(String.valueOf(0));
+        howMany = 0;
+    }
+
+    private void resetDots(){
         howManyMind = "";
         howManyBody = "";
         howManySoul = "";
         changeCareBody(howManyBody);
         changeCareMind(howManyMind);
         changeCareSoul(howManySoul);
-        howMany = 0;
-    }
+    };
 
     private void preventNegative() {
         if (howMany < 0) howMany = 0;
